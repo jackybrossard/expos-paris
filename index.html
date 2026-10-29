@@ -155,6 +155,19 @@ label{display:block;font-size:13px;font-weight:600;margin:12px 0 5px}
     </div>
   </form>
 </div>
+<div class="overlay" id="ov-cal">
+  <div class="sheet">
+    <h2>Ajouter au calendrier</h2>
+    <div class="museum" id="c-title"></div>
+    <div class="dates" id="c-when"></div>
+    <div class="row" style="margin-top:16px;flex-direction:column">
+      <button class="btn" type="button" id="c-open">📅 Ouvrir dans Calendrier</button>
+      <button class="btn ghost" type="button" id="c-share">Partager le fichier…</button>
+      <button class="btn ghost" type="button" id="c-close">Fermer</button>
+    </div>
+    <div class="hint" style="margin-top:10px">Si rien ne s'ouvre : « Partager le fichier… » → Enregistrer dans Fichiers, puis touche le fichier dans l'app Fichiers.</div>
+  </div>
+</div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -357,7 +370,7 @@ $("#ov").addEventListener("click", ev => { if (ev.target.id === "ov") closeForm(
 $("#f-del").addEventListener("click", async () => { const id = editing.id; closeForm(); await removeVisit(id); renderAll(); toast("Visite supprimée"); });
 $("#f-cal").addEventListener("click", async () => {
   if (!$("#f-date").value){ toast("Choisis d'abord une date"); return; }
-  const v = readForm(); await persist(v); renderAll(); addToCalendar(v);
+  const v = readForm(); closeForm(); addToCalendar(v); await persist(v); renderAll();
 });
 
 /* ---------- Calendrier (.ics) ---------- */
@@ -368,9 +381,9 @@ function buildICS(v){
   let start, end;
   if (v.time){
     const [h, mi] = v.time.split(":").map(Number);
-    const eh = String(Math.min(h + 2, 23)).padStart(2, "0");
-    start = `DTSTART;TZID=Europe/Paris:${d}T${String(h).padStart(2,"0")}${String(mi).padStart(2,"0")}00`;
-    end = `DTEND;TZID=Europe/Paris:${d}T${eh}${String(mi).padStart(2,"0")}00`;
+    const s = parse(v.date); s.setHours(h, mi, 0, 0);
+    const z = dt => dt.toISOString().replace(/[-:]/g, "").replace(/\.\d+/, "");
+    start = "DTSTART:" + z(s); end = "DTEND:" + z(new Date(s.getTime() + 2 * 3600000));
   } else {
     const n = parse(v.date); n.setDate(n.getDate() + 1);
     const nd = n.getFullYear() + String(n.getMonth()+1).padStart(2,"0") + String(n.getDate()).padStart(2,"0");
@@ -384,22 +397,40 @@ function buildICS(v){
     "BEGIN:VALARM","TRIGGER:-PT2H","ACTION:DISPLAY","DESCRIPTION:" + icsEscape("Expo : " + e.t),"END:VALARM",
     "END:VEVENT","END:VCALENDAR"].join("\r\n");
 }
-function addToCalendar(v){
+let calVisit = null;
+function icsFile(v){
   const e = expoById(v.expo) || {t: v.titre};
   const slug = (e.t || "visite").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-").slice(0,40);
-  const ics = buildICS(v);
-  const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-  if (iOS){
-    // Safari iOS ouvre directement la fiche « Ajouter au calendrier »
-    window.location.href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
-    return;
-  }
-  const url = URL.createObjectURL(new Blob([ics], {type: "text/calendar;charset=utf-8"}));
-  const a = document.createElement("a"); a.href = url; a.download = `visite-${slug}.ics`;
-  document.body.appendChild(a); a.click(); a.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 4000);
-  toast("Ouvre le fichier pour l'ajouter au Calendrier");
+  return {name: `visite-${slug}.ics`, ics: buildICS(v)};
 }
+function addToCalendar(v){
+  calVisit = v;
+  const e = expoById(v.expo) || {t: v.titre};
+  $("#c-title").textContent = e.t || "Visite";
+  $("#c-when").textContent = parse(v.date).toLocaleDateString("fr-FR", {weekday:"long", day:"numeric", month:"long"}) + (v.time ? " à " + v.time.replace(":", "h") : " (journée)");
+  $("#ov-cal").classList.add("on");
+}
+// 1) Téléchargement du fichier .ics : Safari propose alors « Ajouter au calendrier »
+$("#c-open").addEventListener("click", () => {
+  const {name, ics} = icsFile(calVisit);
+  const url = URL.createObjectURL(new Blob([ics], {type: "text/calendar"}));
+  const a = document.createElement("a"); a.href = url; a.download = name; a.rel = "noopener";
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 60000);
+  $("#ov-cal").classList.remove("on");
+  toast("Touche « Ajouter » dans la fiche qui s'ouvre");
+});
+// 2) Feuille de partage (Enregistrer dans Fichiers, Mail, AirDrop…)
+$("#c-share").addEventListener("click", async () => {
+  const {name, ics} = icsFile(calVisit);
+  const file = new File([ics], name, {type: "text/calendar"});
+  try {
+    if (navigator.canShare && navigator.canShare({files: [file]})) { await navigator.share({files: [file], title: name}); $("#ov-cal").classList.remove("on"); }
+    else toast("Partage non disponible sur cet appareil");
+  } catch(_){ /* annulé */ }
+});
+$("#c-close").addEventListener("click", () => $("#ov-cal").classList.remove("on"));
+$("#ov-cal").addEventListener("click", ev => { if (ev.target.id === "ov-cal") $("#ov-cal").classList.remove("on"); });
 
 /* ---------- Réglages ---------- */
 function openSettings(){ $("#ov-set").classList.add("on"); }
