@@ -450,6 +450,42 @@
    "f": "2028-03-12",
    "v": true,
    "c": "La peintre française dialogue avec les collections XVIIIe du musée."
+  },
+  {
+   "id": "guimet-trompe-loeil",
+   "t": "Le savoir en trompe-l'œil. Corée, 18e-20e s.",
+   "m": "Musée Guimet",
+   "d": "2026-09-16",
+   "f": "2027-01-04",
+   "v": false,
+   "c": "Les chaekgeori, ces bibliothèques peintes en trompe-l'œil où la Corée mettait en scène le savoir et les objets lettrés."
+  },
+  {
+   "id": "guimet-sanxingdui",
+   "t": "Trésors de Sanxingdui et Jinsha",
+   "m": "Musée Guimet",
+   "d": "2026-11-18",
+   "f": "2027-03-01",
+   "v": false,
+   "c": "Une civilisation chinoise ancienne et fascinante, de la découverte fortuite de 1927 aux fouilles les plus récentes."
+  },
+  {
+   "id": "penalba-zadkine",
+   "t": "Alicia Penalba. La sculpture entre terre et ciel",
+   "m": "Musée Zadkine",
+   "d": "2026-11-18",
+   "f": "2027-04-25",
+   "v": true,
+   "c": "Première exposition en France depuis sa mort de la sculptrice argentine, ancienne élève de Zadkine : du monumental au bijou. Entrée libre."
+  },
+  {
+   "id": "vin-balzac",
+   "t": "De la vigne au verre. Le vin chez Balzac",
+   "m": "Maison de Balzac",
+   "d": "2026-11-26",
+   "f": "2027-04-06",
+   "v": true,
+   "c": "Le vin dans l'univers de Balzac : plus de quatre-vingts peintures, gravures, affiches, objets de la vigne et vaisselle."
   }
  ]
 }
