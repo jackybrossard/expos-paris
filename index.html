@@ -31,7 +31,7 @@ h1{font-family:Fraunces,Georgia,serif;font-weight:700;font-size:26px;margin:0;le
 h1 span{color:var(--accent)}
 .sub{color:var(--muted);font-size:12.5px;margin-top:2px}
 .tabs{display:flex;gap:6px;margin-top:10px}
-.tab{flex:1;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:9px 8px;border-radius:10px;font:600 14px Inter,sans-serif;cursor:pointer}
+.tab{flex:1;white-space:nowrap;font-size:13.5px !important;padding:9px 4px !important;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:9px 8px;border-radius:10px;font:600 14px Inter,sans-serif;cursor:pointer}
 .tab.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 main{padding:12px 16px 80px;max-width:720px;margin:0 auto}
 .filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
@@ -61,6 +61,8 @@ textarea{min-height:70px;resize:vertical}
 .section-title{font-family:Fraunces,Georgia,serif;font-size:17px;margin:16px 0 8px}
 .visit-meta{font-size:14px;margin:6px 0}
 .visit-meta b{font-weight:600}
+.addr{display:block;margin-top:6px;font-size:13px;color:var(--ink);text-decoration:none}
+.addr span{color:var(--accent);font-weight:600;white-space:nowrap}
 .stars{color:#d4a017;letter-spacing:1px}
 /* sheet */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;z-index:20;align-items:flex-end;justify-content:center}
@@ -88,6 +90,7 @@ label{display:block;font-size:13px;font-weight:600;margin:12px 0 5px}
   </div>
   <div class="tabs">
     <button class="tab on" data-tab="expos">Expositions</button>
+    <button class="tab" data-tab="nouv">Nouveautés <span id="nbn"></span></button>
     <button class="tab" data-tab="visites">Mes visites <span id="nbv"></span></button>
   </div>
 </header>
@@ -109,6 +112,10 @@ label{display:block;font-size:13px;font-weight:600;margin:12px 0 5px}
     <div id="list"></div>
   </section>
 
+  <section id="v-nouv" hidden>
+    <div id="nouv"></div>
+  </section>
+
   <section id="v-visites" hidden>
     <div id="visits"></div>
   </section>
@@ -121,8 +128,11 @@ label{display:block;font-size:13px;font-weight:600;margin:12px 0 5px}
     <div class="museum" id="f-museum"></div>
     <label for="f-date">Date de la visite</label>
     <input type="date" id="f-date" required>
-    <label for="f-time">Heure (facultatif)</label>
-    <input type="time" id="f-time">
+    <div class="row" style="flex-wrap:nowrap">
+      <div style="flex:1"><label for="f-time">Heure d'arrivée</label><input type="time" id="f-time"></div>
+      <div style="flex:1"><label for="f-end">Heure de fin</label><input type="time" id="f-end"></div>
+    </div>
+    <div class="hint">Facultatif. Sans heure, la visite est notée sur la journée entière.</div>
     <label for="f-with">Accompagnant(s)</label>
     <input type="text" id="f-with" placeholder="ex. Marie, Paul" list="dl-with" autocomplete="off">
     <datalist id="dl-with"></datalist>
@@ -172,7 +182,7 @@ label{display:block;font-size:13px;font-weight:600;margin:12px 0 5px}
 
 <script>
 /* ---------- Données de base (remplacées par la version à jour en base si disponible) ---------- */
-const BASE = {"maj": "2026-10-29", "expos": [{"id": "eva-gonzales", "t": "Eva Gonzalès (1847-1883). Un parcours d'artiste libre", "m": "Petit Palais", "d": "2026-09-15", "f": "2027-01-24", "v": true, "c": "Première rétrospective de cette élève de Manet, peintre impressionniste longtemps restée dans l'ombre."}, {"id": "prune-nourry", "t": "Visionnaires — Prune Nourry", "m": "Petit Palais", "d": "2026-10-20", "f": "2027-01-24", "v": true, "c": "Dix-huit bustes monumentaux redonnent un visage aux sculptrices oubliées. Entrée libre."}, {"id": "bruxelles-1900", "t": "Bruxelles 1900", "m": "Petit Palais", "d": "2026-11-10", "f": "2027-04-25", "v": true, "c": "L'effervescence artistique de la capitale belge au tournant du siècle, en pleine vague Art nouveau."}, {"id": "kerry-james-marshall", "t": "Kerry James Marshall. The Histories", "m": "Musée d'Art moderne de Paris", "d": "2026-09-18", "f": "2027-01-24", "v": true, "c": "Le grand peintre américain place les figures noires au cœur de la peinture d'histoire. Un des temps forts de la saison."}, {"id": "simone-fattal", "t": "Simone Fattal. Des villes au fond d'un lac", "m": "Musée d'Art moderne de Paris", "d": "2026-09-18", "f": "2027-01-24", "v": true, "c": "Plus de cinquante ans de création d'une artiste à la croisée de la sculpture, de la peinture et de la poésie."}, {"id": "prix-duchamp-2026", "t": "Prix Marcel Duchamp 2026", "m": "Musée d'Art moderne de Paris", "d": "2026-10-02", "f": "2027-02-07", "v": true, "c": "Les artistes nommés au principal prix de l'art contemporain français, avant l'annonce du lauréat."}, {"id": "florian-krewer", "t": "Florian Krewer. woven thin", "m": "Musée d'Art moderne de Paris", "d": "2026-06-19", "f": "2027-01-04", "v": true, "c": "Peinture figurative d'un jeune artiste allemand, présentée dans les collections du musée."}, {"id": "villegle", "t": "Paris à l'arraché. Jacques Villeglé et l'art urbain", "m": "Musée Carnavalet – Histoire de Paris", "d": "2026-10-14", "f": "2027-02-14", "v": true, "c": "Les affiches lacérées de Villeglé racontent les murs de Paris et dialoguent avec l'art urbain."}, {"id": "vestiaire-a-soi", "t": "Un vestiaire à soi. Féminités dissidentes au 19e siècle", "m": "Palais Galliera", "d": "2026-09-26", "f": "2027-02-14", "v": true, "c": "Quand les femmes du XIXe siècle s'appropriaient le vestiaire masculin : la mode comme acte de liberté."}, {"id": "etoffe-artiste", "t": "L'étoffe de l'artiste", "m": "Musée Bourdelle", "d": "2026-09-23", "f": "2027-01-24", "v": true, "c": "Le vêtement d'artiste comme mise en scène de soi, de la fin du XIXe au milieu du XXe siècle."}, {"id": "hugo-architecture", "t": "Hugo et l'architecture, de la pierre à la plume", "m": "Maison de Victor Hugo", "d": "2026-06-11", "f": "2026-12-13", "v": true, "c": "Les dessins de Victor Hugo nourris de cathédrales et de vieilles pierres, place des Vosges."}, {"id": "robert-capa", "t": "Robert Capa. Photographe de guerre", "m": "Musée de la Libération de Paris", "d": "2026-02-18", "f": "2026-12-20", "v": true, "c": "Le regard du plus célèbre des photoreporters de guerre. Dernières semaines."}, {"id": "nadar-catacombes", "t": "Nadar. Découvrir Paris par-dessus et par-dessous", "m": "Catacombes de Paris", "d": "2026-09-29", "f": "2027-01-31", "v": true, "c": "Le pionnier qui photographia Paris depuis un ballon puis sous terre, à la lumière artificielle."}, {"id": "mary-cassatt", "t": "Mary Cassatt. L'indépendante", "m": "Musée d'Orsay", "d": "2026-10-06", "f": "2027-01-31", "v": false, "c": "Première grande rétrospective française de l'impressionniste américaine, pour le centenaire de sa mort. Réservation conseillée."}, {"id": "jenny-holzer", "t": "Jenny Holzer. J'ai vu", "m": "Musée d'Orsay", "d": "2026-10-20", "f": "2027-02-21", "v": false, "c": "Textes lumineux, projections et pierres gravées investissent les espaces du musée."}, {"id": "zurbaran", "t": "Zurbarán 1598-1664", "m": "Musée du Louvre", "d": "2026-10-07", "f": "2027-01-25", "v": false, "c": "Le maître du Siècle d'or espagnol enfin à l'honneur au Louvre : natures mortes et saints d'une intensité rare."}, {"id": "eau-primordiale", "t": "L'Eau primordiale", "m": "Musée du Louvre", "d": "2026-05-20", "f": "2027-03-15", "v": false, "c": "Le rôle de l'eau dans la Mésopotamie antique, mythes et objets à l'appui."}, {"id": "monet-orangerie", "t": "Monet, peindre le temps", "m": "Musée de l'Orangerie", "d": "2026-09-30", "f": "2027-01-25", "v": false, "c": "Pour le centenaire de Monet, son rapport au temps, des instants impressionnistes aux Nymphéas."}, {"id": "cezanne-et-nous", "t": "Cezanne et nous", "m": "Grand Palais", "d": "2026-09-23", "f": "2027-01-17", "v": false, "c": "Près de 180 œuvres : Cézanne face à ceux qu'il a inspirés, de Picasso et Matisse à Joan Mitchell."}, {"id": "tintoret", "t": "Éternel Tintoret", "m": "Musée Jacquemart-André", "d": "2026-09-11", "f": "2027-01-24", "v": false, "c": "Une quarantaine d'œuvres du grand Vénitien, et son autoportrait réuni avec la copie qu'en fit Manet."}, {"id": "schwitters", "t": "Kurt Schwitters. Le chaos-monde. 1918-1948", "m": "Musée national Picasso-Paris", "d": "2026-10-06", "f": "2027-02-07", "v": false, "c": "Première rétrospective française depuis plus de trente ans du génie des collages Merz."}, {"id": "warhol-luxembourg", "t": "Andy Warhol. La ligne et l'image", "m": "Musée du Luxembourg", "d": "2026-09-16", "f": "2027-01-10", "v": false, "c": "Warhol par le dessin : une autre porte d'entrée, plus intime, dans son œuvre."}, {"id": "paysages-marmottan", "t": "Histoires de paysages. De Monet à Hockney", "m": "Musée Marmottan Monet", "d": "2026-09-24", "f": "2027-01-31", "v": false, "c": "Plus d'un siècle de paysage, de l'impressionnisme à aujourd'hui."}, {"id": "fayet-flv", "t": "Gustave Fayet. Collectionneur – créateur", "m": "Fondation Louis Vuitton", "d": "2026-10-09", "f": "2027-03-08", "v": false, "c": "Le collectionneur de Van Gogh, Gauguin, Redon ou Cézanne, et sa propre création."}, {"id": "remember-me", "t": "Remember me", "m": "Bourse de Commerce – Pinault Collection", "d": "2026-10-07", "f": "2027-01-18", "v": false, "c": "Nouvelle exposition tirée de la Collection Pinault sous la coupole de Tadao Ando."}, {"id": "stan-douglas", "t": "Stan Douglas. Parallax", "m": "Jeu de Paume", "d": "2026-10-20", "f": "2027-01-10", "v": false, "c": "La plus vaste exposition parisienne de l'artiste canadien depuis trente ans : photo et vidéo."}, {"id": "penn-fashion", "t": "Penn & Fashion", "m": "Maison européenne de la photographie", "d": "2026-09-30", "f": "2027-01-17", "v": false, "c": "Irving Penn et la mode : l'élégance du studio, des décennies de couvertures."}, {"id": "martine-franck", "t": "Martine Franck. Images, presse et luttes féministes", "m": "Fondation Henri Cartier-Bresson", "d": "2026-10-21", "f": "2027-03-07", "v": false, "c": "Une photographe engagée, entre reportage de presse et combats féministes."}, {"id": "cirque-montmartre", "t": "Le cirque, fabrique de l'art moderne", "m": "Musée de Montmartre", "d": "2026-10-16", "f": "2027-02-14", "v": false, "c": "Le cirque comme laboratoire pour les artistes modernes, sur la butte."}, {"id": "premieres-nations", "t": "Premières Nations", "m": "Musée du quai Branly – Jacques Chirac", "d": "2026-09-29", "f": "2027-01-10", "v": false, "c": "Arts et cultures des peuples du Nord-Ouest de l'Amérique du Nord."}, {"id": "plumes-paradis", "t": "Plumes du paradis", "m": "Musée du quai Branly – Jacques Chirac", "d": "2026-05-12", "f": "2026-11-08", "v": false, "c": "L'oiseau de paradis de Nouvelle-Guinée à travers parures, masques et objets d'apparat. Derniers jours !"}, {"id": "nicolas-flamel", "t": "Nicolas Flamel, alchimiste de papier", "m": "Musée de Cluny", "d": "2026-10-13", "f": "2027-01-24", "v": false, "c": "Comment un écrivain public parisien du Moyen Âge est devenu une légende de l'alchimie."}, {"id": "louise-bourgeois", "t": "Louise Bourgeois. Extrême tension", "m": "BnF – Richelieu", "d": "2026-10-20", "f": "2027-02-21", "v": false, "c": "L'œuvre graphique de Louise Bourgeois dans le superbe site Richelieu rénové."}, {"id": "wagner-garnier", "t": "Richard Wagner, les révolutions du Ring", "m": "Palais Garnier – Bibliothèque-musée de l'Opéra", "d": "2026-10-27", "f": "2027-02-20", "v": false, "c": "La Tétralogie et ses mises en scène qui ont révolutionné l'opéra."}, {"id": "custodia", "t": "Mes chers amis. Le dessin dans les collections d'artistes au XIXe siècle", "m": "Fondation Custodia", "d": "2026-10-17", "f": "2027-01-17", "v": false, "c": "Les dessins que les artistes collectionnaient et échangeaient entre eux."}, {"id": "hajjaj", "t": "Hassan Hajjaj. My Rock Stars", "m": "Cité de la musique – Philharmonie", "d": "2026-09-22", "f": "2027-04-25", "v": false, "c": "Portraits pop et colorés de musiciens par le photographe marocain."}, {"id": "lassana-sarre", "t": "Lassana Sarré. Globale Inversion", "m": "Palais de Tokyo", "d": "2026-06-05", "f": "2027-02-14", "v": false, "c": "Une peinture réalisée sur place, consacrée aux agents de sécurité du lieu."}, {"id": "paul-kodjo", "t": "Paul Kodjo. Photoromance", "m": "Palais de Tokyo", "d": "2026-10-21", "f": "2027-02-14", "v": false, "c": "Le photographe ivoirien et l'Abidjan des années 1960-70."}, {"id": "mode-moyen-age", "t": "La mode au Moyen Âge", "m": "Tour Jean-sans-Peur", "d": "2026-04-08", "f": "2027-03-07", "v": false, "c": "Silhouettes, étoffes et accessoires médiévaux, dans une tour du XVe siècle."}, {"id": "coree-cernuschi", "t": "Corée. Le Royaume des lettrés 1600-1900", "m": "Musée Cernuschi", "d": "2026-11-20", "f": "2027-04-04", "v": true, "c": "Le quotidien des yangban, l'élite lettrée de la Corée de Chosŏn : peintures anciennes, costumes et mobilier d'époque."}, {"id": "en-volume-galliera", "t": "En volume !", "m": "Palais Galliera", "d": "2026-12-12", "f": "2027-10-17", "v": true, "c": "Comment un tissu plat devient vêtement : plissage, formes de chapeaux et de chaussures, coupe et 3D, les gestes des métiers de la mode."}, {"id": "archeologie-2gm", "t": "Archéologie de la Seconde Guerre mondiale", "m": "Musée de la Libération de Paris", "d": "2027-02-24", "f": "2027-07-11", "v": true, "c": "L'archéologie appliquée à la Seconde Guerre mondiale : ce que les vestiges du conflit nous apprennent."}, {"id": "leonor-fini", "t": "Leonor Fini", "m": "Musée d'Art moderne de Paris", "d": "2027-03-26", "f": "2027-08-15", "v": true, "c": "Grande exposition consacrée à la peintre surréaliste d'origine argentine, figure libre et flamboyante."}, {"id": "jozef-czapski", "t": "Józef Czapski", "m": "Musée d'Art moderne de Paris", "d": "2027-03-26", "f": "2027-08-15", "v": true, "c": "Le peintre et écrivain polonais, installé en France, à la peinture intime et sensible."}, {"id": "donation-kamel-mennour", "t": "Donation Kamel Mennour", "m": "Musée d'Art moderne de Paris", "d": "2027-03-26", "f": "2027-07-25", "v": true, "c": "Les œuvres d'art contemporain données au musée par le galeriste parisien."}, {"id": "derain-bourdelle", "t": "Derain", "m": "Musée Bourdelle", "d": "2027-04-01", "f": "2027-08-01", "v": true, "c": "André Derain, compagnon du fauvisme, dans l'atelier de Bourdelle."}, {"id": "paris-au-naturel", "t": "Paris au naturel", "m": "Musée Carnavalet – Histoire de Paris", "d": "2027-04-02", "f": "2027-08-22", "v": true, "c": "La nature à Paris vue par le musée d'histoire de la ville (présentation détaillée à venir)."}, {"id": "lucy-mckenzie", "t": "Lucy McKenzie", "m": "Palais Galliera", "d": "2027-04-24", "f": "2027-07-18", "v": true, "c": "L'artiste écossaise, entre peinture, trompe-l'œil et mode."}, {"id": "flore-vie-romantique", "t": "FLORE. Les amitiés romantiques", "m": "Musée de la Vie romantique", "d": "2027-05-22", "f": "2027-11-21", "v": true, "c": "La photographe FLORE cherche les traces du romantisme aujourd'hui, avec des œuvres pour la plupart inédites."}, {"id": "claire-tabouret", "t": "Carte blanche à Claire Tabouret", "m": "Musée Cognacq-Jay", "d": "2027-09-15", "f": "2028-03-12", "v": true, "c": "La peintre française dialogue avec les collections XVIIIe du musée."}, {"id": "guimet-trompe-loeil", "t": "Le savoir en trompe-l'œil. Corée, 18e-20e s.", "m": "Musée Guimet", "d": "2026-09-16", "f": "2027-01-04", "v": false, "c": "Les chaekgeori, ces bibliothèques peintes en trompe-l'œil où la Corée mettait en scène le savoir et les objets lettrés."}, {"id": "guimet-sanxingdui", "t": "Trésors de Sanxingdui et Jinsha", "m": "Musée Guimet", "d": "2026-11-18", "f": "2027-03-01", "v": false, "c": "Une civilisation chinoise ancienne et fascinante, de la découverte fortuite de 1927 aux fouilles les plus récentes."}, {"id": "penalba-zadkine", "t": "Alicia Penalba. La sculpture entre terre et ciel", "m": "Musée Zadkine", "d": "2026-11-18", "f": "2027-04-25", "v": true, "c": "Première exposition en France depuis sa mort de la sculptrice argentine, ancienne élève de Zadkine : du monumental au bijou. Entrée libre."}, {"id": "vin-balzac", "t": "De la vigne au verre. Le vin chez Balzac", "m": "Maison de Balzac", "d": "2026-11-26", "f": "2027-04-06", "v": true, "c": "Le vin dans l'univers de Balzac : plus de quatre-vingts peintures, gravures, affiches, objets de la vigne et vaisselle."}]};
+const BASE = {"maj": "2026-10-29", "expos": [{"id": "eva-gonzales", "t": "Eva Gonzalès (1847-1883). Un parcours d'artiste libre", "m": "Petit Palais", "d": "2026-09-15", "f": "2027-01-24", "v": true, "c": "Première rétrospective de cette élève de Manet, peintre impressionniste longtemps restée dans l'ombre.", "a": "Avenue Winston Churchill, 75008 Paris"}, {"id": "prune-nourry", "t": "Visionnaires — Prune Nourry", "m": "Petit Palais", "d": "2026-10-20", "f": "2027-01-24", "v": true, "c": "Dix-huit bustes monumentaux redonnent un visage aux sculptrices oubliées. Entrée libre.", "a": "Avenue Winston Churchill, 75008 Paris"}, {"id": "bruxelles-1900", "t": "Bruxelles 1900", "m": "Petit Palais", "d": "2026-11-10", "f": "2027-04-25", "v": true, "c": "L'effervescence artistique de la capitale belge au tournant du siècle, en pleine vague Art nouveau.", "a": "Avenue Winston Churchill, 75008 Paris"}, {"id": "kerry-james-marshall", "t": "Kerry James Marshall. The Histories", "m": "Musée d'Art moderne de Paris", "d": "2026-09-18", "f": "2027-01-24", "v": true, "c": "Le grand peintre américain place les figures noires au cœur de la peinture d'histoire. Un des temps forts de la saison.", "a": "11 avenue du Président Wilson, 75116 Paris"}, {"id": "simone-fattal", "t": "Simone Fattal. Des villes au fond d'un lac", "m": "Musée d'Art moderne de Paris", "d": "2026-09-18", "f": "2027-01-24", "v": true, "c": "Plus de cinquante ans de création d'une artiste à la croisée de la sculpture, de la peinture et de la poésie.", "a": "11 avenue du Président Wilson, 75116 Paris"}, {"id": "prix-duchamp-2026", "t": "Prix Marcel Duchamp 2026", "m": "Musée d'Art moderne de Paris", "d": "2026-10-02", "f": "2027-02-07", "v": true, "c": "Les artistes nommés au principal prix de l'art contemporain français, avant l'annonce du lauréat.", "a": "11 avenue du Président Wilson, 75116 Paris"}, {"id": "florian-krewer", "t": "Florian Krewer. woven thin", "m": "Musée d'Art moderne de Paris", "d": "2026-06-19", "f": "2027-01-04", "v": true, "c": "Peinture figurative d'un jeune artiste allemand, présentée dans les collections du musée.", "a": "11 avenue du Président Wilson, 75116 Paris"}, {"id": "villegle", "t": "Paris à l'arraché. Jacques Villeglé et l'art urbain", "m": "Musée Carnavalet – Histoire de Paris", "d": "2026-10-14", "f": "2027-02-14", "v": true, "c": "Les affiches lacérées de Villeglé racontent les murs de Paris et dialoguent avec l'art urbain.", "a": "23 rue de Sévigné, 75003 Paris"}, {"id": "vestiaire-a-soi", "t": "Un vestiaire à soi. Féminités dissidentes au 19e siècle", "m": "Palais Galliera", "d": "2026-09-26", "f": "2027-02-14", "v": true, "c": "Quand les femmes du XIXe siècle s'appropriaient le vestiaire masculin : la mode comme acte de liberté.", "a": "10 avenue Pierre Ier de Serbie, 75116 Paris"}, {"id": "etoffe-artiste", "t": "L'étoffe de l'artiste", "m": "Musée Bourdelle", "d": "2026-09-23", "f": "2027-01-24", "v": true, "c": "Le vêtement d'artiste comme mise en scène de soi, de la fin du XIXe au milieu du XXe siècle.", "a": "18 rue Antoine Bourdelle, 75015 Paris"}, {"id": "hugo-architecture", "t": "Hugo et l'architecture, de la pierre à la plume", "m": "Maison de Victor Hugo", "d": "2026-06-11", "f": "2026-12-13", "v": true, "c": "Les dessins de Victor Hugo nourris de cathédrales et de vieilles pierres, place des Vosges.", "a": "6 place des Vosges, 75004 Paris"}, {"id": "robert-capa", "t": "Robert Capa. Photographe de guerre", "m": "Musée de la Libération de Paris", "d": "2026-02-18", "f": "2026-12-20", "v": true, "c": "Le regard du plus célèbre des photoreporters de guerre. Dernières semaines.", "a": "4 avenue du Colonel Henri Rol-Tanguy, 75014 Paris"}, {"id": "nadar-catacombes", "t": "Nadar. Découvrir Paris par-dessus et par-dessous", "m": "Catacombes de Paris", "d": "2026-09-29", "f": "2027-01-31", "v": true, "c": "Le pionnier qui photographia Paris depuis un ballon puis sous terre, à la lumière artificielle.", "a": "1 avenue du Colonel Henri Rol-Tanguy, 75014 Paris"}, {"id": "mary-cassatt", "t": "Mary Cassatt. L'indépendante", "m": "Musée d'Orsay", "d": "2026-10-06", "f": "2027-01-31", "v": false, "c": "Première grande rétrospective française de l'impressionniste américaine, pour le centenaire de sa mort. Réservation conseillée.", "a": "Esplanade Valéry Giscard d'Estaing, 75007 Paris"}, {"id": "jenny-holzer", "t": "Jenny Holzer. J'ai vu", "m": "Musée d'Orsay", "d": "2026-10-20", "f": "2027-02-21", "v": false, "c": "Textes lumineux, projections et pierres gravées investissent les espaces du musée.", "a": "Esplanade Valéry Giscard d'Estaing, 75007 Paris"}, {"id": "zurbaran", "t": "Zurbarán 1598-1664", "m": "Musée du Louvre", "d": "2026-10-07", "f": "2027-01-25", "v": false, "c": "Le maître du Siècle d'or espagnol enfin à l'honneur au Louvre : natures mortes et saints d'une intensité rare.", "a": "Rue de Rivoli, 75001 Paris"}, {"id": "eau-primordiale", "t": "L'Eau primordiale", "m": "Musée du Louvre", "d": "2026-05-20", "f": "2027-03-15", "v": false, "c": "Le rôle de l'eau dans la Mésopotamie antique, mythes et objets à l'appui.", "a": "Rue de Rivoli, 75001 Paris"}, {"id": "monet-orangerie", "t": "Monet, peindre le temps", "m": "Musée de l'Orangerie", "d": "2026-09-30", "f": "2027-01-25", "v": false, "c": "Pour le centenaire de Monet, son rapport au temps, des instants impressionnistes aux Nymphéas.", "a": "Jardin des Tuileries, place de la Concorde, 75001 Paris"}, {"id": "cezanne-et-nous", "t": "Cezanne et nous", "m": "Grand Palais", "d": "2026-09-23", "f": "2027-01-17", "v": false, "c": "Près de 180 œuvres : Cézanne face à ceux qu'il a inspirés, de Picasso et Matisse à Joan Mitchell.", "a": "Avenue du Général Eisenhower, 75008 Paris"}, {"id": "tintoret", "t": "Éternel Tintoret", "m": "Musée Jacquemart-André", "d": "2026-09-11", "f": "2027-01-24", "v": false, "c": "Une quarantaine d'œuvres du grand Vénitien, et son autoportrait réuni avec la copie qu'en fit Manet.", "a": "158 boulevard Haussmann, 75008 Paris"}, {"id": "schwitters", "t": "Kurt Schwitters. Le chaos-monde. 1918-1948", "m": "Musée national Picasso-Paris", "d": "2026-10-06", "f": "2027-02-07", "v": false, "c": "Première rétrospective française depuis plus de trente ans du génie des collages Merz.", "a": "5 rue de Thorigny, 75003 Paris"}, {"id": "warhol-luxembourg", "t": "Andy Warhol. La ligne et l'image", "m": "Musée du Luxembourg", "d": "2026-09-16", "f": "2027-01-10", "v": false, "c": "Warhol par le dessin : une autre porte d'entrée, plus intime, dans son œuvre.", "a": "19 rue de Vaugirard, 75006 Paris"}, {"id": "paysages-marmottan", "t": "Histoires de paysages. De Monet à Hockney", "m": "Musée Marmottan Monet", "d": "2026-09-24", "f": "2027-01-31", "v": false, "c": "Plus d'un siècle de paysage, de l'impressionnisme à aujourd'hui.", "a": "2 rue Louis-Boilly, 75016 Paris"}, {"id": "fayet-flv", "t": "Gustave Fayet. Collectionneur – créateur", "m": "Fondation Louis Vuitton", "d": "2026-10-09", "f": "2027-03-08", "v": false, "c": "Le collectionneur de Van Gogh, Gauguin, Redon ou Cézanne, et sa propre création.", "a": "8 avenue du Mahatma Gandhi, 75116 Paris"}, {"id": "remember-me", "t": "Remember me", "m": "Bourse de Commerce – Pinault Collection", "d": "2026-10-07", "f": "2027-01-18", "v": false, "c": "Nouvelle exposition tirée de la Collection Pinault sous la coupole de Tadao Ando.", "a": "2 rue de Viarmes, 75001 Paris"}, {"id": "stan-douglas", "t": "Stan Douglas. Parallax", "m": "Jeu de Paume", "d": "2026-10-20", "f": "2027-01-10", "v": false, "c": "La plus vaste exposition parisienne de l'artiste canadien depuis trente ans : photo et vidéo.", "a": "1 place de la Concorde, 75008 Paris"}, {"id": "penn-fashion", "t": "Penn & Fashion", "m": "Maison européenne de la photographie", "d": "2026-09-30", "f": "2027-01-17", "v": false, "c": "Irving Penn et la mode : l'élégance du studio, des décennies de couvertures.", "a": "5-7 rue de Fourcy, 75004 Paris"}, {"id": "martine-franck", "t": "Martine Franck. Images, presse et luttes féministes", "m": "Fondation Henri Cartier-Bresson", "d": "2026-10-21", "f": "2027-03-07", "v": false, "c": "Une photographe engagée, entre reportage de presse et combats féministes.", "a": "79 rue des Archives, 75003 Paris"}, {"id": "cirque-montmartre", "t": "Le cirque, fabrique de l'art moderne", "m": "Musée de Montmartre", "d": "2026-10-16", "f": "2027-02-14", "v": false, "c": "Le cirque comme laboratoire pour les artistes modernes, sur la butte.", "a": "12 rue Cortot, 75018 Paris"}, {"id": "premieres-nations", "t": "Premières Nations", "m": "Musée du quai Branly – Jacques Chirac", "d": "2026-09-29", "f": "2027-01-10", "v": false, "c": "Arts et cultures des peuples du Nord-Ouest de l'Amérique du Nord.", "a": "37 quai Jacques Chirac, 75007 Paris"}, {"id": "plumes-paradis", "t": "Plumes du paradis", "m": "Musée du quai Branly – Jacques Chirac", "d": "2026-05-12", "f": "2026-11-08", "v": false, "c": "L'oiseau de paradis de Nouvelle-Guinée à travers parures, masques et objets d'apparat. Derniers jours !", "a": "37 quai Jacques Chirac, 75007 Paris"}, {"id": "nicolas-flamel", "t": "Nicolas Flamel, alchimiste de papier", "m": "Musée de Cluny", "d": "2026-10-13", "f": "2027-01-24", "v": false, "c": "Comment un écrivain public parisien du Moyen Âge est devenu une légende de l'alchimie.", "a": "28 rue Du Sommerard, 75005 Paris"}, {"id": "louise-bourgeois", "t": "Louise Bourgeois. Extrême tension", "m": "BnF – Richelieu", "d": "2026-10-20", "f": "2027-02-21", "v": false, "c": "L'œuvre graphique de Louise Bourgeois dans le superbe site Richelieu rénové.", "a": "5 rue Vivienne, 75002 Paris"}, {"id": "wagner-garnier", "t": "Richard Wagner, les révolutions du Ring", "m": "Palais Garnier – Bibliothèque-musée de l'Opéra", "d": "2026-10-27", "f": "2027-02-20", "v": false, "c": "La Tétralogie et ses mises en scène qui ont révolutionné l'opéra.", "a": "Place de l'Opéra, 75009 Paris"}, {"id": "custodia", "t": "Mes chers amis. Le dessin dans les collections d'artistes au XIXe siècle", "m": "Fondation Custodia", "d": "2026-10-17", "f": "2027-01-17", "v": false, "c": "Les dessins que les artistes collectionnaient et échangeaient entre eux.", "a": "121 rue de Lille, 75007 Paris"}, {"id": "hajjaj", "t": "Hassan Hajjaj. My Rock Stars", "m": "Cité de la musique – Philharmonie", "d": "2026-09-22", "f": "2027-04-25", "v": false, "c": "Portraits pop et colorés de musiciens par le photographe marocain.", "a": "221 avenue Jean-Jaurès, 75019 Paris"}, {"id": "lassana-sarre", "t": "Lassana Sarré. Globale Inversion", "m": "Palais de Tokyo", "d": "2026-06-05", "f": "2027-02-14", "v": false, "c": "Une peinture réalisée sur place, consacrée aux agents de sécurité du lieu.", "a": "13 avenue du Président Wilson, 75116 Paris"}, {"id": "paul-kodjo", "t": "Paul Kodjo. Photoromance", "m": "Palais de Tokyo", "d": "2026-10-21", "f": "2027-02-14", "v": false, "c": "Le photographe ivoirien et l'Abidjan des années 1960-70.", "a": "13 avenue du Président Wilson, 75116 Paris"}, {"id": "mode-moyen-age", "t": "La mode au Moyen Âge", "m": "Tour Jean-sans-Peur", "d": "2026-04-08", "f": "2027-03-07", "v": false, "c": "Silhouettes, étoffes et accessoires médiévaux, dans une tour du XVe siècle.", "a": "20 rue Étienne Marcel, 75002 Paris"}, {"id": "coree-cernuschi", "t": "Corée. Le Royaume des lettrés 1600-1900", "m": "Musée Cernuschi", "d": "2026-11-20", "f": "2027-04-04", "v": true, "c": "Le quotidien des yangban, l'élite lettrée de la Corée de Chosŏn : peintures anciennes, costumes et mobilier d'époque.", "a": "7 avenue Vélasquez, 75008 Paris"}, {"id": "en-volume-galliera", "t": "En volume !", "m": "Palais Galliera", "d": "2026-12-12", "f": "2027-10-17", "v": true, "c": "Comment un tissu plat devient vêtement : plissage, formes de chapeaux et de chaussures, coupe et 3D, les gestes des métiers de la mode.", "a": "10 avenue Pierre Ier de Serbie, 75116 Paris"}, {"id": "archeologie-2gm", "t": "Archéologie de la Seconde Guerre mondiale", "m": "Musée de la Libération de Paris", "d": "2027-02-24", "f": "2027-07-11", "v": true, "c": "L'archéologie appliquée à la Seconde Guerre mondiale : ce que les vestiges du conflit nous apprennent.", "a": "4 avenue du Colonel Henri Rol-Tanguy, 75014 Paris"}, {"id": "leonor-fini", "t": "Leonor Fini", "m": "Musée d'Art moderne de Paris", "d": "2027-03-26", "f": "2027-08-15", "v": true, "c": "Grande exposition consacrée à la peintre surréaliste d'origine argentine, figure libre et flamboyante.", "a": "11 avenue du Président Wilson, 75116 Paris"}, {"id": "jozef-czapski", "t": "Józef Czapski", "m": "Musée d'Art moderne de Paris", "d": "2027-03-26", "f": "2027-08-15", "v": true, "c": "Le peintre et écrivain polonais, installé en France, à la peinture intime et sensible.", "a": "11 avenue du Président Wilson, 75116 Paris"}, {"id": "donation-kamel-mennour", "t": "Donation Kamel Mennour", "m": "Musée d'Art moderne de Paris", "d": "2027-03-26", "f": "2027-07-25", "v": true, "c": "Les œuvres d'art contemporain données au musée par le galeriste parisien.", "a": "11 avenue du Président Wilson, 75116 Paris"}, {"id": "derain-bourdelle", "t": "Derain", "m": "Musée Bourdelle", "d": "2027-04-01", "f": "2027-08-01", "v": true, "c": "André Derain, compagnon du fauvisme, dans l'atelier de Bourdelle.", "a": "18 rue Antoine Bourdelle, 75015 Paris"}, {"id": "paris-au-naturel", "t": "Paris au naturel", "m": "Musée Carnavalet – Histoire de Paris", "d": "2027-04-02", "f": "2027-08-22", "v": true, "c": "La nature à Paris vue par le musée d'histoire de la ville (présentation détaillée à venir).", "a": "23 rue de Sévigné, 75003 Paris"}, {"id": "lucy-mckenzie", "t": "Lucy McKenzie", "m": "Palais Galliera", "d": "2027-04-24", "f": "2027-07-18", "v": true, "c": "L'artiste écossaise, entre peinture, trompe-l'œil et mode.", "a": "10 avenue Pierre Ier de Serbie, 75116 Paris"}, {"id": "flore-vie-romantique", "t": "FLORE. Les amitiés romantiques", "m": "Musée de la Vie romantique", "d": "2027-05-22", "f": "2027-11-21", "v": true, "c": "La photographe FLORE cherche les traces du romantisme aujourd'hui, avec des œuvres pour la plupart inédites.", "a": "16 rue Chaptal, 75009 Paris"}, {"id": "claire-tabouret", "t": "Carte blanche à Claire Tabouret", "m": "Musée Cognacq-Jay", "d": "2027-09-15", "f": "2028-03-12", "v": true, "c": "La peintre française dialogue avec les collections XVIIIe du musée.", "a": "8 rue Elzévir, 75003 Paris"}, {"id": "guimet-trompe-loeil", "t": "Le savoir en trompe-l'œil. Corée, 18e-20e s.", "m": "Musée Guimet", "d": "2026-09-16", "f": "2027-01-04", "v": false, "c": "Les chaekgeori, ces bibliothèques peintes en trompe-l'œil où la Corée mettait en scène le savoir et les objets lettrés.", "a": "6 place d'Iéna, 75116 Paris"}, {"id": "guimet-sanxingdui", "t": "Trésors de Sanxingdui et Jinsha", "m": "Musée Guimet", "d": "2026-11-18", "f": "2027-03-01", "v": false, "c": "Une civilisation chinoise ancienne et fascinante, de la découverte fortuite de 1927 aux fouilles les plus récentes.", "a": "6 place d'Iéna, 75116 Paris"}, {"id": "penalba-zadkine", "t": "Alicia Penalba. La sculpture entre terre et ciel", "m": "Musée Zadkine", "d": "2026-11-18", "f": "2027-04-25", "v": true, "c": "Première exposition en France depuis sa mort de la sculptrice argentine, ancienne élève de Zadkine : du monumental au bijou. Entrée libre.", "a": "100 bis rue d'Assas, 75006 Paris"}, {"id": "vin-balzac", "t": "De la vigne au verre. Le vin chez Balzac", "m": "Maison de Balzac", "d": "2026-11-26", "f": "2027-04-06", "v": true, "c": "Le vin dans l'univers de Balzac : plus de quatre-vingts peintures, gravures, affiches, objets de la vigne et vaisselle.", "a": "47 rue Raynouard, 75016 Paris"}], "nouveautes": {"semaine": "2026-10-29", "ajoutees": ["coree-cernuschi", "en-volume-galliera", "archeologie-2gm", "leonor-fini", "jozef-czapski", "donation-kamel-mennour", "derain-bourdelle", "paris-au-naturel", "lucy-mckenzie", "flore-vie-romantique", "claire-tabouret", "guimet-trompe-loeil", "guimet-sanxingdui", "penalba-zadkine", "vin-balzac"], "modifiees": [], "retirees": []}};
 
 /* ---------- État ---------- */
 let catalogue = BASE;
@@ -182,6 +192,10 @@ let editing = null, rate = 0;
 const LS = "expos-paris-visites";
 
 const $ = s => document.querySelector(s);
+const addrOf = e => (e && (e.a || (e.m ? e.m + ", Paris" : ""))) || "";
+const mapsUrl = a => "https://maps.apple.com/?daddr=" + encodeURIComponent(a) + "&dirflg=r";
+const addrLink = e => { const a = addrOf(e); return a ? `<a class="addr" href="${mapsUrl(a)}" target="_blank" rel="noopener">📍 ${esc(a)} <span>Itinéraire ›</span></a>` : ""; };
+const hm = t => t ? t.replace(":", "h") : "";
 const live = () => Object.values(visits).filter(v => !v.deleted);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const today = () => { const d = new Date(); d.setHours(0,0,0,0); return d; };
@@ -199,6 +213,31 @@ function statut(e){
 }
 
 /* ---------- Rendu des expos ---------- */
+function seenMap(){ const s = {}; live().forEach(v => { (s[v.expo] = s[v.expo] || []).push(v); }); return s; }
+function cardHTML(e, extra){
+  const seenBy = seenMap();
+    const s = statut(e), n = days(e.f), b = [];
+    if (s === "avenir") b.push(`<span class="badge soon">Ouvre ${days(e.d) <= 1 ? "demain" : "dans " + days(e.d) + " j"}</span>`);
+    else if (s === "cours" && n <= 30) b.push(`<span class="badge end">${n <= 0 ? "Dernier jour" : "Se termine dans " + n + " j"}</span>`);
+    if (s === "finie") b.push(`<span class="badge">Terminée</span>`);
+    const vs = seenBy[e.id] || [];
+    vs.forEach(v => b.push(`<span class="badge seen">${parse(v.date) < today() ? "Vue" : "Prévue"} le ${fmtShort(v.date)}</span>`));
+    if (e.v) b.push(`<span class="badge ville">Ville de Paris</span>`);
+    const info = "https://www.google.com/search?q=" + encodeURIComponent(e.t + " " + e.m);
+    return `<article class="card">${extra || ""}
+      <div class="museum">${esc(e.m)}</div>
+      <h3>${esc(e.t)}</h3>
+      <div class="dates">Du ${fmt(e.d)} au ${fmt(e.f)}</div>
+      ${addrLink(e)}
+      ${b.length ? `<div class="badges">${b.join("")}</div>` : ""}
+      <p class="comment">${esc(e.c)}</p>
+      <div class="row">
+        <button class="btn small" data-plan="${esc(e.id)}">＋ Noter une visite</button>
+        <a class="btn ghost small" href="${info}" target="_blank" rel="noopener">Infos & billets ↗</a>
+      </div>
+    </article>`;
+  }
+
 function renderExpos(){
   const q = query.trim().toLowerCase();
   let list = catalogue.expos.filter(e => {
@@ -214,29 +253,7 @@ function renderExpos(){
   list.sort((a,b) => filtreStatut === "avenir" ? a.d.localeCompare(b.d) : a.f.localeCompare(b.f));
   $("#count").textContent = list.length + (list.length > 1 ? " expositions" : " exposition") + (filtreStatut !== "avenir" && filtreStatut !== "toutes" ? " · triées par date de fin" : "");
   if (!list.length){ $("#list").innerHTML = '<div class="empty">Aucune exposition pour ces critères.</div>'; return; }
-  const seenBy = {};
-  live().forEach(v => { (seenBy[v.expo] = seenBy[v.expo] || []).push(v); });
-  $("#list").innerHTML = list.map(e => {
-    const s = statut(e), n = days(e.f), b = [];
-    if (s === "avenir") b.push(`<span class="badge soon">Ouvre ${days(e.d) <= 1 ? "demain" : "dans " + days(e.d) + " j"}</span>`);
-    else if (s === "cours" && n <= 30) b.push(`<span class="badge end">${n <= 0 ? "Dernier jour" : "Se termine dans " + n + " j"}</span>`);
-    if (s === "finie") b.push(`<span class="badge">Terminée</span>`);
-    const vs = seenBy[e.id] || [];
-    vs.forEach(v => b.push(`<span class="badge seen">${parse(v.date) < today() ? "Vue" : "Prévue"} le ${fmtShort(v.date)}</span>`));
-    if (e.v) b.push(`<span class="badge ville">Ville de Paris</span>`);
-    const info = "https://www.google.com/search?q=" + encodeURIComponent(e.t + " " + e.m);
-    return `<article class="card">
-      <div class="museum">${esc(e.m)}</div>
-      <h3>${esc(e.t)}</h3>
-      <div class="dates">Du ${fmt(e.d)} au ${fmt(e.f)}</div>
-      ${b.length ? `<div class="badges">${b.join("")}</div>` : ""}
-      <p class="comment">${esc(e.c)}</p>
-      <div class="row">
-        <button class="btn small" data-plan="${esc(e.id)}">＋ Noter une visite</button>
-        <a class="btn ghost small" href="${info}" target="_blank" rel="noopener">Infos & billets ↗</a>
-      </div>
-    </article>`;
-  }).join("");
+  $("#list").innerHTML = list.map(e => cardHTML(e)).join("");
 }
 
 /* ---------- Rendu des visites ---------- */
@@ -254,7 +271,8 @@ function renderVisits(){
     return `<article class="card">
       <div class="museum">${esc(e.m)}</div>
       <h3>${esc(e.t)}</h3>
-      <div class="visit-meta">📅 <b>${d}</b>${v.time ? " à " + esc(v.time.replace(":", "h")) : ""}</div>
+      <div class="visit-meta">📅 <b>${d}</b>${v.time ? " · " + esc(hm(v.time)) + (v.timeEnd ? " – " + esc(hm(v.timeEnd)) : "") : ""}</div>
+      ${addrLink(e)}
       ${v.with ? `<div class="visit-meta">👥 avec <b>${esc(v.with)}</b></div>` : ""}
       ${v.rate ? `<div class="visit-meta stars">${"★".repeat(v.rate)}${"☆".repeat(5 - v.rate)}</div>` : ""}
       ${v.notes ? `<p class="comment">${esc(v.notes)}</p>` : ""}
@@ -269,7 +287,23 @@ function renderVisits(){
     (passees.length ? `<div class="section-title">Déjà vues</div>` + passees.map(card).join("") : "");
 }
 
+function renderNouv(){
+  const n = catalogue.nouveautes;
+  const tag = t => `<div class="badges" style="margin:0 0 6px"><span class="badge soon">${t}</span></div>`;
+  if (!n || !((n.ajoutees||[]).length + (n.modifiees||[]).length + (n.retirees||[]).length)){
+    $("#nbn").textContent = ""; $("#nouv").innerHTML = '<div class="empty">Pas de nouveauté cette semaine.</div>'; return;
+  }
+  const ajout = (n.ajoutees || []).map(expoById).filter(Boolean).sort((a,b) => a.d.localeCompare(b.d));
+  const modif = (n.modifiees || []).map(x => ({e: expoById(x.id), note: x.note})).filter(x => x.e);
+  const retir = n.retirees || [];
+  $("#nbn").textContent = (ajout.length + modif.length) ? `(${ajout.length + modif.length})` : "";
+  $("#nouv").innerHTML = `<div class="count">Mise à jour du ${fmt(n.semaine || catalogue.maj)}</div>` +
+    (ajout.length ? `<div class="section-title">Ajoutées (${ajout.length})</div>` + ajout.map(e => cardHTML(e, tag("Nouveau"))).join("") : "") +
+    (modif.length ? `<div class="section-title">Modifiées (${modif.length})</div>` + modif.map(x => cardHTML(x.e, tag(esc(x.note || "Modifiée")))).join("") : "") +
+    (retir.length ? `<div class="section-title">Retirées</div><div class="card">` + retir.map(r => `<div class="visit-meta">${esc(r.t)} <span class="museum">· ${esc(r.m)}</span></div>`).join("") + `</div>` : "");
+}
 function renderAll(){
+  renderNouv();
   $("#maj").textContent = "Mise à jour du " + fmt(catalogue.maj) + " · " + catalogue.expos.length + " expositions suivies";
   renderExpos(); renderVisits();
 }
@@ -287,7 +321,7 @@ function openForm(expoId, visit){
   const d = new Date(); const iso = d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
   $("#f-date").value = visit ? visit.date : iso;
   if (e){ $("#f-date").min = ""; $("#f-date").max = e.f; }
-  $("#f-time").value = visit?.time || "";
+  $("#f-time").value = visit?.time || ""; $("#f-end").value = visit?.timeEnd || "";
   $("#f-with").value = visit?.with || "";
   $("#f-notes").value = visit?.notes || "";
   setRate(visit?.rate || 0);
@@ -298,9 +332,16 @@ function openForm(expoId, visit){
 }
 function closeForm(){ $("#ov").classList.remove("on"); editing = null; }
 function readForm(){
-  return {...editing, date: $("#f-date").value, time: $("#f-time").value, with: $("#f-with").value.trim(), notes: $("#f-notes").value.trim(), rate,
+  return {...editing, date: $("#f-date").value, time: $("#f-time").value, timeEnd: $("#f-time").value ? $("#f-end").value : "", with: $("#f-with").value.trim(), notes: $("#f-notes").value.trim(), rate,
           titre: expoById(editing.expo)?.t || "", musee: expoById(editing.expo)?.m || ""};
 }
+
+$("#f-time").addEventListener("change", () => {
+  const s = $("#f-time").value; if (!s) return;
+  const e = $("#f-end").value;
+  if (!e || e <= s){ const [H, M] = s.split(":").map(Number); const t = Math.min(H * 60 + M + 120, 23 * 60 + 59);
+    $("#f-end").value = String(Math.floor(t / 60)).padStart(2, "0") + ":" + String(t % 60).padStart(2, "0"); }
+});
 
 /* ---------- Persistance ---------- */
 function saveLocal(){ try { localStorage.setItem(LS, JSON.stringify(visits)); } catch(_){} }
@@ -337,10 +378,11 @@ function buildICS(v){
   const d = v.date.replace(/-/g, "");
   let start, end;
   if (v.time){
-    const [h, mi] = v.time.split(":").map(Number);
-    const s = parse(v.date); s.setHours(h, mi, 0, 0);
-    const z = dt => dt.toISOString().replace(/[-:]/g, "").replace(/\.\d+/, "");
-    start = "DTSTART:" + z(s); end = "DTEND:" + z(new Date(s.getTime() + 2 * 3600000));
+    let fin = v.timeEnd;
+    if (!fin || fin <= v.time){ const [H, M] = v.time.split(":").map(Number); const t = Math.min(H * 60 + M + 120, 23 * 60 + 59);
+      fin = String(Math.floor(t / 60)).padStart(2, "0") + ":" + String(t % 60).padStart(2, "0"); }
+    start = `DTSTART;TZID=Europe/Paris:${d}T${v.time.replace(":", "")}00`;
+    end = `DTEND;TZID=Europe/Paris:${d}T${fin.replace(":", "")}00`;
   } else {
     const n = parse(v.date); n.setDate(n.getDate() + 1);
     const nd = n.getFullYear() + String(n.getMonth()+1).padStart(2,"0") + String(n.getDate()).padStart(2,"0");
@@ -348,9 +390,13 @@ function buildICS(v){
   }
   const stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d+/, "");
   const desc = [e.t, v.with ? "Avec : " + v.with : "", v.notes].filter(Boolean).join("\n");
-  return ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//JB App//Expos Paris//FR","CALSCALE:GREGORIAN","BEGIN:VEVENT",
+  return ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//JB App//Expos Paris//FR","CALSCALE:GREGORIAN",
+    "BEGIN:VTIMEZONE","TZID:Europe/Paris",
+    "BEGIN:DAYLIGHT","TZOFFSETFROM:+0100","TZOFFSETTO:+0200","TZNAME:CEST","DTSTART:19700329T020000","RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU","END:DAYLIGHT",
+    "BEGIN:STANDARD","TZOFFSETFROM:+0200","TZOFFSETTO:+0100","TZNAME:CET","DTSTART:19701025T030000","RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU","END:STANDARD",
+    "END:VTIMEZONE","BEGIN:VEVENT",
     "UID:" + v.id + "@expos-paris", "DTSTAMP:" + stamp, start, end,
-    "SUMMARY:" + icsEscape("Expo : " + e.t), "LOCATION:" + icsEscape(e.m + ", Paris"), "DESCRIPTION:" + icsEscape(desc),
+    "SUMMARY:" + icsEscape("Expo : " + e.t), "LOCATION:" + icsEscape(e.m + (addrOf(e) && e.a ? ", " + e.a : ", Paris")), "DESCRIPTION:" + icsEscape(desc),
     "BEGIN:VALARM","TRIGGER:-PT2H","ACTION:DISPLAY","DESCRIPTION:" + icsEscape("Expo : " + e.t),"END:VALARM",
     "END:VEVENT","END:VCALENDAR"].join("\r\n");
 }
@@ -364,7 +410,7 @@ function addToCalendar(v){
   calVisit = v;
   const e = expoById(v.expo) || {t: v.titre};
   $("#c-title").textContent = e.t || "Visite";
-  $("#c-when").textContent = parse(v.date).toLocaleDateString("fr-FR", {weekday:"long", day:"numeric", month:"long"}) + (v.time ? " à " + v.time.replace(":", "h") : " (journée)");
+  $("#c-when").textContent = parse(v.date).toLocaleDateString("fr-FR", {weekday:"long", day:"numeric", month:"long"}) + (v.time ? " · " + hm(v.time) + (v.timeEnd ? " – " + hm(v.timeEnd) : "") : " (journée entière)");
   $("#ov-cal").classList.add("on");
 }
 // 1) Téléchargement du fichier .ics : Safari propose alors « Ajouter au calendrier »
@@ -416,6 +462,7 @@ document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () =>
   document.querySelectorAll(".tab").forEach(x => x.classList.toggle("on", x === b));
   $("#v-expos").hidden = b.dataset.tab !== "expos";
   $("#v-visites").hidden = b.dataset.tab !== "visites";
+  $("#v-nouv").hidden = b.dataset.tab !== "nouv";
   window.scrollTo(0, 0);
 }));
 function chipGroup(sel, cb){ $(sel).addEventListener("click", ev => { const b = ev.target.closest(".chip"); if (!b) return; $(sel).querySelectorAll(".chip").forEach(x => x.classList.toggle("on", x === b)); cb(b.dataset.v); renderExpos(); }); }
