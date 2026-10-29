@@ -351,6 +351,105 @@
    "f": "2027-03-07",
    "v": false,
    "c": "Silhouettes, étoffes et accessoires médiévaux, dans une tour du XVe siècle."
+  },
+  {
+   "id": "coree-cernuschi",
+   "t": "Corée. Le Royaume des lettrés 1600-1900",
+   "m": "Musée Cernuschi",
+   "d": "2026-11-20",
+   "f": "2027-04-04",
+   "v": true,
+   "c": "Le quotidien des yangban, l'élite lettrée de la Corée de Chosŏn : peintures anciennes, costumes et mobilier d'époque."
+  },
+  {
+   "id": "en-volume-galliera",
+   "t": "En volume !",
+   "m": "Palais Galliera",
+   "d": "2026-12-12",
+   "f": "2027-10-17",
+   "v": true,
+   "c": "Comment un tissu plat devient vêtement : plissage, formes de chapeaux et de chaussures, coupe et 3D, les gestes des métiers de la mode."
+  },
+  {
+   "id": "archeologie-2gm",
+   "t": "Archéologie de la Seconde Guerre mondiale",
+   "m": "Musée de la Libération de Paris",
+   "d": "2027-02-24",
+   "f": "2027-07-11",
+   "v": true,
+   "c": "L'archéologie appliquée à la Seconde Guerre mondiale : ce que les vestiges du conflit nous apprennent."
+  },
+  {
+   "id": "leonor-fini",
+   "t": "Leonor Fini",
+   "m": "Musée d'Art moderne de Paris",
+   "d": "2027-03-26",
+   "f": "2027-08-15",
+   "v": true,
+   "c": "Grande exposition consacrée à la peintre surréaliste d'origine argentine, figure libre et flamboyante."
+  },
+  {
+   "id": "jozef-czapski",
+   "t": "Józef Czapski",
+   "m": "Musée d'Art moderne de Paris",
+   "d": "2027-03-26",
+   "f": "2027-08-15",
+   "v": true,
+   "c": "Le peintre et écrivain polonais, installé en France, à la peinture intime et sensible."
+  },
+  {
+   "id": "donation-kamel-mennour",
+   "t": "Donation Kamel Mennour",
+   "m": "Musée d'Art moderne de Paris",
+   "d": "2027-03-26",
+   "f": "2027-07-25",
+   "v": true,
+   "c": "Les œuvres d'art contemporain données au musée par le galeriste parisien."
+  },
+  {
+   "id": "derain-bourdelle",
+   "t": "Derain",
+   "m": "Musée Bourdelle",
+   "d": "2027-04-01",
+   "f": "2027-08-01",
+   "v": true,
+   "c": "André Derain, compagnon du fauvisme, dans l'atelier de Bourdelle."
+  },
+  {
+   "id": "paris-au-naturel",
+   "t": "Paris au naturel",
+   "m": "Musée Carnavalet – Histoire de Paris",
+   "d": "2027-04-02",
+   "f": "2027-08-22",
+   "v": true,
+   "c": "La nature à Paris vue par le musée d'histoire de la ville (présentation détaillée à venir)."
+  },
+  {
+   "id": "lucy-mckenzie",
+   "t": "Lucy McKenzie",
+   "m": "Palais Galliera",
+   "d": "2027-04-24",
+   "f": "2027-07-18",
+   "v": true,
+   "c": "L'artiste écossaise, entre peinture, trompe-l'œil et mode."
+  },
+  {
+   "id": "flore-vie-romantique",
+   "t": "FLORE. Les amitiés romantiques",
+   "m": "Musée de la Vie romantique",
+   "d": "2027-05-22",
+   "f": "2027-11-21",
+   "v": true,
+   "c": "La photographe FLORE cherche les traces du romantisme aujourd'hui, avec des œuvres pour la plupart inédites."
+  },
+  {
+   "id": "claire-tabouret",
+   "t": "Carte blanche à Claire Tabouret",
+   "m": "Musée Cognacq-Jay",
+   "d": "2027-09-15",
+   "f": "2028-03-12",
+   "v": true,
+   "c": "La peintre française dialogue avec les collections XVIIIe du musée."
   }
  ]
 }
