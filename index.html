@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Expos Paris</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Expos Paris">
+<meta name="theme-color" content="#f6f2ea" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16130f" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f2ea; --card:#fffdf8; --ink:#1f1b16; --muted:#6f665b; --line:#e4dccd;
+  --accent:#9b2335; --accent-soft:#f5e3e5; --ok:#2f6b4f; --ok-soft:#e1efe7; --warn:#a4570c; --warn-soft:#fbecd9;
+}
+@media (prefers-color-scheme: dark){
+  :root{--bg:#16130f;--card:#211d18;--ink:#f1ebe1;--muted:#a99f92;--line:#3a332b;--accent:#e0697b;--accent-soft:#3d2228;--ok:#7cc5a0;--ok-soft:#1f3329;--warn:#f0a95a;--warn-soft:#3b2b18;}
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.45}
+header{position:sticky;top:0;z-index:5;background:var(--bg);padding:calc(14px + env(safe-area-inset-top)) 16px 8px;border-bottom:1px solid var(--line)}
+.top{display:flex;justify-content:space-between;align-items:flex-start}
+.gear{background:none;border:1px solid var(--line);border-radius:10px;font-size:18px;padding:5px 9px;cursor:pointer;color:var(--ink)}
+h1{font-family:Fraunces,Georgia,serif;font-weight:700;font-size:26px;margin:0;letter-spacing:-.01em}
+h1 span{color:var(--accent)}
+.sub{color:var(--muted);font-size:12.5px;margin-top:2px}
+.tabs{display:flex;gap:6px;margin-top:10px}
+.tab{flex:1;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:9px 8px;border-radius:10px;font:600 14px Inter,sans-serif;cursor:pointer}
+.tab.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+main{padding:12px 16px 80px;max-width:720px;margin:0 auto}
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:6px 11px;border-radius:999px;font:500 13px Inter,sans-serif;cursor:pointer}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+input[type=search],input[type=text],input[type=date],input[type=time],textarea,select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:15px Inter,sans-serif}
+textarea{min-height:70px;resize:vertical}
+.search{margin-bottom:10px}
+.count{color:var(--muted);font-size:12.5px;margin:4px 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px}
+.card h3{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:18px;line-height:1.25;margin:0 0 4px}
+.museum{font-weight:600;font-size:13.5px;color:var(--accent)}
+.dates{font-size:13px;color:var(--muted);margin-top:2px}
+.comment{margin:8px 0 10px;font-size:14px}
+.badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.badge{font-size:11.5px;font-weight:600;padding:3px 8px;border-radius:6px;background:var(--line);color:var(--ink)}
+.badge.end{background:var(--warn-soft);color:var(--warn)}
+.badge.soon{background:var(--accent-soft);color:var(--accent)}
+.badge.seen{background:var(--ok-soft);color:var(--ok)}
+.badge.ville{background:transparent;border:1px solid var(--line);color:var(--muted)}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:none;border-radius:10px;padding:9px 13px;font:600 14px Inter,sans-serif;cursor:pointer;background:var(--accent);color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.small{padding:7px 10px;font-size:13px}
+.btn.danger{background:transparent;color:var(--accent);border:1px solid var(--accent-soft)}
+.empty{text-align:center;color:var(--muted);padding:40px 10px}
+.section-title{font-family:Fraunces,Georgia,serif;font-size:17px;margin:16px 0 8px}
+.visit-meta{font-size:14px;margin:6px 0}
+.visit-meta b{font-weight:600}
+.stars{color:#d4a017;letter-spacing:1px}
+/* sheet */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;z-index:20;align-items:flex-end;justify-content:center}
+.overlay.on{display:flex}
+.sheet{background:var(--bg);width:100%;max-width:560px;border-radius:18px 18px 0 0;padding:18px 16px 28px;max-height:92vh;overflow:auto}
+.sheet h2{font-family:Fraunces,Georgia,serif;font-size:20px;margin:0 0 2px}
+label{display:block;font-size:13px;font-weight:600;margin:12px 0 5px}
+.rate{display:flex;gap:4px}
+.rate button{background:none;border:none;font-size:26px;cursor:pointer;color:var(--line);padding:0 2px}
+.rate button.on{color:#d4a017}
+.hint{font-size:12px;color:var(--muted);margin-top:4px}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:14px;opacity:0;transition:opacity .25s;z-index:30;pointer-events:none;max-width:90vw;text-align:center}
+.toast.on{opacity:1}
+.status{font-size:12px;color:var(--muted);text-align:center;margin-top:18px}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <div>
+      <h1>Expos <span>Paris</span></h1>
+      <div class="sub" id="maj">Chargement…</div>
+    </div>
+    <button class="gear" id="open-set" aria-label="Réglages">⚙︎</button>
+  </div>
+  <div class="tabs">
+    <button class="tab on" data-tab="expos">Expositions</button>
+    <button class="tab" data-tab="visites">Mes visites <span id="nbv"></span></button>
+  </div>
+</header>
+
+<main>
+  <section id="v-expos">
+    <div class="filters" id="f-statut">
+      <button class="chip on" data-v="cours">En cours</button>
+      <button class="chip" data-v="avenir">À venir</button>
+      <button class="chip" data-v="fin">Bientôt finies</button>
+      <button class="chip" data-v="toutes">Toutes</button>
+    </div>
+    <div class="filters" id="f-reseau">
+      <button class="chip on" data-v="tous">Tous les musées</button>
+      <button class="chip" data-v="ville">Musées de la Ville de Paris</button>
+    </div>
+    <input class="search" type="search" id="q" placeholder="Rechercher un artiste, un musée…">
+    <div class="count" id="count"></div>
+    <div id="list"></div>
+  </section>
+
+  <section id="v-visites" hidden>
+    <div id="visits"></div>
+  </section>
+  <div class="status" id="status"></div>
+</main>
+
+<div class="overlay" id="ov">
+  <form class="sheet" id="form">
+    <h2 id="f-title">Ma visite</h2>
+    <div class="museum" id="f-museum"></div>
+    <label for="f-date">Date de la visite</label>
+    <input type="date" id="f-date" required>
+    <label for="f-time">Heure (facultatif)</label>
+    <input type="time" id="f-time">
+    <label for="f-with">Accompagnant(s)</label>
+    <input type="text" id="f-with" placeholder="ex. Marie, Paul" list="dl-with" autocomplete="off">
+    <datalist id="dl-with"></datalist>
+    <label>Ma note</label>
+    <div class="rate" id="f-rate"></div>
+    <div class="hint">À remplir après la visite si tu veux.</div>
+    <label for="f-notes">Mes impressions</label>
+    <textarea id="f-notes" placeholder="Ce que j'ai aimé, à revoir…"></textarea>
+    <div class="row" style="margin-top:16px">
+      <button class="btn" type="submit">Enregistrer</button>
+      <button class="btn ghost" type="button" id="f-cal">📅 Ajouter au calendrier</button>
+      <button class="btn ghost" type="button" id="f-cancel">Annuler</button>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <button class="btn danger small" type="button" id="f-del" hidden>Supprimer cette visite</button>
+    </div>
+  </form>
+</div>
+<div class="overlay" id="ov-set">
+  <form class="sheet" id="form-set">
+    <h2>Réglages</h2>
+    <div class="hint">Tes visites sont enregistrées sur cet appareil uniquement. Exporte-les de temps en temps (par ex. dans iCloud Drive) : si tu supprimes l'icône de l'écran d'accueil, elles sont effacées.</div>
+    <div class="section-title">Sauvegarde</div>
+    <div class="row">
+      <button class="btn ghost" type="button" id="s-export">Exporter mes visites</button>
+      <label class="btn ghost" style="margin:0">Importer<input type="file" id="s-import" accept=".json,application/json" hidden></label>
+    </div>
+    <div class="row" style="margin-top:18px">
+      <button class="btn ghost" type="button" id="s-close">Fermer</button>
+    </div>
+  </form>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------- Données de base (remplacées par la version à jour en base si disponible) ---------- */
+const BASE = {
+  maj: "2026-10-29",
+  expos: [
+  {id:"eva-gonzales",t:"Eva Gonzalès (1847-1883). Un parcours d'artiste libre",m:"Petit Palais",d:"2026-09-15",f:"2027-01-24",v:true,c:"Première rétrospective de cette élève de Manet, peintre impressionniste longtemps restée dans l'ombre."},
+  {id:"prune-nourry",t:"Visionnaires — Prune Nourry",m:"Petit Palais",d:"2026-10-20",f:"2027-01-24",v:true,c:"Dix-huit bustes monumentaux redonnent un visage aux sculptrices oubliées. Entrée libre."},
+  {id:"bruxelles-1900",t:"Bruxelles 1900",m:"Petit Palais",d:"2026-11-10",f:"2027-04-25",v:true,c:"L'effervescence artistique de la capitale belge au tournant du siècle, en pleine vague Art nouveau."},
+  {id:"kerry-james-marshall",t:"Kerry James Marshall. The Histories",m:"Musée d'Art moderne de Paris",d:"2026-09-18",f:"2027-01-24",v:true,c:"Le grand peintre américain place les figures noires au cœur de la peinture d'histoire. Un des temps forts de la saison."},
+  {id:"simone-fattal",t:"Simone Fattal. Des villes au fond d'un lac",m:"Musée d'Art moderne de Paris",d:"2026-09-18",f:"2027-01-24",v:true,c:"Plus de cinquante ans de création d'une artiste à la croisée de la sculpture, de la peinture et de la poésie."},
+  {id:"prix-duchamp-2026",t:"Prix Marcel Duchamp 2026",m:"Musée d'Art moderne de Paris",d:"2026-10-02",f:"2027-02-07",v:true,c:"Les artistes nommés au principal prix de l'art contemporain français, avant l'annonce du lauréat."},
+  {id:"florian-krewer",t:"Florian Krewer. woven thin",m:"Musée d'Art moderne de Paris",d:"2026-06-19",f:"2027-01-04",v:true,c:"Peinture figurative d'un jeune artiste allemand, présentée dans les collections du musée."},
+  {id:"villegle",t:"Paris à l'arraché. Jacques Villeglé et l'art urbain",m:"Musée Carnavalet – Histoire de Paris",d:"2026-10-14",f:"2027-02-14",v:true,c:"Les affiches lacérées de Villeglé racontent les murs de Paris et dialoguent avec l'art urbain."},
+  {id:"vestiaire-a-soi",t:"Un vestiaire à soi. Féminités dissidentes au 19e siècle",m:"Palais Galliera",d:"2026-09-26",f:"2027-02-14",v:true,c:"Quand les femmes du XIXe siècle s'appropriaient le vestiaire masculin : la mode comme acte de liberté."},
+  {id:"etoffe-artiste",t:"L'étoffe de l'artiste",m:"Musée Bourdelle",d:"2026-09-23",f:"2027-01-24",v:true,c:"Le vêtement d'artiste comme mise en scène de soi, de la fin du XIXe au milieu du XXe siècle."},
+  {id:"hugo-architecture",t:"Hugo et l'architecture, de la pierre à la plume",m:"Maison de Victor Hugo",d:"2026-06-11",f:"2026-12-13",v:true,c:"Les dessins de Victor Hugo nourris de cathédrales et de vieilles pierres, place des Vosges."},
+  {id:"robert-capa",t:"Robert Capa. Photographe de guerre",m:"Musée de la Libération de Paris",d:"2026-02-18",f:"2026-12-20",v:true,c:"Le regard du plus célèbre des photoreporters de guerre. Dernières semaines."},
+  {id:"nadar-catacombes",t:"Nadar. Découvrir Paris par-dessus et par-dessous",m:"Catacombes de Paris",d:"2026-09-29",f:"2027-01-31",v:true,c:"Le pionnier qui photographia Paris depuis un ballon puis sous terre, à la lumière artificielle."},
+  {id:"mary-cassatt",t:"Mary Cassatt. L'indépendante",m:"Musée d'Orsay",d:"2026-10-06",f:"2027-01-31",v:false,c:"Première grande rétrospective française de l'impressionniste américaine, pour le centenaire de sa mort. Réservation conseillée."},
+  {id:"jenny-holzer",t:"Jenny Holzer. J'ai vu",m:"Musée d'Orsay",d:"2026-10-20",f:"2027-02-21",v:false,c:"Textes lumineux, projections et pierres gravées investissent les espaces du musée."},
+  {id:"zurbaran",t:"Zurbarán 1598-1664",m:"Musée du Louvre",d:"2026-10-07",f:"2027-01-25",v:false,c:"Le maître du Siècle d'or espagnol enfin à l'honneur au Louvre : natures mortes et saints d'une intensité rare."},
+  {id:"eau-primordiale",t:"L'Eau primordiale",m:"Musée du Louvre",d:"2026-05-20",f:"2027-03-15",v:false,c:"Le rôle de l'eau dans la Mésopotamie antique, mythes et objets à l'appui."},
+  {id:"monet-orangerie",t:"Monet, peindre le temps",m:"Musée de l'Orangerie",d:"2026-09-30",f:"2027-01-25",v:false,c:"Pour le centenaire de Monet, son rapport au temps, des instants impressionnistes aux Nymphéas."},
+  {id:"cezanne-et-nous",t:"Cezanne et nous",m:"Grand Palais",d:"2026-09-23",f:"2027-01-17",v:false,c:"Près de 180 œuvres : Cézanne face à ceux qu'il a inspirés, de Picasso et Matisse à Joan Mitchell."},
+  {id:"tintoret",t:"Éternel Tintoret",m:"Musée Jacquemart-André",d:"2026-09-11",f:"2027-01-24",v:false,c:"Une quarantaine d'œuvres du grand Vénitien, et son autoportrait réuni avec la copie qu'en fit Manet."},
+  {id:"schwitters",t:"Kurt Schwitters. Le chaos-monde. 1918-1948",m:"Musée national Picasso-Paris",d:"2026-10-06",f:"2027-02-07",v:false,c:"Première rétrospective française depuis plus de trente ans du génie des collages Merz."},
+  {id:"warhol-luxembourg",t:"Andy Warhol. La ligne et l'image",m:"Musée du Luxembourg",d:"2026-09-16",f:"2027-01-10",v:false,c:"Warhol par le dessin : une autre porte d'entrée, plus intime, dans son œuvre."},
+  {id:"paysages-marmottan",t:"Histoires de paysages. De Monet à Hockney",m:"Musée Marmottan Monet",d:"2026-09-24",f:"2027-01-31",v:false,c:"Plus d'un siècle de paysage, de l'impressionnisme à aujourd'hui."},
+  {id:"fayet-flv",t:"Gustave Fayet. Collectionneur – créateur",m:"Fondation Louis Vuitton",d:"2026-10-09",f:"2027-03-08",v:false,c:"Le collectionneur de Van Gogh, Gauguin, Redon ou Cézanne, et sa propre création."},
+  {id:"remember-me",t:"Remember me",m:"Bourse de Commerce – Pinault Collection",d:"2026-10-07",f:"2027-01-18",v:false,c:"Nouvelle exposition tirée de la Collection Pinault sous la coupole de Tadao Ando."},
+  {id:"stan-douglas",t:"Stan Douglas. Parallax",m:"Jeu de Paume",d:"2026-10-20",f:"2027-01-10",v:false,c:"La plus vaste exposition parisienne de l'artiste canadien depuis trente ans : photo et vidéo."},
+  {id:"penn-fashion",t:"Penn & Fashion",m:"Maison européenne de la photographie",d:"2026-09-30",f:"2027-01-17",v:false,c:"Irving Penn et la mode : l'élégance du studio, des décennies de couvertures."},
+  {id:"martine-franck",t:"Martine Franck. Images, presse et luttes féministes",m:"Fondation Henri Cartier-Bresson",d:"2026-10-21",f:"2027-03-07",v:false,c:"Une photographe engagée, entre reportage de presse et combats féministes."},
+  {id:"cirque-montmartre",t:"Le cirque, fabrique de l'art moderne",m:"Musée de Montmartre",d:"2026-10-16",f:"2027-02-14",v:false,c:"Le cirque comme laboratoire pour les artistes modernes, sur la butte."},
+  {id:"premieres-nations",t:"Premières Nations",m:"Musée du quai Branly – Jacques Chirac",d:"2026-09-29",f:"2027-01-10",v:false,c:"Arts et cultures des peuples du Nord-Ouest de l'Amérique du Nord."},
+  {id:"plumes-paradis",t:"Plumes du paradis",m:"Musée du quai Branly – Jacques Chirac",d:"2026-05-12",f:"2026-11-08",v:false,c:"L'oiseau de paradis de Nouvelle-Guinée à travers parures, masques et objets d'apparat. Derniers jours !"},
+  {id:"nicolas-flamel",t:"Nicolas Flamel, alchimiste de papier",m:"Musée de Cluny",d:"2026-10-13",f:"2027-01-24",v:false,c:"Comment un écrivain public parisien du Moyen Âge est devenu une légende de l'alchimie."},
+  {id:"louise-bourgeois",t:"Louise Bourgeois. Extrême tension",m:"BnF – Richelieu",d:"2026-10-20",f:"2027-02-21",v:false,c:"L'œuvre graphique de Louise Bourgeois dans le superbe site Richelieu rénové."},
+  {id:"wagner-garnier",t:"Richard Wagner, les révolutions du Ring",m:"Palais Garnier – Bibliothèque-musée de l'Opéra",d:"2026-10-27",f:"2027-02-20",v:false,c:"La Tétralogie et ses mises en scène qui ont révolutionné l'opéra."},
+  {id:"custodia",t:"Mes chers amis. Le dessin dans les collections d'artistes au XIXe siècle",m:"Fondation Custodia",d:"2026-10-17",f:"2027-01-17",v:false,c:"Les dessins que les artistes collectionnaient et échangeaient entre eux."},
+  {id:"hajjaj",t:"Hassan Hajjaj. My Rock Stars",m:"Cité de la musique – Philharmonie",d:"2026-09-22",f:"2027-04-25",v:false,c:"Portraits pop et colorés de musiciens par le photographe marocain."},
+  {id:"lassana-sarre",t:"Lassana Sarré. Globale Inversion",m:"Palais de Tokyo",d:"2026-06-05",f:"2027-02-14",v:false,c:"Une peinture réalisée sur place, consacrée aux agents de sécurité du lieu."},
+  {id:"paul-kodjo",t:"Paul Kodjo. Photoromance",m:"Palais de Tokyo",d:"2026-10-21",f:"2027-02-14",v:false,c:"Le photographe ivoirien et l'Abidjan des années 1960-70."},
+  {id:"mode-moyen-age",t:"La mode au Moyen Âge",m:"Tour Jean-sans-Peur",d:"2026-04-08",f:"2027-03-07",v:false,c:"Silhouettes, étoffes et accessoires médiévaux, dans une tour du XVe siècle."}
+  ]
+};
+
+/* ---------- État ---------- */
+let catalogue = BASE;
+let visits = {};            // id -> {id, expo, date, time, with, rate, notes}
+let filtreStatut = "cours", filtreReseau = "tous", query = "";
+let editing = null, rate = 0;
+const LS = "expos-paris-visites";
+
+const $ = s => document.querySelector(s);
+const live = () => Object.values(visits).filter(v => !v.deleted);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const today = () => { const d = new Date(); d.setHours(0,0,0,0); return d; };
+const parse = s => { const [y,m,d] = s.split("-").map(Number); return new Date(y, m-1, d); };
+const fmt = s => parse(s).toLocaleDateString("fr-FR", {day:"numeric", month:"long", year:"numeric"});
+const fmtShort = s => parse(s).toLocaleDateString("fr-FR", {day:"numeric", month:"short"});
+const days = s => Math.round((parse(s) - today()) / 86400000);
+function toast(msg){ const t = $("#toast"); t.textContent = msg; t.classList.add("on"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("on"), 2600); }
+
+function statut(e){
+  const t = today();
+  if (parse(e.d) > t) return "avenir";
+  if (parse(e.f) < t) return "finie";
+  return "cours";
+}
+
+/* ---------- Rendu des expos ---------- */
+function renderExpos(){
+  const q = query.trim().toLowerCase();
+  let list = catalogue.expos.filter(e => {
+    const s = statut(e);
+    if (s === "finie" && filtreStatut !== "toutes") return false;
+    if (filtreStatut === "cours" && s !== "cours") return false;
+    if (filtreStatut === "avenir" && s !== "avenir") return false;
+    if (filtreStatut === "fin" && !(s === "cours" && days(e.f) <= 30)) return false;
+    if (filtreReseau === "ville" && !e.v) return false;
+    if (q && !(e.t + " " + e.m + " " + e.c).toLowerCase().includes(q)) return false;
+    return true;
+  });
+  list.sort((a,b) => filtreStatut === "avenir" ? a.d.localeCompare(b.d) : a.f.localeCompare(b.f));
+  $("#count").textContent = list.length + (list.length > 1 ? " expositions" : " exposition") + (filtreStatut !== "avenir" && filtreStatut !== "toutes" ? " · triées par date de fin" : "");
+  if (!list.length){ $("#list").innerHTML = '<div class="empty">Aucune exposition pour ces critères.</div>'; return; }
+  const seenBy = {};
+  live().forEach(v => { (seenBy[v.expo] = seenBy[v.expo] || []).push(v); });
+  $("#list").innerHTML = list.map(e => {
+    const s = statut(e), n = days(e.f), b = [];
+    if (s === "avenir") b.push(`<span class="badge soon">Ouvre ${days(e.d) <= 1 ? "demain" : "dans " + days(e.d) + " j"}</span>`);
+    else if (s === "cours" && n <= 30) b.push(`<span class="badge end">${n <= 0 ? "Dernier jour" : "Se termine dans " + n + " j"}</span>`);
+    if (s === "finie") b.push(`<span class="badge">Terminée</span>`);
+    const vs = seenBy[e.id] || [];
+    vs.forEach(v => b.push(`<span class="badge seen">${parse(v.date) < today() ? "Vue" : "Prévue"} le ${fmtShort(v.date)}</span>`));
+    if (e.v) b.push(`<span class="badge ville">Ville de Paris</span>`);
+    const info = "https://www.google.com/search?q=" + encodeURIComponent(e.t + " " + e.m);
+    return `<article class="card">
+      <div class="museum">${esc(e.m)}</div>
+      <h3>${esc(e.t)}</h3>
+      <div class="dates">Du ${fmt(e.d)} au ${fmt(e.f)}</div>
+      ${b.length ? `<div class="badges">${b.join("")}</div>` : ""}
+      <p class="comment">${esc(e.c)}</p>
+      <div class="row">
+        <button class="btn small" data-plan="${esc(e.id)}">＋ Noter une visite</button>
+        <a class="btn ghost small" href="${info}" target="_blank" rel="noopener">Infos & billets ↗</a>
+      </div>
+    </article>`;
+  }).join("");
+}
+
+/* ---------- Rendu des visites ---------- */
+function expoById(id){ return catalogue.expos.find(e => e.id === id) || BASE.expos.find(e => e.id === id); }
+function renderVisits(){
+  const all = live();
+  $("#nbv").textContent = all.length ? `(${all.length})` : "";
+  if (!all.length){ $("#visits").innerHTML = '<div class="empty">Aucune visite notée pour l\'instant.<br>Choisis une expo et touche « Noter une visite ».</div>'; return; }
+  const t = today();
+  const avenir = all.filter(v => parse(v.date) >= t).sort((a,b) => (a.date+(a.time||"")).localeCompare(b.date+(b.time||"")));
+  const passees = all.filter(v => parse(v.date) < t).sort((a,b) => (b.date+(b.time||"")).localeCompare(a.date+(a.time||"")));
+  const card = v => {
+    const e = expoById(v.expo) || {t: v.titre || "Exposition", m: v.musee || ""};
+    const d = parse(v.date).toLocaleDateString("fr-FR", {weekday:"long", day:"numeric", month:"long", year:"numeric"});
+    return `<article class="card">
+      <div class="museum">${esc(e.m)}</div>
+      <h3>${esc(e.t)}</h3>
+      <div class="visit-meta">📅 <b>${d}</b>${v.time ? " à " + esc(v.time.replace(":", "h")) : ""}</div>
+      ${v.with ? `<div class="visit-meta">👥 avec <b>${esc(v.with)}</b></div>` : ""}
+      ${v.rate ? `<div class="visit-meta stars">${"★".repeat(v.rate)}${"☆".repeat(5 - v.rate)}</div>` : ""}
+      ${v.notes ? `<p class="comment">${esc(v.notes)}</p>` : ""}
+      <div class="row">
+        <button class="btn ghost small" data-edit="${esc(v.id)}">Modifier</button>
+        <button class="btn ghost small" data-cal="${esc(v.id)}">📅 Calendrier</button>
+      </div>
+    </article>`;
+  };
+  $("#visits").innerHTML =
+    (avenir.length ? `<div class="section-title">À venir</div>` + avenir.map(card).join("") : "") +
+    (passees.length ? `<div class="section-title">Déjà vues</div>` + passees.map(card).join("") : "");
+}
+
+function renderAll(){
+  $("#maj").textContent = "Mise à jour du " + fmt(catalogue.maj) + " · " + catalogue.expos.length + " expositions suivies";
+  renderExpos(); renderVisits();
+}
+
+/* ---------- Formulaire de visite ---------- */
+function setRate(n){ rate = n; [...$("#f-rate").children].forEach((b,i) => b.classList.toggle("on", i < n)); }
+$("#f-rate").innerHTML = [1,2,3,4,5].map(n => `<button type="button" data-r="${n}" aria-label="${n} sur 5">★</button>`).join("");
+$("#f-rate").addEventListener("click", ev => { const r = ev.target.dataset.r; if (r) setRate(rate == r ? 0 : +r); });
+
+function openForm(expoId, visit){
+  const e = expoById(expoId);
+  editing = visit ? {...visit} : {id: "v" + Date.now().toString(36) + Math.random().toString(36).slice(2,6), expo: expoId};
+  $("#f-title").textContent = e ? e.t : "Ma visite";
+  $("#f-museum").textContent = e ? e.m + " · jusqu'au " + fmt(e.f) : "";
+  const d = new Date(); const iso = d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+  $("#f-date").value = visit ? visit.date : iso;
+  if (e){ $("#f-date").min = ""; $("#f-date").max = e.f; }
+  $("#f-time").value = visit?.time || "";
+  $("#f-with").value = visit?.with || "";
+  $("#f-notes").value = visit?.notes || "";
+  setRate(visit?.rate || 0);
+  $("#f-del").hidden = !visit;
+  const names = new Set(); live().forEach(v => (v.with || "").split(/,| et /).map(s => s.trim()).filter(Boolean).forEach(n => names.add(n)));
+  $("#dl-with").innerHTML = [...names].map(n => `<option value="${esc(n)}">`).join("");
+  $("#ov").classList.add("on");
+}
+function closeForm(){ $("#ov").classList.remove("on"); editing = null; }
+function readForm(){
+  return {...editing, date: $("#f-date").value, time: $("#f-time").value, with: $("#f-with").value.trim(), notes: $("#f-notes").value.trim(), rate,
+          titre: expoById(editing.expo)?.t || "", musee: expoById(editing.expo)?.m || ""};
+}
+
+/* ---------- Persistance ---------- */
+function saveLocal(){ try { localStorage.setItem(LS, JSON.stringify(visits)); } catch(_){} }
+function loadLocal(){ try { return JSON.parse(localStorage.getItem(LS) || "{}") || {}; } catch(_){ return {}; } }
+
+function sync(){ $("#status").textContent = "Visites enregistrées sur cet appareil."; }
+async function persist(v){
+  v.updated = new Date().toISOString();
+  visits[v.id] = v; saveLocal();
+}
+async function removeVisit(id){
+  const v = visits[id]; if (!v) return;
+  await persist({id: v.id, expo: v.expo, date: v.date, deleted: true});
+}
+
+$("#form").addEventListener("submit", async ev => {
+  ev.preventDefault();
+  if (!$("#f-date").value){ toast("Choisis une date"); return; }
+  const v = readForm(); closeForm();
+  await persist(v); renderAll(); toast("Visite enregistrée");
+});
+$("#f-cancel").addEventListener("click", closeForm);
+$("#ov").addEventListener("click", ev => { if (ev.target.id === "ov") closeForm(); });
+$("#f-del").addEventListener("click", async () => { const id = editing.id; closeForm(); await removeVisit(id); renderAll(); toast("Visite supprimée"); });
+$("#f-cal").addEventListener("click", async () => {
+  if (!$("#f-date").value){ toast("Choisis d'abord une date"); return; }
+  const v = readForm(); await persist(v); renderAll(); addToCalendar(v);
+});
+
+/* ---------- Calendrier (.ics) ---------- */
+function icsEscape(s){ return String(s || "").replace(/\\/g,"\\\\").replace(/;/g,"\\;").replace(/,/g,"\\,").replace(/\n/g,"\\n"); }
+function buildICS(v){
+  const e = expoById(v.expo) || {t: v.titre, m: v.musee};
+  const d = v.date.replace(/-/g, "");
+  let start, end;
+  if (v.time){
+    const [h, mi] = v.time.split(":").map(Number);
+    const eh = String(Math.min(h + 2, 23)).padStart(2, "0");
+    start = `DTSTART;TZID=Europe/Paris:${d}T${String(h).padStart(2,"0")}${String(mi).padStart(2,"0")}00`;
+    end = `DTEND;TZID=Europe/Paris:${d}T${eh}${String(mi).padStart(2,"0")}00`;
+  } else {
+    const n = parse(v.date); n.setDate(n.getDate() + 1);
+    const nd = n.getFullYear() + String(n.getMonth()+1).padStart(2,"0") + String(n.getDate()).padStart(2,"0");
+    start = `DTSTART;VALUE=DATE:${d}`; end = `DTEND;VALUE=DATE:${nd}`;
+  }
+  const stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d+/, "");
+  const desc = [e.t, v.with ? "Avec : " + v.with : "", v.notes].filter(Boolean).join("\n");
+  return ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//JB App//Expos Paris//FR","CALSCALE:GREGORIAN","BEGIN:VEVENT",
+    "UID:" + v.id + "@expos-paris", "DTSTAMP:" + stamp, start, end,
+    "SUMMARY:" + icsEscape("Expo : " + e.t), "LOCATION:" + icsEscape(e.m + ", Paris"), "DESCRIPTION:" + icsEscape(desc),
+    "BEGIN:VALARM","TRIGGER:-PT2H","ACTION:DISPLAY","DESCRIPTION:" + icsEscape("Expo : " + e.t),"END:VALARM",
+    "END:VEVENT","END:VCALENDAR"].join("\r\n");
+}
+function addToCalendar(v){
+  const e = expoById(v.expo) || {t: v.titre};
+  const slug = (e.t || "visite").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-").slice(0,40);
+  const ics = buildICS(v);
+  const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  if (iOS){
+    // Safari iOS ouvre directement la fiche « Ajouter au calendrier »
+    window.location.href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+    return;
+  }
+  const url = URL.createObjectURL(new Blob([ics], {type: "text/calendar;charset=utf-8"}));
+  const a = document.createElement("a"); a.href = url; a.download = `visite-${slug}.ics`;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 4000);
+  toast("Ouvre le fichier pour l'ajouter au Calendrier");
+}
+
+/* ---------- Réglages ---------- */
+function openSettings(){ $("#ov-set").classList.add("on"); }
+$("#open-set").addEventListener("click", openSettings);
+$("#s-close").addEventListener("click", () => $("#ov-set").classList.remove("on"));
+$("#ov-set").addEventListener("click", ev => { if (ev.target.id === "ov-set") $("#ov-set").classList.remove("on"); });
+$("#form-set").addEventListener("submit", ev => ev.preventDefault());
+$("#s-export").addEventListener("click", () => {
+  const data = JSON.stringify({app: "expos-paris", export: new Date().toISOString(), visites: live()}, null, 1);
+  const url = URL.createObjectURL(new Blob([data], {type: "application/json"}));
+  const a = document.createElement("a"); a.href = url; a.download = "expos-paris-visites.json";
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 4000);
+});
+$("#s-import").addEventListener("change", async ev => {
+  const f = ev.target.files[0]; if (!f) return;
+  try {
+    const d = JSON.parse(await f.text()); const list = Array.isArray(d) ? d : d.visites;
+    let n = 0; for (const v of list || []) if (v && v.id && v.expo && v.date){ visits[v.id] = v; n++; }
+    saveLocal(); renderAll(); toast(n + " visite(s) importée(s)");
+  } catch(_){ toast("Fichier non reconnu"); }
+  ev.target.value = "";
+});
+
+/* ---------- Navigation & filtres ---------- */
+document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(".tab").forEach(x => x.classList.toggle("on", x === b));
+  $("#v-expos").hidden = b.dataset.tab !== "expos";
+  $("#v-visites").hidden = b.dataset.tab !== "visites";
+  window.scrollTo(0, 0);
+}));
+function chipGroup(sel, cb){ $(sel).addEventListener("click", ev => { const b = ev.target.closest(".chip"); if (!b) return; $(sel).querySelectorAll(".chip").forEach(x => x.classList.toggle("on", x === b)); cb(b.dataset.v); renderExpos(); }); }
+chipGroup("#f-statut", v => filtreStatut = v);
+chipGroup("#f-reseau", v => filtreReseau = v);
+$("#q").addEventListener("input", ev => { query = ev.target.value; renderExpos(); });
+document.addEventListener("click", ev => {
+  const p = ev.target.closest("[data-plan]"); if (p) return openForm(p.dataset.plan);
+  const ed = ev.target.closest("[data-edit]"); if (ed) return openForm(visits[ed.dataset.edit].expo, visits[ed.dataset.edit]);
+  const c = ev.target.closest("[data-cal]"); if (c) return addToCalendar(visits[c.dataset.cal]);
+});
+
+/* ---------- Démarrage ---------- */
+visits = loadLocal();
+try { const c = JSON.parse(localStorage.getItem("expos-paris-catalogue") || "null"); if (c && c.expos && c.maj >= catalogue.maj) catalogue = c; } catch(_){}
+renderAll();
+
+// Catalogue à jour (expos.json, mis à jour chaque semaine dans le dépôt)
+fetch("expos.json?t=" + Date.now(), {cache: "no-store"})
+  .then(r => r.ok ? r.json() : null)
+  .then(d => { if (d && Array.isArray(d.expos) && d.expos.length){ catalogue = d; try { localStorage.setItem("expos-paris-catalogue", JSON.stringify(d)); } catch(_){} renderAll(); } })
+  .catch(() => {});
+sync();
+
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
+</script>
+</body>
+</html>

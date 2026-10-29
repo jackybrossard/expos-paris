@@ -1,0 +1,356 @@
+{
+ "maj": "2026-10-29",
+ "expos": [
+  {
+   "id": "eva-gonzales",
+   "t": "Eva Gonzalès (1847-1883). Un parcours d'artiste libre",
+   "m": "Petit Palais",
+   "d": "2026-09-15",
+   "f": "2027-01-24",
+   "v": true,
+   "c": "Première rétrospective de cette élève de Manet, peintre impressionniste longtemps restée dans l'ombre."
+  },
+  {
+   "id": "prune-nourry",
+   "t": "Visionnaires — Prune Nourry",
+   "m": "Petit Palais",
+   "d": "2026-10-20",
+   "f": "2027-01-24",
+   "v": true,
+   "c": "Dix-huit bustes monumentaux redonnent un visage aux sculptrices oubliées. Entrée libre."
+  },
+  {
+   "id": "bruxelles-1900",
+   "t": "Bruxelles 1900",
+   "m": "Petit Palais",
+   "d": "2026-11-10",
+   "f": "2027-04-25",
+   "v": true,
+   "c": "L'effervescence artistique de la capitale belge au tournant du siècle, en pleine vague Art nouveau."
+  },
+  {
+   "id": "kerry-james-marshall",
+   "t": "Kerry James Marshall. The Histories",
+   "m": "Musée d'Art moderne de Paris",
+   "d": "2026-09-18",
+   "f": "2027-01-24",
+   "v": true,
+   "c": "Le grand peintre américain place les figures noires au cœur de la peinture d'histoire. Un des temps forts de la saison."
+  },
+  {
+   "id": "simone-fattal",
+   "t": "Simone Fattal. Des villes au fond d'un lac",
+   "m": "Musée d'Art moderne de Paris",
+   "d": "2026-09-18",
+   "f": "2027-01-24",
+   "v": true,
+   "c": "Plus de cinquante ans de création d'une artiste à la croisée de la sculpture, de la peinture et de la poésie."
+  },
+  {
+   "id": "prix-duchamp-2026",
+   "t": "Prix Marcel Duchamp 2026",
+   "m": "Musée d'Art moderne de Paris",
+   "d": "2026-10-02",
+   "f": "2027-02-07",
+   "v": true,
+   "c": "Les artistes nommés au principal prix de l'art contemporain français, avant l'annonce du lauréat."
+  },
+  {
+   "id": "florian-krewer",
+   "t": "Florian Krewer. woven thin",
+   "m": "Musée d'Art moderne de Paris",
+   "d": "2026-06-19",
+   "f": "2027-01-04",
+   "v": true,
+   "c": "Peinture figurative d'un jeune artiste allemand, présentée dans les collections du musée."
+  },
+  {
+   "id": "villegle",
+   "t": "Paris à l'arraché. Jacques Villeglé et l'art urbain",
+   "m": "Musée Carnavalet – Histoire de Paris",
+   "d": "2026-10-14",
+   "f": "2027-02-14",
+   "v": true,
+   "c": "Les affiches lacérées de Villeglé racontent les murs de Paris et dialoguent avec l'art urbain."
+  },
+  {
+   "id": "vestiaire-a-soi",
+   "t": "Un vestiaire à soi. Féminités dissidentes au 19e siècle",
+   "m": "Palais Galliera",
+   "d": "2026-09-26",
+   "f": "2027-02-14",
+   "v": true,
+   "c": "Quand les femmes du XIXe siècle s'appropriaient le vestiaire masculin : la mode comme acte de liberté."
+  },
+  {
+   "id": "etoffe-artiste",
+   "t": "L'étoffe de l'artiste",
+   "m": "Musée Bourdelle",
+   "d": "2026-09-23",
+   "f": "2027-01-24",
+   "v": true,
+   "c": "Le vêtement d'artiste comme mise en scène de soi, de la fin du XIXe au milieu du XXe siècle."
+  },
+  {
+   "id": "hugo-architecture",
+   "t": "Hugo et l'architecture, de la pierre à la plume",
+   "m": "Maison de Victor Hugo",
+   "d": "2026-06-11",
+   "f": "2026-12-13",
+   "v": true,
+   "c": "Les dessins de Victor Hugo nourris de cathédrales et de vieilles pierres, place des Vosges."
+  },
+  {
+   "id": "robert-capa",
+   "t": "Robert Capa. Photographe de guerre",
+   "m": "Musée de la Libération de Paris",
+   "d": "2026-02-18",
+   "f": "2026-12-20",
+   "v": true,
+   "c": "Le regard du plus célèbre des photoreporters de guerre. Dernières semaines."
+  },
+  {
+   "id": "nadar-catacombes",
+   "t": "Nadar. Découvrir Paris par-dessus et par-dessous",
+   "m": "Catacombes de Paris",
+   "d": "2026-09-29",
+   "f": "2027-01-31",
+   "v": true,
+   "c": "Le pionnier qui photographia Paris depuis un ballon puis sous terre, à la lumière artificielle."
+  },
+  {
+   "id": "mary-cassatt",
+   "t": "Mary Cassatt. L'indépendante",
+   "m": "Musée d'Orsay",
+   "d": "2026-10-06",
+   "f": "2027-01-31",
+   "v": false,
+   "c": "Première grande rétrospective française de l'impressionniste américaine, pour le centenaire de sa mort. Réservation conseillée."
+  },
+  {
+   "id": "jenny-holzer",
+   "t": "Jenny Holzer. J'ai vu",
+   "m": "Musée d'Orsay",
+   "d": "2026-10-20",
+   "f": "2027-02-21",
+   "v": false,
+   "c": "Textes lumineux, projections et pierres gravées investissent les espaces du musée."
+  },
+  {
+   "id": "zurbaran",
+   "t": "Zurbarán 1598-1664",
+   "m": "Musée du Louvre",
+   "d": "2026-10-07",
+   "f": "2027-01-25",
+   "v": false,
+   "c": "Le maître du Siècle d'or espagnol enfin à l'honneur au Louvre : natures mortes et saints d'une intensité rare."
+  },
+  {
+   "id": "eau-primordiale",
+   "t": "L'Eau primordiale",
+   "m": "Musée du Louvre",
+   "d": "2026-05-20",
+   "f": "2027-03-15",
+   "v": false,
+   "c": "Le rôle de l'eau dans la Mésopotamie antique, mythes et objets à l'appui."
+  },
+  {
+   "id": "monet-orangerie",
+   "t": "Monet, peindre le temps",
+   "m": "Musée de l'Orangerie",
+   "d": "2026-09-30",
+   "f": "2027-01-25",
+   "v": false,
+   "c": "Pour le centenaire de Monet, son rapport au temps, des instants impressionnistes aux Nymphéas."
+  },
+  {
+   "id": "cezanne-et-nous",
+   "t": "Cezanne et nous",
+   "m": "Grand Palais",
+   "d": "2026-09-23",
+   "f": "2027-01-17",
+   "v": false,
+   "c": "Près de 180 œuvres : Cézanne face à ceux qu'il a inspirés, de Picasso et Matisse à Joan Mitchell."
+  },
+  {
+   "id": "tintoret",
+   "t": "Éternel Tintoret",
+   "m": "Musée Jacquemart-André",
+   "d": "2026-09-11",
+   "f": "2027-01-24",
+   "v": false,
+   "c": "Une quarantaine d'œuvres du grand Vénitien, et son autoportrait réuni avec la copie qu'en fit Manet."
+  },
+  {
+   "id": "schwitters",
+   "t": "Kurt Schwitters. Le chaos-monde. 1918-1948",
+   "m": "Musée national Picasso-Paris",
+   "d": "2026-10-06",
+   "f": "2027-02-07",
+   "v": false,
+   "c": "Première rétrospective française depuis plus de trente ans du génie des collages Merz."
+  },
+  {
+   "id": "warhol-luxembourg",
+   "t": "Andy Warhol. La ligne et l'image",
+   "m": "Musée du Luxembourg",
+   "d": "2026-09-16",
+   "f": "2027-01-10",
+   "v": false,
+   "c": "Warhol par le dessin : une autre porte d'entrée, plus intime, dans son œuvre."
+  },
+  {
+   "id": "paysages-marmottan",
+   "t": "Histoires de paysages. De Monet à Hockney",
+   "m": "Musée Marmottan Monet",
+   "d": "2026-09-24",
+   "f": "2027-01-31",
+   "v": false,
+   "c": "Plus d'un siècle de paysage, de l'impressionnisme à aujourd'hui."
+  },
+  {
+   "id": "fayet-flv",
+   "t": "Gustave Fayet. Collectionneur – créateur",
+   "m": "Fondation Louis Vuitton",
+   "d": "2026-10-09",
+   "f": "2027-03-08",
+   "v": false,
+   "c": "Le collectionneur de Van Gogh, Gauguin, Redon ou Cézanne, et sa propre création."
+  },
+  {
+   "id": "remember-me",
+   "t": "Remember me",
+   "m": "Bourse de Commerce – Pinault Collection",
+   "d": "2026-10-07",
+   "f": "2027-01-18",
+   "v": false,
+   "c": "Nouvelle exposition tirée de la Collection Pinault sous la coupole de Tadao Ando."
+  },
+  {
+   "id": "stan-douglas",
+   "t": "Stan Douglas. Parallax",
+   "m": "Jeu de Paume",
+   "d": "2026-10-20",
+   "f": "2027-01-10",
+   "v": false,
+   "c": "La plus vaste exposition parisienne de l'artiste canadien depuis trente ans : photo et vidéo."
+  },
+  {
+   "id": "penn-fashion",
+   "t": "Penn & Fashion",
+   "m": "Maison européenne de la photographie",
+   "d": "2026-09-30",
+   "f": "2027-01-17",
+   "v": false,
+   "c": "Irving Penn et la mode : l'élégance du studio, des décennies de couvertures."
+  },
+  {
+   "id": "martine-franck",
+   "t": "Martine Franck. Images, presse et luttes féministes",
+   "m": "Fondation Henri Cartier-Bresson",
+   "d": "2026-10-21",
+   "f": "2027-03-07",
+   "v": false,
+   "c": "Une photographe engagée, entre reportage de presse et combats féministes."
+  },
+  {
+   "id": "cirque-montmartre",
+   "t": "Le cirque, fabrique de l'art moderne",
+   "m": "Musée de Montmartre",
+   "d": "2026-10-16",
+   "f": "2027-02-14",
+   "v": false,
+   "c": "Le cirque comme laboratoire pour les artistes modernes, sur la butte."
+  },
+  {
+   "id": "premieres-nations",
+   "t": "Premières Nations",
+   "m": "Musée du quai Branly – Jacques Chirac",
+   "d": "2026-09-29",
+   "f": "2027-01-10",
+   "v": false,
+   "c": "Arts et cultures des peuples du Nord-Ouest de l'Amérique du Nord."
+  },
+  {
+   "id": "plumes-paradis",
+   "t": "Plumes du paradis",
+   "m": "Musée du quai Branly – Jacques Chirac",
+   "d": "2026-05-12",
+   "f": "2026-11-08",
+   "v": false,
+   "c": "L'oiseau de paradis de Nouvelle-Guinée à travers parures, masques et objets d'apparat. Derniers jours !"
+  },
+  {
+   "id": "nicolas-flamel",
+   "t": "Nicolas Flamel, alchimiste de papier",
+   "m": "Musée de Cluny",
+   "d": "2026-10-13",
+   "f": "2027-01-24",
+   "v": false,
+   "c": "Comment un écrivain public parisien du Moyen Âge est devenu une légende de l'alchimie."
+  },
+  {
+   "id": "louise-bourgeois",
+   "t": "Louise Bourgeois. Extrême tension",
+   "m": "BnF – Richelieu",
+   "d": "2026-10-20",
+   "f": "2027-02-21",
+   "v": false,
+   "c": "L'œuvre graphique de Louise Bourgeois dans le superbe site Richelieu rénové."
+  },
+  {
+   "id": "wagner-garnier",
+   "t": "Richard Wagner, les révolutions du Ring",
+   "m": "Palais Garnier – Bibliothèque-musée de l'Opéra",
+   "d": "2026-10-27",
+   "f": "2027-02-20",
+   "v": false,
+   "c": "La Tétralogie et ses mises en scène qui ont révolutionné l'opéra."
+  },
+  {
+   "id": "custodia",
+   "t": "Mes chers amis. Le dessin dans les collections d'artistes au XIXe siècle",
+   "m": "Fondation Custodia",
+   "d": "2026-10-17",
+   "f": "2027-01-17",
+   "v": false,
+   "c": "Les dessins que les artistes collectionnaient et échangeaient entre eux."
+  },
+  {
+   "id": "hajjaj",
+   "t": "Hassan Hajjaj. My Rock Stars",
+   "m": "Cité de la musique – Philharmonie",
+   "d": "2026-09-22",
+   "f": "2027-04-25",
+   "v": false,
+   "c": "Portraits pop et colorés de musiciens par le photographe marocain."
+  },
+  {
+   "id": "lassana-sarre",
+   "t": "Lassana Sarré. Globale Inversion",
+   "m": "Palais de Tokyo",
+   "d": "2026-06-05",
+   "f": "2027-02-14",
+   "v": false,
+   "c": "Une peinture réalisée sur place, consacrée aux agents de sécurité du lieu."
+  },
+  {
+   "id": "paul-kodjo",
+   "t": "Paul Kodjo. Photoromance",
+   "m": "Palais de Tokyo",
+   "d": "2026-10-21",
+   "f": "2027-02-14",
+   "v": false,
+   "c": "Le photographe ivoirien et l'Abidjan des années 1960-70."
+  },
+  {
+   "id": "mode-moyen-age",
+   "t": "La mode au Moyen Âge",
+   "m": "Tour Jean-sans-Peur",
+   "d": "2026-04-08",
+   "f": "2027-03-07",
+   "v": false,
+   "c": "Silhouettes, étoffes et accessoires médiévaux, dans une tour du XVe siècle."
+  }
+ ]
+}
