@@ -610,6 +610,46 @@
    "f": "2028-01-04",
    "v": false,
    "c": "Le gisement d'Angeac-Charente, l'un des plus riches au monde pour le début du Crétacé : squelettes, fossiles et reconstitutions. Idéal en famille."
+  },
+  {
+   "id": "ima-joss-dray",
+   "t": "La Palestine photographiée par Joss Dray",
+   "m": "Institut du monde arabe",
+   "a": "1 rue des Fossés-Saint-Bernard, 75005 Paris",
+   "d": "2026-09-19",
+   "f": "2026-11-01",
+   "v": false,
+   "c": "Le regard de la photographe Joss Dray sur la Palestine. Derniers jours !"
+  },
+  {
+   "id": "ima-tenter-art-soigner",
+   "t": "Tenter l'art pour soigner. À l'hôpital psychiatrique de Blida-Joinville dans les années 1960",
+   "m": "Institut du monde arabe",
+   "a": "1 rue des Fossés-Saint-Bernard, 75005 Paris",
+   "d": "2025-10-22",
+   "f": "2027-01-03",
+   "v": false,
+   "c": "Les pratiques artistiques nées à l'hôpital psychiatrique de Blida-Joinville, en Algérie, dans les années 1960. Au sein du musée de l'IMA."
+  },
+  {
+   "id": "ima-libye",
+   "t": "Libye, patrimoine révélé",
+   "m": "Institut du monde arabe",
+   "a": "1 rue des Fossés-Saint-Bernard, 75005 Paris",
+   "d": "2026-05-13",
+   "f": "2027-01-17",
+   "v": false,
+   "c": "Le patrimoine archéologique libyen, des vestiges grecs et romains comme les thermes d'Apollonia. Au sein du musée de l'IMA."
+  },
+  {
+   "id": "ima-savoir-medical",
+   "t": "La grande aventure du savoir médical",
+   "m": "Institut du monde arabe",
+   "a": "1 rue des Fossés-Saint-Bernard, 75005 Paris",
+   "d": "2027-09-14",
+   "f": "2028-01-02",
+   "v": false,
+   "c": "Comment le savoir médical s'est transmis de civilisation en civilisation, de l'Antiquité aux Temps modernes, à travers livres, objets et manuscrits."
   }
  ],
  "nouveautes": {
@@ -636,7 +676,11 @@
    "homme-drogues",
    "marine-profondeurs",
    "gge-artistes-museum",
-   "gge-dinosaures"
+   "gge-dinosaures",
+   "ima-joss-dray",
+   "ima-tenter-art-soigner",
+   "ima-libye",
+   "ima-savoir-medical"
   ],
   "modifiees": [],
   "retirees": []
