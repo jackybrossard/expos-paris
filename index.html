@@ -61,6 +61,8 @@ textarea{min-height:70px;resize:vertical}
 .section-title{font-family:Fraunces,Georgia,serif;font-size:17px;margin:16px 0 8px}
 .visit-meta{font-size:14px;margin:6px 0}
 .visit-meta b{font-weight:600}
+.nef{width:15px;height:15px;vertical-align:-2px;fill:#23406b}
+@media (prefers-color-scheme: dark){.nef{fill:#9db8e6}}
 .mus-link{color:inherit;text-decoration:none}
 .addr{display:block;margin-top:6px;font-size:13px;color:var(--ink);text-decoration:none}
 .addr span{color:var(--accent);font-weight:600;white-space:nowrap}
@@ -228,7 +230,7 @@ function cardHTML(e, extra){
     if (e.v) b.push(`<span class="badge ville">Ville de Paris</span>`);
     const info = "https://www.google.com/search?q=" + encodeURIComponent(e.t + " " + e.m);
     return `<article class="card">${extra || ""}
-      <div class="museum"><a href="#" class="mus-link" data-mus="${esc(e.m)}">${esc(e.m)} ›</a></div>
+      <div class="museum"><a href="#" class="mus-link" data-mus="${esc(e.m)}">${esc(e.m)}${e.v ? ' <svg class="nef" viewBox="0 0 24 24" aria-label="Musée de la Ville de Paris" role="img"><path d="M11 2.5v12H4.5z"/><path d="M12.5 5.5l6 9h-6z"/><path d="M2.5 16.5h19l-3 4.5h-13z"/></svg>' : ""} ›</a></div>
       <h3>${esc(e.t)}</h3>
       <div class="dates">Du ${fmt(e.d)} au ${fmt(e.f)}</div>
       ${addrLink(e)}
@@ -243,11 +245,11 @@ function cardHTML(e, extra){
 
 function fillMusees(){
   const sel = $("#musee"); if (!sel) return;
-  const n = {};
-  catalogue.expos.forEach(e => { if (statut(e) !== "finie") n[e.m] = (n[e.m] || 0) + 1; });
+  const n = {}, ville = {};
+  catalogue.expos.forEach(e => { if (statut(e) !== "finie") n[e.m] = (n[e.m] || 0) + 1; if (e.v) ville[e.m] = 1; });
   const names = Object.keys(n).sort((a, b) => a.localeCompare(b, "fr"));
   if (filtreMusee && !n[filtreMusee]) filtreMusee = "";
-  sel.innerHTML = `<option value="">🏛 Tous les musées</option>` + names.map(m => `<option value="${esc(m)}"${m === filtreMusee ? " selected" : ""}>${esc(m)} (${n[m]})</option>`).join("");
+  sel.innerHTML = `<option value="">🏛 Tous les musées</option>` + names.map(m => `<option value="${esc(m)}"${m === filtreMusee ? " selected" : ""}>${esc(m)}${ville[m] ? " ⛵" : ""} (${n[m]})</option>`).join("");
 }
 function renderExpos(){
   const q = query.trim().toLowerCase();
