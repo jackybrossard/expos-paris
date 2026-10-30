@@ -650,6 +650,26 @@
    "f": "2028-01-02",
    "v": false,
    "c": "Comment le savoir médical s'est transmis de civilisation en civilisation, de l'Antiquité aux Temps modernes, à travers livres, objets et manuscrits."
+  },
+  {
+   "id": "bnf-perec",
+   "t": "Georges Perec modes d'emploi",
+   "m": "BnF – François-Mitterrand",
+   "a": "11 quai François-Mauriac, 75013 Paris",
+   "d": "2026-10-13",
+   "f": "2027-02-14",
+   "v": false,
+   "c": "Près de 300 pièces autour de l'écrivain de l'Oulipo : manuscrits, photos, dessins et objets, notamment autour de La Vie mode d'emploi. Galerie 1."
+  },
+  {
+   "id": "bnf-photos-japonaises",
+   "t": "Photographies japonaises de la BnF. 1945-2025. Scènes, signes, sensations",
+   "m": "BnF – François-Mitterrand",
+   "a": "11 quai François-Mauriac, 75013 Paris",
+   "d": "2026-09-30",
+   "f": "2027-01-31",
+   "v": false,
+   "c": "Quatre-vingts ans de photographie japonaise dans les collections de la BnF, surtout en noir et blanc, avec une centaine d'artistes. Galerie 2."
   }
  ],
  "nouveautes": {
@@ -680,7 +700,9 @@
    "ima-joss-dray",
    "ima-tenter-art-soigner",
    "ima-libye",
-   "ima-savoir-medical"
+   "ima-savoir-medical",
+   "bnf-perec",
+   "bnf-photos-japonaises"
   ],
   "modifiees": [],
   "retirees": []
