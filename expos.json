@@ -1,5 +1,5 @@
 {
- "maj": "2026-10-29",
+ "maj": "2026-10-30",
  "expos": [
   {
    "id": "eva-gonzales",
@@ -540,10 +540,80 @@
    "v": true,
    "c": "Le vin dans l'univers de Balzac : plus de quatre-vingts peintures, gravures, affiches, objets de la vigne et vaisselle.",
    "a": "47 rue Raynouard, 75016 Paris"
+  },
+  {
+   "id": "ima-vive-la-mariee",
+   "t": "Vive la mariée ! Algérie, Maroc, Tunisie",
+   "m": "Institut du monde arabe",
+   "a": "1 rue des Fossés-Saint-Bernard, 75005 Paris",
+   "d": "2026-09-29",
+   "f": "2027-02-28",
+   "v": false,
+   "c": "Le mariage au Maghreb, du trousseau aux parures et costumes, avec des œuvres d'artistes contemporains sur la fête et la transmission."
+  },
+  {
+   "id": "ima-alhambra",
+   "t": "Les secrets de l'Alhambra nasride",
+   "m": "Institut du monde arabe",
+   "a": "1 rue des Fossés-Saint-Bernard, 75005 Paris",
+   "d": "2026-11-24",
+   "f": "2027-05-16",
+   "v": false,
+   "c": "L'Alhambra de Grenade des sultans nasrides, à la fois palais, forteresse et lieu de mémoire."
+  },
+  {
+   "id": "homme-grands-ages",
+   "t": "Les grands âges",
+   "m": "Musée de l'Homme",
+   "a": "17 place du Trocadéro, 75016 Paris",
+   "d": "2026-04-08",
+   "f": "2027-01-03",
+   "v": false,
+   "c": "Les portraits du photographe Nikos Aliagas dialoguent avec la science du vieillissement. Une exposition courte, dans une seule salle."
+  },
+  {
+   "id": "homme-drogues",
+   "t": "Drogues",
+   "m": "Musée de l'Homme",
+   "a": "17 place du Trocadéro, 75016 Paris",
+   "d": "2026-11-18",
+   "f": "2027-06-06",
+   "v": false,
+   "c": "Substances psychoactives, usages et effets sur les sociétés : le musée démonte les idées reçues."
+  },
+  {
+   "id": "marine-profondeurs",
+   "t": "L'appel des profondeurs. Une aventure sous les mers de l'Antiquité à nos jours",
+   "m": "Musée national de la Marine",
+   "a": "Palais de Chaillot, 17 place du Trocadéro, 75016 Paris",
+   "d": "2026-10-14",
+   "f": "2027-04-04",
+   "v": false,
+   "c": "Près de 240 œuvres sur l'histoire de l'exploration sous-marine, entre inventions, mythes et découvertes."
+  },
+  {
+   "id": "gge-artistes-museum",
+   "t": "Artistes au Muséum",
+   "m": "Grande Galerie de l'Évolution",
+   "a": "36 rue Geoffroy-Saint-Hilaire, 75005 Paris",
+   "d": "2026-09-23",
+   "f": "2027-03-07",
+   "v": false,
+   "c": "Pour les 400 ans du Muséum, quatre siècles de dialogue entre art et science : plus de 300 œuvres, du Douanier Rousseau à la taxidermie."
+  },
+  {
+   "id": "gge-dinosaures",
+   "t": "Sur les traces des dinosaures",
+   "m": "Grande Galerie de l'Évolution",
+   "a": "36 rue Geoffroy-Saint-Hilaire, 75005 Paris",
+   "d": "2026-07-16",
+   "f": "2028-01-04",
+   "v": false,
+   "c": "Le gisement d'Angeac-Charente, l'un des plus riches au monde pour le début du Crétacé : squelettes, fossiles et reconstitutions. Idéal en famille."
   }
  ],
  "nouveautes": {
-  "semaine": "2026-10-29",
+  "semaine": "2026-10-30",
   "ajoutees": [
    "coree-cernuschi",
    "en-volume-galliera",
@@ -559,7 +629,14 @@
    "guimet-trompe-loeil",
    "guimet-sanxingdui",
    "penalba-zadkine",
-   "vin-balzac"
+   "vin-balzac",
+   "ima-vive-la-mariee",
+   "ima-alhambra",
+   "homme-grands-ages",
+   "homme-drogues",
+   "marine-profondeurs",
+   "gge-artistes-museum",
+   "gge-dinosaures"
   ],
   "modifiees": [],
   "retirees": []

@@ -1,5 +1,5 @@
 // Expos Paris — cache hors ligne. Changer VERSION à chaque mise à jour de index.html.
-const VERSION = "expos-paris-v6";
+const VERSION = "expos-paris-v7";
 const SHELL = ["./", "index.html", "manifest.webmanifest", "icon-180.png", "icon-192.png", "icon-512.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(VERSION).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener("activate", e => {
