@@ -1,9 +1,9 @@
 {
- "maj": "2026-10-30",
+ "maj": "2026-11-02",
  "expos": [
   {
    "id": "eva-gonzales",
-   "t": "Eva Gonzalès (1847-1883). Un parcours d'artiste libre",
+   "t": "Eva Gonzalès (1847-1883). Parcours d'une artiste libre",
    "m": "Petit Palais",
    "d": "2026-09-15",
    "f": "2027-01-24",
@@ -13,7 +13,7 @@
   },
   {
    "id": "prune-nourry",
-   "t": "Visionnaires — Prune Nourry",
+   "t": "Visionnaires. Carte blanche à Prune Nourry",
    "m": "Petit Palais",
    "d": "2026-10-20",
    "f": "2027-01-24",
@@ -103,7 +103,7 @@
   },
   {
    "id": "hugo-architecture",
-   "t": "Hugo et l'architecture, de la pierre à la plume",
+   "t": "Hugo et l'architecture. De la pierre à la plume",
    "m": "Maison de Victor Hugo",
    "d": "2026-06-11",
    "f": "2026-12-13",
@@ -123,7 +123,7 @@
   },
   {
    "id": "nadar-catacombes",
-   "t": "Nadar. Découvrir Paris par-dessus et par-dessous",
+   "t": "Nadar : inventer Paris, des profondeurs au ciel",
    "m": "Catacombes de Paris",
    "d": "2026-09-29",
    "f": "2027-01-31",
@@ -296,7 +296,7 @@
    "t": "Premières Nations",
    "m": "Musée du quai Branly – Jacques Chirac",
    "d": "2026-09-29",
-   "f": "2027-01-10",
+   "f": "2027-01-17",
    "v": false,
    "c": "Arts et cultures des peuples du Nord-Ouest de l'Amérique du Nord.",
    "a": "37 quai Jacques Chirac, 75007 Paris"
@@ -553,7 +553,7 @@
   },
   {
    "id": "ima-alhambra",
-   "t": "Les secrets de l'Alhambra nasride",
+   "t": "Les secrets de l'Alhambra",
    "m": "Institut du monde arabe",
    "a": "1 rue des Fossés-Saint-Bernard, 75005 Paris",
    "d": "2026-11-24",
@@ -670,41 +670,511 @@
    "f": "2027-01-31",
    "v": false,
    "c": "Quatre-vingts ans de photographie japonaise dans les collections de la BnF, surtout en noir et blanc, avec une centaine d'artistes. Galerie 2."
+  },
+  {
+   "id": "lubaina-himid",
+   "t": "Lubaina Himid. A Fashionable Marriage",
+   "m": "Musée d'Art moderne de Paris",
+   "d": "2026-10-23",
+   "f": "2027-01-10",
+   "v": true,
+   "c": "Exposition de l'artiste britannique Lubaina Himid, autour de son œuvre A Fashionable Marriage.",
+   "a": "11 avenue du Président Wilson, 75116 Paris"
+  },
+  {
+   "id": "carnavalet-nouveau-paris",
+   "t": "Nouveau Paris, de 1977 à nos jours",
+   "m": "Musée Carnavalet – Histoire de Paris",
+   "d": "2026-09-25",
+   "f": "2027-12-05",
+   "v": true,
+   "c": "Accrochage consacré au Paris des dernières décennies, de 1977 à aujourd'hui.",
+   "a": "23 rue de Sévigné, 75003 Paris"
+  },
+  {
+   "id": "carnavalet-georges-cain",
+   "t": "En mémoire de Georges Cain (1853-1919), refondateur du musée Carnavalet",
+   "m": "Musée Carnavalet – Histoire de Paris",
+   "d": "2026-10-06",
+   "f": "2027-04-26",
+   "v": true,
+   "c": "Accrochage en hommage à Georges Cain, figure de la refondation du musée.",
+   "a": "23 rue de Sévigné, 75003 Paris"
+  },
+  {
+   "id": "louvre-sculpter-couleur",
+   "t": "Sculpter la couleur. Chefs-d'œuvre du Musée national de sculpture, Valladolid",
+   "m": "Musée du Louvre",
+   "d": "2026-10-07",
+   "f": "2027-01-25",
+   "v": false,
+   "c": "Sculptures venues du musée national de Valladolid, présentées dans le hall Napoléon.",
+   "a": "Rue de Rivoli, 75001 Paris"
+  },
+  {
+   "id": "louvre-photo",
+   "t": "Louvre Photo",
+   "m": "Musée du Louvre",
+   "d": "2026-11-04",
+   "f": "2027-05-03",
+   "v": false,
+   "c": "Exposition sur le musée comme source d'inspiration pour les photographes, à la mezzanine Napoléon.",
+   "a": "Rue de Rivoli, 75001 Paris"
+  },
+  {
+   "id": "louvre-affinites",
+   "t": "Affinités. Les merveilles des arts de l'Islam aux Objets d'art",
+   "m": "Musée du Louvre",
+   "d": "2026-06-24",
+   "f": "2026-12-06",
+   "v": false,
+   "c": "Des chefs-d'œuvre des arts de l'Islam présentés dans les salles des Objets d'art, aile Richelieu.",
+   "a": "Rue de Rivoli, 75001 Paris"
+  },
+  {
+   "id": "louvre-donation-lacoste",
+   "t": "La donation Michel Lacoste au musée du Louvre. Orfèvrerie française de Mangot à Puiforcat",
+   "m": "Musée du Louvre",
+   "d": "2026-06-26",
+   "f": "2027-01-11",
+   "v": false,
+   "c": "Présentation d'une donation d'orfèvrerie française, aile Sully.",
+   "a": "Rue de Rivoli, 75001 Paris"
+  },
+  {
+   "id": "louvre-hotes",
+   "t": "Les Hôtes du Louvre. Kader Attia et Elizabeth Peyton",
+   "m": "Musée du Louvre",
+   "d": "2026-09-24",
+   "f": "2026-12-14",
+   "v": false,
+   "c": "Kader Attia et Elizabeth Peyton invités au musée, salle de la Chapelle.",
+   "a": "Rue de Rivoli, 75001 Paris"
+  },
+  {
+   "id": "orangerie-vija-celmins",
+   "t": "Vija Celmins. Contrepoint contemporain",
+   "m": "Musée de l'Orangerie",
+   "d": "2026-09-30",
+   "f": "2027-02-15",
+   "v": false,
+   "c": "L'artiste Vija Celmins invitée dans le cadre du cycle Contrepoint contemporain.",
+   "a": "Jardin des Tuileries, place de la Concorde, 75001 Paris"
+  },
+  {
+   "id": "branly-echos-marees",
+   "t": "Échos des marées",
+   "m": "Musée du quai Branly – Jacques Chirac",
+   "d": "2026-03-11",
+   "f": "2027-02-21",
+   "v": false,
+   "c": "Exposition à l'affiche du musée jusqu'en février.",
+   "a": "37 quai Jacques Chirac, 75007 Paris"
+  },
+  {
+   "id": "branly-voir-tahiti",
+   "t": "Voir Tahiti. Premières photographies 1859-1870",
+   "m": "Musée du quai Branly – Jacques Chirac",
+   "d": "2026-09-29",
+   "f": "2027-01-31",
+   "v": false,
+   "c": "Les toutes premières photographies de Tahiti, prises entre 1859 et 1870.",
+   "a": "37 quai Jacques Chirac, 75007 Paris"
+  },
+  {
+   "id": "branly-violence-silencieuse",
+   "t": "Violence silencieuse. Sous le regard de Roméo Mivekannin",
+   "m": "Musée du quai Branly – Jacques Chirac",
+   "d": "2026-11-10",
+   "f": "2027-04-04",
+   "v": false,
+   "c": "Une exposition conçue sous le regard de l'artiste Roméo Mivekannin.",
+   "a": "37 quai Jacques Chirac, 75007 Paris"
+  },
+  {
+   "id": "picasso-malraux",
+   "t": "André Malraux et Pablo Picasso : le musée imaginaire",
+   "m": "Musée national Picasso-Paris",
+   "d": "2026-10-06",
+   "f": "2027-02-07",
+   "v": false,
+   "c": "Parcours autour du lien entre Malraux et Picasso et de la notion de musée imaginaire.",
+   "a": "5 rue de Thorigny, 75003 Paris"
+  },
+  {
+   "id": "picasso-kuitca",
+   "t": "Guillermo Kuitca. Chapelle",
+   "m": "Musée national Picasso-Paris",
+   "d": "2024-10-15",
+   "f": "2027-12-31",
+   "v": false,
+   "c": "Installation de longue durée de l'artiste argentin Guillermo Kuitca.",
+   "a": "5 rue de Thorigny, 75003 Paris"
+  },
+  {
+   "id": "gp-girls",
+   "t": "Girls. Adolescence, mode, rébellion",
+   "m": "Grand Palais",
+   "d": "2026-12-09",
+   "f": "2027-03-21",
+   "v": false,
+   "c": "Exposition sur l'adolescence des filles à travers la mode et la rébellion.",
+   "a": "Avenue du Général Eisenhower, 75008 Paris"
+  },
+  {
+   "id": "gp-ninagawa",
+   "t": "Mika Ninagawa with EiM. Alive with Shadows",
+   "m": "Grand Palais",
+   "d": "2026-12-16",
+   "f": "2027-03-21",
+   "v": false,
+   "c": "Une proposition de l'artiste japonaise Mika Ninagawa et du collectif EiM.",
+   "a": "Avenue du Général Eisenhower, 75008 Paris"
+  },
+  {
+   "id": "gp-oli",
+   "t": "Le Musée Imaginaire d'Oli",
+   "m": "Grand Palais",
+   "d": "2026-12-02",
+   "f": "2027-02-21",
+   "v": false,
+   "c": "Conçue par Oli (Bigflo & Oli) avec Jérôme Sans, une traversée de 1 300 m² autour de l'inspiration, du doute et de la transmission.",
+   "a": "Avenue du Général Eisenhower, 75008 Paris"
+  },
+  {
+   "id": "gp-transparence",
+   "t": "Transparence",
+   "m": "Grand Palais",
+   "d": "2025-06-20",
+   "f": "2027-08-29",
+   "v": false,
+   "c": "Au Palais des enfants, un parcours ludique et sensoriel sur la lumière pour les 2-10 ans.",
+   "a": "Avenue du Général Eisenhower, 75008 Paris"
+  },
+  {
+   "id": "mad-look",
+   "t": "Look ! 40 ans de mode au musée",
+   "m": "Musée des Arts décoratifs",
+   "d": "2026-09-30",
+   "f": "2027-04-04",
+   "v": false,
+   "c": "Quarante ans de mode vus à travers les collections du musée.",
+   "a": "107 rue de Rivoli, 75001 Paris"
+  },
+  {
+   "id": "mad-pavarotti",
+   "t": "Rafael Pavarotti, photographe",
+   "m": "Musée des Arts décoratifs",
+   "d": "2026-10-02",
+   "f": "2027-05-02",
+   "v": false,
+   "c": "Exposition consacrée au travail du photographe Rafael Pavarotti.",
+   "a": "107 rue de Rivoli, 75001 Paris"
+  },
+  {
+   "id": "mad-viktor-rolf",
+   "t": "Le monde de Viktor&Rolf. 30 ans de haute couture",
+   "m": "Musée des Arts décoratifs",
+   "d": "2027-01-28",
+   "f": "2027-07-04",
+   "v": false,
+   "c": "Rétrospective sur trente ans de haute couture du duo Viktor&Rolf.",
+   "a": "107 rue de Rivoli, 75001 Paris"
+  },
+  {
+   "id": "tokyo-toi-et-ta-bande",
+   "t": "Toi et ta bande",
+   "m": "Palais de Tokyo",
+   "d": "2026-10-21",
+   "f": "2027-02-14",
+   "v": false,
+   "c": "Exposition collective de la saison d'automne.",
+   "a": "13 avenue du Président Wilson, 75116 Paris"
+  },
+  {
+   "id": "tokyo-coeur-sauvage",
+   "t": "Sonia Gomes. Cœur sauvage",
+   "m": "Palais de Tokyo",
+   "d": "2026-10-21",
+   "f": "2027-02-14",
+   "v": false,
+   "c": "Exposition de l'artiste brésilienne Sonia Gomes.",
+   "a": "13 avenue du Président Wilson, 75116 Paris"
+  },
+  {
+   "id": "tokyo-today-is-ok",
+   "t": "Ali Cherri. Today Is OK",
+   "m": "Palais de Tokyo",
+   "d": "2026-10-21",
+   "f": "2027-02-14",
+   "v": false,
+   "c": "Exposition de l'artiste Ali Cherri.",
+   "a": "13 avenue du Président Wilson, 75116 Paris"
+  },
+  {
+   "id": "cartier-mahama",
+   "t": "Ibrahim Mahama. Le Temps des récoltes",
+   "m": "Fondation Cartier",
+   "d": "2026-10-22",
+   "f": "2027-02-28",
+   "v": false,
+   "c": "Exposition de l'artiste ghanéen Ibrahim Mahama à la Fondation Cartier, place du Palais-Royal.",
+   "a": "2 place du Palais-Royal, 75001 Paris"
+  },
+  {
+   "id": "flv-alfaraj",
+   "t": "Open Space #19. Mohammad Alfaraj",
+   "m": "Fondation Louis Vuitton",
+   "d": "2026-10-09",
+   "f": "2027-01-18",
+   "v": false,
+   "c": "Dix-neuvième édition d'Open Space, consacrée à Mohammad Alfaraj.",
+   "a": "8 avenue du Mahatma Gandhi, 75116 Paris"
+  },
+  {
+   "id": "guimet-dal-dari",
+   "t": "Dal Dari. La Lune et les Jambes",
+   "m": "Musée Guimet",
+   "d": "2026-06-06",
+   "f": "2027-02-08",
+   "v": false,
+   "c": "Installation monumentale présentée au musée.",
+   "a": "6 place d'Iéna, 75116 Paris"
+  },
+  {
+   "id": "marmottan-soriano",
+   "t": "Monet / Soriano. Cartographie du Mont Kolsås",
+   "m": "Musée Marmottan Monet",
+   "d": "2026-09-24",
+   "f": "2027-01-31",
+   "v": false,
+   "c": "Un dialogue autour du mont Kolsås, en Norvège, peint par Monet.",
+   "a": "2 rue Louis-Boilly, 75016 Paris"
+  },
+  {
+   "id": "jdp-klein",
+   "t": "William Klein. Revoir New York",
+   "m": "Jeu de Paume",
+   "d": "2027-01-26",
+   "f": "2027-05-30",
+   "v": false,
+   "c": "Un nouveau regard sur le New York photographié par William Klein.",
+   "a": "1 place de la Concorde, 75008 Paris"
+  },
+  {
+   "id": "jdp-de-andrade",
+   "t": "Jonathas de Andrade. Gueule de bois tropicale et autres histoires",
+   "m": "Jeu de Paume",
+   "d": "2027-01-26",
+   "f": "2027-05-30",
+   "v": false,
+   "c": "Exposition de l'artiste brésilien Jonathas de Andrade.",
+   "a": "1 place de la Concorde, 75008 Paris"
+  },
+  {
+   "id": "mep-traore",
+   "t": "Nanténé Traoré. Pays des merveilles",
+   "m": "Maison européenne de la photographie",
+   "d": "2026-09-30",
+   "f": "2026-11-29",
+   "v": false,
+   "c": "Exposition du photographe Nanténé Traoré.",
+   "a": "5-7 rue de Fourcy, 75004 Paris"
+  },
+  {
+   "id": "mep-vetement",
+   "t": "Vêtement du quotidien",
+   "m": "Maison européenne de la photographie",
+   "d": "2026-09-30",
+   "f": "2027-01-17",
+   "v": false,
+   "c": "Exposition photographique autour du vêtement de tous les jours.",
+   "a": "5-7 rue de Fourcy, 75004 Paris"
+  },
+  {
+   "id": "mep-gilbert",
+   "t": "David Gilbert. Apparitions",
+   "m": "Maison européenne de la photographie",
+   "d": "2026-12-04",
+   "f": "2027-01-17",
+   "v": false,
+   "c": "Exposition du photographe David Gilbert.",
+   "a": "5-7 rue de Fourcy, 75004 Paris"
+  },
+  {
+   "id": "bnf-rosenstiehl",
+   "t": "De Mimi Cracra à L'Alphabet fou : Agnès Rosenstiehl, 60 ans de création",
+   "m": "BnF – François-Mitterrand",
+   "d": "2026-11-03",
+   "f": "2027-01-24",
+   "v": false,
+   "c": "Soixante ans de création d'Agnès Rosenstiehl, l'autrice de Mimi Cracra, en galerie des Donateurs.",
+   "a": "11 quai François-Mauriac, 75013 Paris"
+  },
+  {
+   "id": "philharmonie-billie-holiday",
+   "t": "Billie Holiday. Légende noire",
+   "m": "Cité de la musique – Philharmonie",
+   "d": "2027-01-22",
+   "f": "2027-07-11",
+   "v": false,
+   "c": "Exposition consacrée à la chanteuse Billie Holiday.",
+   "a": "221 avenue Jean-Jaurès, 75019 Paris"
+  },
+  {
+   "id": "porte-doree-cinema",
+   "t": "Une histoire du cinéma français : Héritages maghrébins",
+   "m": "Palais de la Porte Dorée",
+   "d": "2026-10-30",
+   "f": "2027-03-21",
+   "v": false,
+   "c": "Au musée de l'histoire de l'immigration, le cinéma français vu à travers ses héritages maghrébins.",
+   "a": "293 avenue Daumesnil, 75012 Paris"
+  },
+  {
+   "id": "maillol-dina-vierny",
+   "t": "Dina Vierny, l'art et la liberté",
+   "m": "Musée Maillol",
+   "d": "2027-01-13",
+   "f": "2027-05-02",
+   "v": false,
+   "c": "Exposition sur Dina Vierny, fondatrice du musée.",
+   "a": "59-61 rue de Grenelle, 75007 Paris"
+  },
+  {
+   "id": "monnaie-fragonard",
+   "t": "Fragonard, 100 ans de collections et de savoir-faire",
+   "m": "Monnaie de Paris",
+   "d": "2026-11-13",
+   "f": "2027-01-10",
+   "v": false,
+   "c": "Un siècle de collections et de savoir-faire de la maison Fragonard.",
+   "a": "11 quai de Conti, 75006 Paris"
+  },
+  {
+   "id": "mcjp-shunga",
+   "t": "Shunga. Chefs-d'œuvre de l'art érotique à l'époque Edo (1603-1868)",
+   "m": "Maison de la culture du Japon à Paris",
+   "d": "2026-11-12",
+   "f": "2027-02-13",
+   "v": false,
+   "c": "Estampes érotiques japonaises de l'époque d'Edo.",
+   "a": "101 bis quai Jacques Chirac, 75015 Paris"
+  },
+  {
+   "id": "giacometti-sortir-du-bois",
+   "t": "Alberto Giacometti / Olivia Rosenthal : Sortir du bois",
+   "m": "Institut Giacometti",
+   "d": "2026-11-11",
+   "f": "2027-02-21",
+   "v": false,
+   "c": "L'écrivaine Olivia Rosenthal en dialogue avec l'œuvre de Giacometti.",
+   "a": "5 rue Victor Schoelcher, 75014 Paris"
+  },
+  {
+   "id": "cite-archi-patrimoines",
+   "t": "Patrimoines en résistance. De Tombouctou à Odessa",
+   "m": "Cité de l'architecture et du patrimoine",
+   "d": "2026-05-20",
+   "f": "2027-01-03",
+   "v": false,
+   "c": "Le patrimoine dans les conflits, de Tombouctou à Odessa.",
+   "a": "1 place du Trocadéro et du 11 Novembre, 75116 Paris"
+  },
+  {
+   "id": "postal-contes",
+   "t": "Il était une fois... La Poste et les contes de fées",
+   "m": "Musée Postal",
+   "d": "2026-11-18",
+   "f": "2027-04-19",
+   "v": false,
+   "c": "Les liens entre La Poste et l'univers des contes de fées.",
+   "a": "34 boulevard de Vaugirard, 75015 Paris"
+  },
+  {
+   "id": "conciergerie-vagues",
+   "t": "La naissance des vagues",
+   "m": "Conciergerie",
+   "d": "2026-11-04",
+   "f": "2026-12-20",
+   "v": false,
+   "c": "Création d'Émilie Faïf et Nicolas André présentée à la Conciergerie.",
+   "a": "2 boulevard du Palais, 75001 Paris"
   }
  ],
  "nouveautes": {
-  "semaine": "2026-10-30",
+  "semaine": "2026-11-02",
   "ajoutees": [
-   "coree-cernuschi",
-   "en-volume-galliera",
-   "archeologie-2gm",
-   "leonor-fini",
-   "jozef-czapski",
-   "donation-kamel-mennour",
-   "derain-bourdelle",
-   "paris-au-naturel",
-   "lucy-mckenzie",
-   "flore-vie-romantique",
-   "claire-tabouret",
-   "guimet-trompe-loeil",
-   "guimet-sanxingdui",
-   "penalba-zadkine",
-   "vin-balzac",
-   "ima-vive-la-mariee",
-   "ima-alhambra",
-   "homme-grands-ages",
-   "homme-drogues",
-   "marine-profondeurs",
-   "gge-artistes-museum",
-   "gge-dinosaures",
-   "ima-joss-dray",
-   "ima-tenter-art-soigner",
-   "ima-libye",
-   "ima-savoir-medical",
-   "bnf-perec",
-   "bnf-photos-japonaises"
+   "lubaina-himid",
+   "carnavalet-nouveau-paris",
+   "carnavalet-georges-cain",
+   "louvre-sculpter-couleur",
+   "louvre-photo",
+   "louvre-affinites",
+   "louvre-donation-lacoste",
+   "louvre-hotes",
+   "orangerie-vija-celmins",
+   "branly-echos-marees",
+   "branly-voir-tahiti",
+   "branly-violence-silencieuse",
+   "picasso-malraux",
+   "picasso-kuitca",
+   "gp-girls",
+   "gp-ninagawa",
+   "gp-oli",
+   "gp-transparence",
+   "mad-look",
+   "mad-pavarotti",
+   "mad-viktor-rolf",
+   "tokyo-toi-et-ta-bande",
+   "tokyo-coeur-sauvage",
+   "tokyo-today-is-ok",
+   "cartier-mahama",
+   "flv-alfaraj",
+   "guimet-dal-dari",
+   "marmottan-soriano",
+   "jdp-klein",
+   "jdp-de-andrade",
+   "mep-traore",
+   "mep-vetement",
+   "mep-gilbert",
+   "bnf-rosenstiehl",
+   "philharmonie-billie-holiday",
+   "porte-doree-cinema",
+   "maillol-dina-vierny",
+   "monnaie-fragonard",
+   "mcjp-shunga",
+   "giacometti-sortir-du-bois",
+   "cite-archi-patrimoines",
+   "postal-contes",
+   "conciergerie-vagues"
   ],
-  "modifiees": [],
+  "modifiees": [
+   {
+    "id": "premieres-nations",
+    "note": "Fin repoussée au 17/01/2027 (date du musée)"
+   },
+   {
+    "id": "nadar-catacombes",
+    "note": "Titre officiel corrigé"
+   },
+   {
+    "id": "eva-gonzales",
+    "note": "Titre officiel corrigé"
+   },
+   {
+    "id": "hugo-architecture",
+    "note": "Titre officiel corrigé"
+   },
+   {
+    "id": "prune-nourry",
+    "note": "Titre officiel corrigé"
+   },
+   {
+    "id": "ima-alhambra",
+    "note": "Titre officiel corrigé"
+   }
+  ],
   "retirees": []
  }
 }
