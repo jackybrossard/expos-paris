@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-02",
+ "maj": "2026-11-09",
  "expos": [
   {
    "id": "eva-gonzales",
@@ -612,16 +612,6 @@
    "c": "Le gisement d'Angeac-Charente, l'un des plus riches au monde pour le début du Crétacé : squelettes, fossiles et reconstitutions. Idéal en famille."
   },
   {
-   "id": "ima-joss-dray",
-   "t": "La Palestine photographiée par Joss Dray",
-   "m": "Institut du monde arabe",
-   "a": "1 rue des Fossés-Saint-Bernard, 75005 Paris",
-   "d": "2026-09-19",
-   "f": "2026-11-01",
-   "v": false,
-   "c": "Le regard de la photographe Joss Dray sur la Palestine. Derniers jours !"
-  },
-  {
    "id": "ima-tenter-art-soigner",
    "t": "Tenter l'art pour soigner. À l'hôpital psychiatrique de Blida-Joinville dans les années 1960",
    "m": "Institut du monde arabe",
@@ -1103,78 +1093,14 @@
   }
  ],
  "nouveautes": {
-  "semaine": "2026-11-02",
-  "ajoutees": [
-   "lubaina-himid",
-   "carnavalet-nouveau-paris",
-   "carnavalet-georges-cain",
-   "louvre-sculpter-couleur",
-   "louvre-photo",
-   "louvre-affinites",
-   "louvre-donation-lacoste",
-   "louvre-hotes",
-   "orangerie-vija-celmins",
-   "branly-echos-marees",
-   "branly-voir-tahiti",
-   "branly-violence-silencieuse",
-   "picasso-malraux",
-   "picasso-kuitca",
-   "gp-girls",
-   "gp-ninagawa",
-   "gp-oli",
-   "gp-transparence",
-   "mad-look",
-   "mad-pavarotti",
-   "mad-viktor-rolf",
-   "tokyo-toi-et-ta-bande",
-   "tokyo-coeur-sauvage",
-   "tokyo-today-is-ok",
-   "cartier-mahama",
-   "flv-alfaraj",
-   "guimet-dal-dari",
-   "marmottan-soriano",
-   "jdp-klein",
-   "jdp-de-andrade",
-   "mep-traore",
-   "mep-vetement",
-   "mep-gilbert",
-   "bnf-rosenstiehl",
-   "philharmonie-billie-holiday",
-   "porte-doree-cinema",
-   "maillol-dina-vierny",
-   "monnaie-fragonard",
-   "mcjp-shunga",
-   "giacometti-sortir-du-bois",
-   "cite-archi-patrimoines",
-   "postal-contes",
-   "conciergerie-vagues"
-  ],
-  "modifiees": [
+  "semaine": "2026-11-09",
+  "ajoutees": [],
+  "modifiees": [],
+  "retirees": [
    {
-    "id": "premieres-nations",
-    "note": "Fin repoussée au 17/01/2027 (date du musée)"
-   },
-   {
-    "id": "nadar-catacombes",
-    "note": "Titre officiel corrigé"
-   },
-   {
-    "id": "eva-gonzales",
-    "note": "Titre officiel corrigé"
-   },
-   {
-    "id": "hugo-architecture",
-    "note": "Titre officiel corrigé"
-   },
-   {
-    "id": "prune-nourry",
-    "note": "Titre officiel corrigé"
-   },
-   {
-    "id": "ima-alhambra",
-    "note": "Titre officiel corrigé"
+    "t": "La Palestine photographiée par Joss Dray",
+    "m": "Institut du monde arabe"
    }
-  ],
-  "retirees": []
+  ]
  }
 }
