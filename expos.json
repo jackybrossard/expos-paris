@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-09",
+ "maj": "2026-11-16",
  "expos": [
   {
    "id": "eva-gonzales",
@@ -299,16 +299,6 @@
    "f": "2027-01-17",
    "v": false,
    "c": "Arts et cultures des peuples du Nord-Ouest de l'Amérique du Nord.",
-   "a": "37 quai Jacques Chirac, 75007 Paris"
-  },
-  {
-   "id": "plumes-paradis",
-   "t": "Plumes du paradis",
-   "m": "Musée du quai Branly – Jacques Chirac",
-   "d": "2026-05-12",
-   "f": "2026-11-08",
-   "v": false,
-   "c": "L'oiseau de paradis de Nouvelle-Guinée à travers parures, masques et objets d'apparat. Derniers jours !",
    "a": "37 quai Jacques Chirac, 75007 Paris"
   },
   {
@@ -1090,16 +1080,39 @@
    "v": false,
    "c": "Création d'Émilie Faïf et Nicolas André présentée à la Conciergerie.",
    "a": "2 boulevard du Palais, 75001 Paris"
+  },
+  {
+   "id": "laurencin-luxembourg",
+   "t": "Marie Laurencin",
+   "m": "Musée du Luxembourg",
+   "a": "19 rue de Vaugirard, 75006 Paris",
+   "d": "2027-02-17",
+   "f": "2027-07-04",
+   "v": false,
+   "c": "Une grande exposition consacrée à la peintre Marie Laurencin."
+  },
+  {
+   "id": "cernuschi-transcontinentales",
+   "t": "Transcontinentales. Un siècle de photographies entre l'Asie et l'Europe",
+   "m": "Musée Cernuschi",
+   "a": "7 avenue Vélasquez, 75008 Paris",
+   "d": "2027-05-14",
+   "f": "2027-08-08",
+   "v": true,
+   "c": "Pour la première fois, le musée montre sa collection de photographies : une soixantaine d'œuvres de dix auteurs."
   }
  ],
  "nouveautes": {
-  "semaine": "2026-11-09",
-  "ajoutees": [],
+  "semaine": "2026-11-16",
+  "ajoutees": [
+   "laurencin-luxembourg",
+   "cernuschi-transcontinentales"
+  ],
   "modifiees": [],
   "retirees": [
    {
-    "t": "La Palestine photographiée par Joss Dray",
-    "m": "Institut du monde arabe"
+    "t": "Plumes du paradis",
+    "m": "Musée du quai Branly – Jacques Chirac"
    }
   ]
  }
