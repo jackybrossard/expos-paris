@@ -150,12 +150,23 @@
    "f": "2027-03-29",
    "v": false,
    "c": "Plus de cent œuvres : quand Max Ernst, Arp ou Dorothea Tanning faisaient réaliser leurs créations en verre de Murano."
+  },
+  {
+   "id": "accademia-ikemura",
+   "t": "Leiko Ikemura. TransLucent — La forma della luce",
+   "m": "Gallerie dell'Accademia",
+   "a": "Campo della Carità, Dorsoduro 1050, 30123 Venezia",
+   "d": "2026-09-10",
+   "f": "2026-11-22",
+   "v": false,
+   "c": "Les sculptures en verre de l'artiste nippo-suisse dialoguent avec les chefs-d'œuvre de la peinture vénitienne, pour la 10e Venice Glass Week. Derniers jours !"
   }
  ],
  "nouveautes": {
   "semaine": "2026-11-18",
   "ajoutees": [
-   "burano-merletto-2026"
+   "burano-merletto-2026",
+   "accademia-ikemura"
   ],
   "modifiees": [
    {
