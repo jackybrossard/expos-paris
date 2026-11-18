@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Expos Venise</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Expos Venise">
+<meta name="theme-color" content="#eef3f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16130f" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eef3f2; --card:#fbfdfc; --ink:#14201f; --muted:#5e6d6b; --line:#d6e1df;
+  --accent:#0f6b73; --accent-soft:#dcefef; --ok:#2f6b4f; --ok-soft:#e1efe7; --warn:#a4570c; --warn-soft:#fbecd9;
+}
+@media (prefers-color-scheme: dark){
+  :root{--bg:#0f1716;--card:#18221f;--ink:#e6efed;--muted:#9aaba8;--line:#2c3a37;--accent:#5cc3c9;--accent-soft:#1b3537;--ok:#7cc5a0;--ok-soft:#1f3329;--warn:#f0a95a;--warn-soft:#3b2b18;}
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.45}
+header{position:sticky;top:0;z-index:5;background:var(--bg);padding:calc(14px + env(safe-area-inset-top)) 16px 8px;border-bottom:1px solid var(--line)}
+.top{display:flex;justify-content:space-between;align-items:flex-start}
+.gear{background:none;border:1px solid var(--line);border-radius:10px;font-size:18px;padding:5px 9px;cursor:pointer;color:var(--ink)}
+h1{font-family:Fraunces,Georgia,serif;font-weight:700;font-size:26px;margin:0;letter-spacing:-.01em}
+h1 span{color:var(--accent)}
+.sub{color:var(--muted);font-size:12.5px;margin-top:2px}
+.tabs{display:flex;gap:6px;margin-top:10px}
+.tab{flex:1;white-space:nowrap;font-size:13.5px !important;padding:9px 4px !important;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:9px 8px;border-radius:10px;font:600 14px Inter,sans-serif;cursor:pointer}
+.tab.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+main{padding:12px 16px 80px;max-width:720px;margin:0 auto}
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:6px 11px;border-radius:999px;font:500 13px Inter,sans-serif;cursor:pointer}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+input[type=search],input[type=text],input[type=date],input[type=time],textarea,select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:15px Inter,sans-serif}
+textarea{min-height:70px;resize:vertical}
+.search{margin-bottom:10px}
+.count{color:var(--muted);font-size:12.5px;margin:4px 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px}
+.card h3{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:18px;line-height:1.25;margin:0 0 4px}
+.museum{font-weight:600;font-size:13.5px;color:var(--accent)}
+.dates{font-size:13px;color:var(--muted);margin-top:2px}
+.comment{margin:8px 0 10px;font-size:14px}
+.badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.badge{font-size:11.5px;font-weight:600;padding:3px 8px;border-radius:6px;background:var(--line);color:var(--ink)}
+.badge.end{background:var(--warn-soft);color:var(--warn)}
+.badge.soon{background:var(--accent-soft);color:var(--accent)}
+.badge.seen{background:var(--ok-soft);color:var(--ok)}
+.badge.ville{background:transparent;border:1px solid var(--line);color:var(--muted)}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:none;border-radius:10px;padding:9px 13px;font:600 14px Inter,sans-serif;cursor:pointer;background:var(--accent);color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.small{padding:7px 10px;font-size:13px}
+.btn.danger{background:transparent;color:var(--accent);border:1px solid var(--accent-soft)}
+.empty{text-align:center;color:var(--muted);padding:40px 10px}
+.section-title{font-family:Fraunces,Georgia,serif;font-size:17px;margin:16px 0 8px}
+.visit-meta{font-size:14px;margin:6px 0}
+.visit-meta b{font-weight:600}
+.nef{width:15px;height:15px;vertical-align:-2px;fill:#23406b}
+@media (prefers-color-scheme: dark){.nef{fill:#9db8e6}}
+.mus-link{color:inherit;text-decoration:none}
+.addr{display:block;margin-top:6px;font-size:13px;color:var(--ink);text-decoration:none}
+.addr span{color:var(--accent);font-weight:600;white-space:nowrap}
+.stars{color:#d4a017;letter-spacing:1px}
+/* sheet */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;z-index:20;align-items:flex-end;justify-content:center}
+.overlay.on{display:flex}
+.sheet{background:var(--bg);width:100%;max-width:560px;border-radius:18px 18px 0 0;padding:18px 16px 28px;max-height:92vh;overflow:auto}
+.sheet h2{font-family:Fraunces,Georgia,serif;font-size:20px;margin:0 0 2px}
+label{display:block;font-size:13px;font-weight:600;margin:12px 0 5px}
+.rate{display:flex;gap:4px}
+.rate button{background:none;border:none;font-size:26px;cursor:pointer;color:var(--line);padding:0 2px}
+.rate button.on{color:#d4a017}
+.hint{font-size:12px;color:var(--muted);margin-top:4px}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:14px;opacity:0;transition:opacity .25s;z-index:30;pointer-events:none;max-width:90vw;text-align:center}
+.toast.on{opacity:1}
+.status{font-size:12px;color:var(--muted);text-align:center;margin-top:18px}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <div>
+      <h1>Expos <span>Venise</span></h1>
+      <div class="sub" id="maj">Chargement…</div>
+    </div>
+    <button class="gear" id="open-set" aria-label="Réglages">⚙︎</button>
+  </div>
+  <div class="tabs">
+    <button class="tab on" data-tab="expos">Expositions</button>
+    <button class="tab" data-tab="nouv">Nouveautés <span id="nbn"></span></button>
+    <button class="tab" data-tab="visites">Mes visites <span id="nbv"></span></button>
+  </div>
+</header>
+
+<main>
+  <section id="v-expos">
+    <div class="filters" id="f-statut">
+      <button class="chip on" data-v="cours">En cours</button>
+      <button class="chip" data-v="avenir">À venir</button>
+      <button class="chip" data-v="fin">Bientôt finies</button>
+      <button class="chip" data-v="toutes">Toutes</button>
+    </div>
+    <div class="filters" id="f-reseau">
+      <button class="chip on" data-v="tous">Tous les musées</button>
+      <button class="chip" data-v="ville">Musei Civici (MUVE)</button>
+    </div>
+    <select id="musee" class="search" aria-label="Choisir un musée"></select>
+    <input class="search" type="search" id="q" placeholder="Rechercher un artiste, un musée…">
+    <div class="count" id="count"></div>
+    <div id="list"></div>
+  </section>
+
+  <section id="v-nouv" hidden>
+    <div id="nouv"></div>
+  </section>
+
+  <section id="v-visites" hidden>
+    <div id="visits"></div>
+  </section>
+  <div class="status" id="status"></div>
+</main>
+
+<div class="overlay" id="ov">
+  <form class="sheet" id="form">
+    <h2 id="f-title">Ma visite</h2>
+    <div class="museum" id="f-museum"></div>
+    <label for="f-date">Date de la visite</label>
+    <input type="date" id="f-date" required>
+    <div class="row" style="flex-wrap:nowrap">
+      <div style="flex:1"><label for="f-time">Heure d'arrivée</label><input type="time" id="f-time"></div>
+      <div style="flex:1"><label for="f-end">Heure de fin</label><input type="time" id="f-end"></div>
+    </div>
+    <div class="hint">Facultatif. Sans heure, la visite est notée sur la journée entière.</div>
+    <label for="f-with">Accompagnant(s)</label>
+    <input type="text" id="f-with" placeholder="ex. Marie, Paul" list="dl-with" autocomplete="off">
+    <datalist id="dl-with"></datalist>
+    <label>Ma note</label>
+    <div class="rate" id="f-rate"></div>
+    <div class="hint">À remplir après la visite si tu veux.</div>
+    <label for="f-notes">Mes impressions</label>
+    <textarea id="f-notes" placeholder="Ce que j'ai aimé, à revoir…"></textarea>
+    <div class="row" style="margin-top:16px">
+      <button class="btn" type="submit">Enregistrer</button>
+      <button class="btn ghost" type="button" id="f-cal">📅 Ajouter au calendrier</button>
+      <button class="btn ghost" type="button" id="f-cancel">Annuler</button>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <button class="btn danger small" type="button" id="f-del" hidden>Supprimer cette visite</button>
+    </div>
+  </form>
+</div>
+<div class="overlay" id="ov-set">
+  <form class="sheet" id="form-set">
+    <h2>Réglages</h2>
+    <div class="hint">Tes visites sont enregistrées sur cet appareil uniquement. Exporte-les de temps en temps (par ex. dans iCloud Drive) : si tu supprimes l'icône de l'écran d'accueil, elles sont effacées.</div>
+    <div class="section-title">Sauvegarde</div>
+    <div class="row">
+      <button class="btn ghost" type="button" id="s-export">Exporter mes visites</button>
+      <label class="btn ghost" style="margin:0">Importer<input type="file" id="s-import" accept=".json,application/json" hidden></label>
+    </div>
+    <div class="row" style="margin-top:18px">
+      <button class="btn ghost" type="button" id="s-close">Fermer</button>
+    </div>
+  </form>
+</div>
+<div class="overlay" id="ov-cal">
+  <div class="sheet">
+    <h2>Ajouter au calendrier</h2>
+    <div class="museum" id="c-title"></div>
+    <div class="dates" id="c-when"></div>
+    <div class="row" style="margin-top:16px;flex-direction:column">
+      <button class="btn" type="button" id="c-open">📅 Ouvrir dans Calendrier</button>
+      <button class="btn ghost" type="button" id="c-share">Partager le fichier…</button>
+      <button class="btn ghost" type="button" id="c-close">Fermer</button>
+    </div>
+    <div class="hint" style="margin-top:10px">Si rien ne s'ouvre : « Partager le fichier… » → Enregistrer dans Fichiers, puis touche le fichier dans l'app Fichiers.</div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------- Données de base (remplacées par la version à jour en base si disponible) ---------- */
+const BASE = {"maj": "2026-11-18", "expos": [{"id": "correr-spiral-economy", "t": "Spiral Economy. Charrière e Canova", "m": "Museo Correr", "a": "Piazza San Marco 52, 30124 Venezia", "d": "2026-04-30", "f": "2026-11-22", "v": true, "c": "Dans les salles Canova, l'artiste franco-suisse Julian Charrière dialogue avec les marbres de Canova sur le temps de la matière. Derniers jours !"}, {"id": "correr-bassiri", "t": "Bizhan Bassiri. Principe. Il Nottambulo del Pensiero Magmatico", "m": "Museo Correr", "a": "Piazza San Marco 52, 30124 Venezia", "d": "2026-02-27", "f": "2026-11-22", "v": true, "c": "L'artiste italo-iranien réunit œuvres récentes et pièces emblématiques autour d'une « quadreria » de grands visages de l'histoire de l'art. Derniers jours !"}, {"id": "rezzonico-nel-segno", "t": "Nel segno di Venezia. La donazione Alessandro Favaretto Rubelli", "m": "Ca' Rezzonico", "a": "Dorsoduro 3136, 30123 Venezia", "d": "2026-09-23", "f": "2027-01-11", "v": true, "c": "29 dessins de maîtres vénitiens du XVIe au XVIIIe siècle, récemment donnés au cabinet des dessins des musées civiques."}, {"id": "pesaro-potenza", "t": "Gianmaria Potenza. Io, Venezia. Forma, luce, materia", "m": "Ca' Pesaro", "a": "Santa Croce 2076, 30135 Venezia", "d": "2026-10-03", "f": "2026-11-22", "v": true, "c": "Le sculpteur et designer vénitien, actif depuis les années 1950, entre tradition vénitienne et formes contemporaines. Derniers jours !"}, {"id": "pesaro-corpus-serialis", "t": "Corpus serialis. Nicolás Lamas", "m": "Ca' Pesaro", "a": "Santa Croce 2076, 30135 Venezia", "d": "2026-09-23", "f": "2026-11-22", "v": true, "c": "Dans la Project Room, l'artiste péruvien interroge nos systèmes de savoir et de classement. Derniers jours !"}, {"id": "pesaro-ceschin", "t": "Livio Ceschin. Nel solco del tempo", "m": "Ca' Pesaro", "a": "Santa Croce 2076, 30135 Venezia", "d": "2026-11-06", "f": "2027-02-09", "v": true, "c": "Les gravures du maître graveur de Vénétie, paysages délicats travaillés à la pointe."}, {"id": "vetro-perla-2026", "t": "La tua perla per Venezia 2026", "m": "Museo del Vetro (Murano)", "a": "Fondamenta Giustinian 8, 30141 Murano", "d": "2026-09-12", "f": "2027-01-10", "v": true, "c": "Les perles de verre du concours international « Ta perle pour Venise », dans la salle des perles vénitiennes."}, {"id": "vetro-babel", "t": "Marco Toso Borella. Babel", "m": "Museo del Vetro (Murano)", "a": "Fondamenta Giustinian 8, 30141 Murano", "d": "2026-06-12", "f": "2027-03-30", "v": true, "c": "Une vingtaine d'œuvres inédites en verre de Murano sur l'incommunicabilité à l'ère des réseaux sociaux et de l'IA."}, {"id": "mocenigo-merletto-2026", "t": "Un merletto per Venezia 2026", "m": "Palazzo Mocenigo", "a": "Santa Croce 1992, 30135 Venezia", "d": "2026-06-14", "f": "2027-01-26", "v": true, "c": "Les dentelles du concours national « Un merletto per Venezia », dans le cadre de la Biennale de la dentelle."}, {"id": "fortuny-wurm", "t": "Erwin Wurm. Dreamers", "m": "Museo Fortuny", "a": "San Marco 3958, 30124 Venezia", "d": "2026-05-06", "f": "2026-11-22", "v": true, "c": "Première grande monographie en Italie du sculpteur autrichien, entre les étoffes de Fortuny. Fermé le mardi. Derniers jours !"}, {"id": "burano-merletti-autore", "t": "Merletti d'autore. Biennale del Merletto 2026", "m": "Museo del Merletto (Burano)", "a": "Piazza Galuppi 187, 30142 Burano", "d": "2026-04-21", "f": "2027-01-08", "v": true, "c": "Dessins, cartons et dentelles d'artistes des années 1920-1930 (Melotti, Zecchin, Buzzi…)."}, {"id": "marghera-da-cosa", "t": "Da cosa nasce cosa", "m": "Casermetta 9 – Forte Marghera (Mestre)", "a": "Via Forte Marghera 30, 30173 Mestre", "d": "2026-12-03", "f": "2027-05-09", "v": true, "c": "Exposition finale du programme d'ateliers 2025-2026 des musées civiques et de la Fondation Bevilacqua La Masa. Entrée libre."}, {"id": "muvec-klimt", "t": "Klimt, Schiele, Kokoschka e il corpo nell'arte contemporanea", "m": "MUVEC (Mestre)", "a": "Piazzale Candiani 7, 30174 Mestre", "d": "2026-09-26", "f": "2027-02-14", "v": true, "c": "Autour de la Judith II de Klimt venue de Ca' Pesaro, le corps dans l'art, de la Sécession viennoise au Body Art. Nocturnes le samedi jusqu'à 22h."}, {"id": "guggenheim-fucina", "t": "Fucina degli Angeli. Peggy Guggenheim e il vetro artistico del Novecento", "m": "Collezione Peggy Guggenheim", "a": "Dorsoduro 701, 30123 Venezia", "d": "2026-11-14", "f": "2027-03-29", "v": false, "c": "Plus de cent œuvres : quand Max Ernst, Arp ou Dorothea Tanning faisaient réaliser leurs créations en verre de Murano."}], "nouveautes": {"semaine": "2026-11-18", "ajoutees": [], "modifiees": [], "retirees": []}};
+
+/* ---------- État ---------- */
+let catalogue = BASE;
+let visits = {};            // id -> {id, expo, date, time, with, rate, notes}
+let filtreMusee = "";
+let filtreStatut = "cours", filtreReseau = "tous", query = "";
+let editing = null, rate = 0;
+const LS = "expos-venise-visites";
+
+const $ = s => document.querySelector(s);
+const addrOf = e => (e && (e.a || (e.m ? e.m + ", Venezia" : ""))) || "";
+const mapsUrl = a => "https://maps.apple.com/?daddr=" + encodeURIComponent(a) + "&dirflg=r";
+const addrLink = e => { const a = addrOf(e); return a ? `<a class="addr" href="${mapsUrl(a)}" target="_blank" rel="noopener">📍 ${esc(a)} <span>Itinéraire ›</span></a>` : ""; };
+const hm = t => t ? t.replace(":", "h") : "";
+const live = () => Object.values(visits).filter(v => !v.deleted);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const today = () => { const d = new Date(); d.setHours(0,0,0,0); return d; };
+const parse = s => { const [y,m,d] = s.split("-").map(Number); return new Date(y, m-1, d); };
+const fmt = s => parse(s).toLocaleDateString("fr-FR", {day:"numeric", month:"long", year:"numeric"});
+const fmtShort = s => parse(s).toLocaleDateString("fr-FR", {day:"numeric", month:"short"});
+const days = s => Math.round((parse(s) - today()) / 86400000);
+function toast(msg){ const t = $("#toast"); t.textContent = msg; t.classList.add("on"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("on"), 2600); }
+
+function statut(e){
+  const t = today();
+  if (parse(e.d) > t) return "avenir";
+  if (parse(e.f) < t) return "finie";
+  return "cours";
+}
+
+/* ---------- Rendu des expos ---------- */
+function seenMap(){ const s = {}; live().forEach(v => { (s[v.expo] = s[v.expo] || []).push(v); }); return s; }
+function cardHTML(e, extra){
+  const seenBy = seenMap();
+    const s = statut(e), n = days(e.f), b = [];
+    if (s === "avenir") b.push(`<span class="badge soon">Ouvre ${days(e.d) <= 1 ? "demain" : "dans " + days(e.d) + " j"}</span>`);
+    else if (s === "cours" && n <= 30) b.push(`<span class="badge end">${n <= 0 ? "Dernier jour" : "Se termine dans " + n + " j"}</span>`);
+    if (s === "finie") b.push(`<span class="badge">Terminée</span>`);
+    const vs = seenBy[e.id] || [];
+    vs.forEach(v => b.push(`<span class="badge seen">${parse(v.date) < today() ? "Vue" : "Prévue"} le ${fmtShort(v.date)}</span>`));
+    if (e.v) b.push(`<span class="badge ville">MUVE</span>`);
+    const info = "https://www.google.com/search?q=" + encodeURIComponent(e.t + " " + e.m);
+    return `<article class="card">${extra || ""}
+      <div class="museum"><a href="#" class="mus-link" data-mus="${esc(e.m)}">${esc(e.m)} ›</a></div>
+      <h3>${esc(e.t)}</h3>
+      <div class="dates">Du ${fmt(e.d)} au ${fmt(e.f)}</div>
+      ${addrLink(e)}
+      ${b.length ? `<div class="badges">${b.join("")}</div>` : ""}
+      <p class="comment">${esc(e.c)}</p>
+      <div class="row">
+        <button class="btn small" data-plan="${esc(e.id)}">＋ Noter une visite</button>
+        <a class="btn ghost small" href="${info}" target="_blank" rel="noopener">Infos & billets ↗</a>
+      </div>
+    </article>`;
+  }
+
+function fillMusees(){
+  const sel = $("#musee"); if (!sel) return;
+  const n = {}, ville = {};
+  catalogue.expos.forEach(e => { if (statut(e) !== "finie") n[e.m] = (n[e.m] || 0) + 1; if (e.v) ville[e.m] = 1; });
+  const names = Object.keys(n).sort((a, b) => a.localeCompare(b, "fr"));
+  if (filtreMusee && !n[filtreMusee]) filtreMusee = "";
+  sel.innerHTML = `<option value="">🏛 Tous les musées</option>` + names.map(m => `<option value="${esc(m)}"${m === filtreMusee ? " selected" : ""}>${esc(m)}${ville[m] ? " · MUVE" : ""} (${n[m]})</option>`).join("");
+}
+function renderExpos(){
+  const q = query.trim().toLowerCase();
+  document.querySelectorAll("#f-statut, #f-reseau").forEach(x => x.style.display = filtreMusee ? "none" : "");
+  if (filtreMusee){
+    // Vue « un musée » : toutes ses expos en cours et à venir, par date d'ouverture
+    const list = catalogue.expos.filter(e => e.m === filtreMusee && statut(e) !== "finie" && (!q || (e.t + " " + e.c).toLowerCase().includes(q)));
+    const cours = list.filter(e => statut(e) === "cours").sort((a, b) => a.f.localeCompare(b.f));
+    const avenir = list.filter(e => statut(e) === "avenir").sort((a, b) => a.d.localeCompare(b.d));
+    $("#count").innerHTML = `${list.length} exposition${list.length > 1 ? "s" : ""} · <a href="#" id="all-mus" style="color:var(--accent)">voir tous les musées</a>`;
+    $("#list").innerHTML = (cours.length ? `<div class="section-title">En cours (${cours.length})</div>` + cours.map(e => cardHTML(e)).join("") : "") +
+      (avenir.length ? `<div class="section-title">À venir (${avenir.length})</div>` + avenir.map(e => cardHTML(e)).join("") : "") ||
+      '<div class="empty">Aucune exposition pour ce musée.</div>';
+    return;
+  }
+  let list = catalogue.expos.filter(e => {
+    const s = statut(e);
+    if (s === "finie" && filtreStatut !== "toutes") return false;
+    if (filtreStatut === "cours" && s !== "cours") return false;
+    if (filtreStatut === "avenir" && s !== "avenir") return false;
+    if (filtreStatut === "fin" && !(s === "cours" && days(e.f) <= 30)) return false;
+    if (filtreReseau === "ville" && !e.v) return false;
+    if (q && !(e.t + " " + e.m + " " + e.c).toLowerCase().includes(q)) return false;
+    return true;
+  });
+  list.sort((a,b) => filtreStatut === "avenir" ? a.d.localeCompare(b.d) : a.f.localeCompare(b.f));
+  $("#count").textContent = list.length + (list.length > 1 ? " expositions" : " exposition") + (filtreStatut !== "avenir" && filtreStatut !== "toutes" ? " · triées par date de fin" : "");
+  if (!list.length){ $("#list").innerHTML = '<div class="empty">Aucune exposition pour ces critères.</div>'; return; }
+  $("#list").innerHTML = list.map(e => cardHTML(e)).join("");
+}
+
+/* ---------- Rendu des visites ---------- */
+function expoById(id){ return catalogue.expos.find(e => e.id === id) || BASE.expos.find(e => e.id === id); }
+function renderVisits(){
+  const all = live();
+  $("#nbv").textContent = all.length ? `(${all.length})` : "";
+  if (!all.length){ $("#visits").innerHTML = '<div class="empty">Aucune visite notée pour l\'instant.<br>Choisis une expo et touche « Noter une visite ».</div>'; return; }
+  const t = today();
+  const avenir = all.filter(v => parse(v.date) >= t).sort((a,b) => (a.date+(a.time||"")).localeCompare(b.date+(b.time||"")));
+  const passees = all.filter(v => parse(v.date) < t).sort((a,b) => (b.date+(b.time||"")).localeCompare(a.date+(a.time||"")));
+  const card = v => {
+    const e = expoById(v.expo) || {t: v.titre || "Exposition", m: v.musee || ""};
+    const d = parse(v.date).toLocaleDateString("fr-FR", {weekday:"long", day:"numeric", month:"long", year:"numeric"});
+    return `<article class="card">
+      <div class="museum">${esc(e.m)}</div>
+      <h3>${esc(e.t)}</h3>
+      <div class="visit-meta">📅 <b>${d}</b>${v.time ? " · " + esc(hm(v.time)) + (v.timeEnd ? " – " + esc(hm(v.timeEnd)) : "") : ""}</div>
+      ${addrLink(e)}
+      ${v.with ? `<div class="visit-meta">👥 avec <b>${esc(v.with)}</b></div>` : ""}
+      ${v.rate ? `<div class="visit-meta stars">${"★".repeat(v.rate)}${"☆".repeat(5 - v.rate)}</div>` : ""}
+      ${v.notes ? `<p class="comment">${esc(v.notes)}</p>` : ""}
+      <div class="row">
+        <button class="btn ghost small" data-edit="${esc(v.id)}">Modifier</button>
+        <button class="btn ghost small" data-cal="${esc(v.id)}">📅 Calendrier</button>
+      </div>
+    </article>`;
+  };
+  $("#visits").innerHTML =
+    (avenir.length ? `<div class="section-title">À venir</div>` + avenir.map(card).join("") : "") +
+    (passees.length ? `<div class="section-title">Déjà vues</div>` + passees.map(card).join("") : "");
+}
+
+function renderNouv(){
+  const n = catalogue.nouveautes;
+  const tag = t => `<div class="badges" style="margin:0 0 6px"><span class="badge soon">${t}</span></div>`;
+  if (!n || !((n.ajoutees||[]).length + (n.modifiees||[]).length + (n.retirees||[]).length)){
+    $("#nbn").textContent = ""; $("#nouv").innerHTML = '<div class="empty">Pas de nouveauté cette semaine.</div>'; return;
+  }
+  const ajout = (n.ajoutees || []).map(expoById).filter(Boolean).sort((a,b) => a.d.localeCompare(b.d));
+  const modif = (n.modifiees || []).map(x => ({e: expoById(x.id), note: x.note})).filter(x => x.e);
+  const retir = n.retirees || [];
+  $("#nbn").textContent = (ajout.length + modif.length) ? `(${ajout.length + modif.length})` : "";
+  $("#nouv").innerHTML = `<div class="count">Mise à jour du ${fmt(n.semaine || catalogue.maj)}</div>` +
+    (ajout.length ? `<div class="section-title">Ajoutées (${ajout.length})</div>` + ajout.map(e => cardHTML(e, tag("Nouveau"))).join("") : "") +
+    (modif.length ? `<div class="section-title">Modifiées (${modif.length})</div>` + modif.map(x => cardHTML(x.e, tag(esc(x.note || "Modifiée")))).join("") : "") +
+    (retir.length ? `<div class="section-title">Retirées</div><div class="card">` + retir.map(r => `<div class="visit-meta">${esc(r.t)} <span class="museum">· ${esc(r.m)}</span></div>`).join("") + `</div>` : "");
+}
+function renderAll(){
+  fillMusees();
+  renderNouv();
+  $("#maj").textContent = "Mise à jour du " + fmt(catalogue.maj) + " · " + catalogue.expos.length + " expositions suivies";
+  renderExpos(); renderVisits();
+}
+
+/* ---------- Formulaire de visite ---------- */
+function setRate(n){ rate = n; [...$("#f-rate").children].forEach((b,i) => b.classList.toggle("on", i < n)); }
+$("#f-rate").innerHTML = [1,2,3,4,5].map(n => `<button type="button" data-r="${n}" aria-label="${n} sur 5">★</button>`).join("");
+$("#f-rate").addEventListener("click", ev => { const r = ev.target.dataset.r; if (r) setRate(rate == r ? 0 : +r); });
+
+function openForm(expoId, visit){
+  const e = expoById(expoId);
+  editing = visit ? {...visit} : {id: "v" + Date.now().toString(36) + Math.random().toString(36).slice(2,6), expo: expoId};
+  $("#f-title").textContent = e ? e.t : "Ma visite";
+  $("#f-museum").textContent = e ? e.m + " · jusqu'au " + fmt(e.f) : "";
+  const d = new Date(); const iso = d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+  $("#f-date").value = visit ? visit.date : iso;
+  if (e){ $("#f-date").min = ""; $("#f-date").max = e.f; }
+  $("#f-time").value = visit?.time || ""; $("#f-end").value = visit?.timeEnd || "";
+  $("#f-with").value = visit?.with || "";
+  $("#f-notes").value = visit?.notes || "";
+  setRate(visit?.rate || 0);
+  $("#f-del").hidden = !visit;
+  const names = new Set(); live().forEach(v => (v.with || "").split(/,| et /).map(s => s.trim()).filter(Boolean).forEach(n => names.add(n)));
+  $("#dl-with").innerHTML = [...names].map(n => `<option value="${esc(n)}">`).join("");
+  $("#ov").classList.add("on");
+}
+function closeForm(){ $("#ov").classList.remove("on"); editing = null; }
+function readForm(){
+  return {...editing, date: $("#f-date").value, time: $("#f-time").value, timeEnd: $("#f-time").value ? $("#f-end").value : "", with: $("#f-with").value.trim(), notes: $("#f-notes").value.trim(), rate,
+          titre: expoById(editing.expo)?.t || "", musee: expoById(editing.expo)?.m || ""};
+}
+
+$("#f-time").addEventListener("change", () => {
+  const s = $("#f-time").value; if (!s) return;
+  const e = $("#f-end").value;
+  if (!e || e <= s){ const [H, M] = s.split(":").map(Number); const t = Math.min(H * 60 + M + 120, 23 * 60 + 59);
+    $("#f-end").value = String(Math.floor(t / 60)).padStart(2, "0") + ":" + String(t % 60).padStart(2, "0"); }
+});
+
+/* ---------- Persistance ---------- */
+function saveLocal(){ try { localStorage.setItem(LS, JSON.stringify(visits)); } catch(_){} }
+function loadLocal(){ try { return JSON.parse(localStorage.getItem(LS) || "{}") || {}; } catch(_){ return {}; } }
+
+function sync(){ $("#status").textContent = "Visites enregistrées sur cet appareil."; }
+async function persist(v){
+  v.updated = new Date().toISOString();
+  visits[v.id] = v; saveLocal();
+}
+async function removeVisit(id){
+  const v = visits[id]; if (!v) return;
+  await persist({id: v.id, expo: v.expo, date: v.date, deleted: true});
+}
+
+$("#form").addEventListener("submit", async ev => {
+  ev.preventDefault();
+  if (!$("#f-date").value){ toast("Choisis une date"); return; }
+  const v = readForm(); closeForm();
+  await persist(v); renderAll(); toast("Visite enregistrée");
+});
+$("#f-cancel").addEventListener("click", closeForm);
+$("#ov").addEventListener("click", ev => { if (ev.target.id === "ov") closeForm(); });
+$("#f-del").addEventListener("click", async () => { const id = editing.id; closeForm(); await removeVisit(id); renderAll(); toast("Visite supprimée"); });
+$("#f-cal").addEventListener("click", async () => {
+  if (!$("#f-date").value){ toast("Choisis d'abord une date"); return; }
+  const v = readForm(); closeForm(); addToCalendar(v); await persist(v); renderAll();
+});
+
+/* ---------- Calendrier (.ics) ---------- */
+function icsEscape(s){ return String(s || "").replace(/\\/g,"\\\\").replace(/;/g,"\\;").replace(/,/g,"\\,").replace(/\n/g,"\\n"); }
+function buildICS(v){
+  const e = expoById(v.expo) || {t: v.titre, m: v.musee};
+  const d = v.date.replace(/-/g, "");
+  let start, end;
+  if (v.time){
+    let fin = v.timeEnd;
+    if (!fin || fin <= v.time){ const [H, M] = v.time.split(":").map(Number); const t = Math.min(H * 60 + M + 120, 23 * 60 + 59);
+      fin = String(Math.floor(t / 60)).padStart(2, "0") + ":" + String(t % 60).padStart(2, "0"); }
+    start = `DTSTART;TZID=Europe/Rome:${d}T${v.time.replace(":", "")}00`;
+    end = `DTEND;TZID=Europe/Rome:${d}T${fin.replace(":", "")}00`;
+  } else {
+    const n = parse(v.date); n.setDate(n.getDate() + 1);
+    const nd = n.getFullYear() + String(n.getMonth()+1).padStart(2,"0") + String(n.getDate()).padStart(2,"0");
+    start = `DTSTART;VALUE=DATE:${d}`; end = `DTEND;VALUE=DATE:${nd}`;
+  }
+  const stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d+/, "");
+  const desc = [e.t, v.with ? "Avec : " + v.with : "", v.notes].filter(Boolean).join("\n");
+  return ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//JB App//Expos Venise//FR","CALSCALE:GREGORIAN",
+    "BEGIN:VTIMEZONE","TZID:Europe/Rome",
+    "BEGIN:DAYLIGHT","TZOFFSETFROM:+0100","TZOFFSETTO:+0200","TZNAME:CEST","DTSTART:19700329T020000","RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU","END:DAYLIGHT",
+    "BEGIN:STANDARD","TZOFFSETFROM:+0200","TZOFFSETTO:+0100","TZNAME:CET","DTSTART:19701025T030000","RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU","END:STANDARD",
+    "END:VTIMEZONE","BEGIN:VEVENT",
+    "UID:" + v.id + "@expos-venise", "DTSTAMP:" + stamp, start, end,
+    "SUMMARY:" + icsEscape("Expo : " + e.t), "LOCATION:" + icsEscape(e.m + (addrOf(e) && e.a ? ", " + e.a : ", Venezia")), "DESCRIPTION:" + icsEscape(desc),
+    "BEGIN:VALARM","TRIGGER:-PT2H","ACTION:DISPLAY","DESCRIPTION:" + icsEscape("Expo : " + e.t),"END:VALARM",
+    "END:VEVENT","END:VCALENDAR"].join("\r\n");
+}
+let calVisit = null;
+function icsFile(v){
+  const e = expoById(v.expo) || {t: v.titre};
+  const slug = (e.t || "visite").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-").slice(0,40);
+  return {name: `visite-${slug}.ics`, ics: buildICS(v)};
+}
+function addToCalendar(v){
+  calVisit = v;
+  const e = expoById(v.expo) || {t: v.titre};
+  $("#c-title").textContent = e.t || "Visite";
+  $("#c-when").textContent = parse(v.date).toLocaleDateString("fr-FR", {weekday:"long", day:"numeric", month:"long"}) + (v.time ? " · " + hm(v.time) + (v.timeEnd ? " – " + hm(v.timeEnd) : "") : " (journée entière)");
+  $("#ov-cal").classList.add("on");
+}
+// 1) Téléchargement du fichier .ics : Safari propose alors « Ajouter au calendrier »
+$("#c-open").addEventListener("click", () => {
+  const {name, ics} = icsFile(calVisit);
+  const url = URL.createObjectURL(new Blob([ics], {type: "text/calendar"}));
+  const a = document.createElement("a"); a.href = url; a.download = name; a.rel = "noopener";
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 60000);
+  $("#ov-cal").classList.remove("on");
+  toast("Touche « Ajouter » dans la fiche qui s'ouvre");
+});
+// 2) Feuille de partage (Enregistrer dans Fichiers, Mail, AirDrop…)
+$("#c-share").addEventListener("click", async () => {
+  const {name, ics} = icsFile(calVisit);
+  const file = new File([ics], name, {type: "text/calendar"});
+  try {
+    if (navigator.canShare && navigator.canShare({files: [file]})) { await navigator.share({files: [file], title: name}); $("#ov-cal").classList.remove("on"); }
+    else toast("Partage non disponible sur cet appareil");
+  } catch(_){ /* annulé */ }
+});
+$("#c-close").addEventListener("click", () => $("#ov-cal").classList.remove("on"));
+$("#ov-cal").addEventListener("click", ev => { if (ev.target.id === "ov-cal") $("#ov-cal").classList.remove("on"); });
+
+/* ---------- Réglages ---------- */
+function openSettings(){ $("#ov-set").classList.add("on"); }
+$("#open-set").addEventListener("click", openSettings);
+$("#s-close").addEventListener("click", () => $("#ov-set").classList.remove("on"));
+$("#ov-set").addEventListener("click", ev => { if (ev.target.id === "ov-set") $("#ov-set").classList.remove("on"); });
+$("#form-set").addEventListener("submit", ev => ev.preventDefault());
+$("#s-export").addEventListener("click", () => {
+  const data = JSON.stringify({app: "expos-venise", export: new Date().toISOString(), visites: live()}, null, 1);
+  const url = URL.createObjectURL(new Blob([data], {type: "application/json"}));
+  const a = document.createElement("a"); a.href = url; a.download = "expos-venise-visites.json";
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 4000);
+});
+$("#s-import").addEventListener("change", async ev => {
+  const f = ev.target.files[0]; if (!f) return;
+  try {
+    const d = JSON.parse(await f.text()); const list = Array.isArray(d) ? d : d.visites;
+    let n = 0; for (const v of list || []) if (v && v.id && v.expo && v.date){ visits[v.id] = v; n++; }
+    saveLocal(); renderAll(); toast(n + " visite(s) importée(s)");
+  } catch(_){ toast("Fichier non reconnu"); }
+  ev.target.value = "";
+});
+
+/* ---------- Navigation & filtres ---------- */
+document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(".tab").forEach(x => x.classList.toggle("on", x === b));
+  $("#v-expos").hidden = b.dataset.tab !== "expos";
+  $("#v-visites").hidden = b.dataset.tab !== "visites";
+  $("#v-nouv").hidden = b.dataset.tab !== "nouv";
+  window.scrollTo(0, 0);
+}));
+function chipGroup(sel, cb){ $(sel).addEventListener("click", ev => { const b = ev.target.closest(".chip"); if (!b) return; $(sel).querySelectorAll(".chip").forEach(x => x.classList.toggle("on", x === b)); cb(b.dataset.v); renderExpos(); }); }
+chipGroup("#f-statut", v => filtreStatut = v);
+chipGroup("#f-reseau", v => filtreReseau = v);
+$("#q").addEventListener("input", ev => { query = ev.target.value; renderExpos(); });
+function setMusee(m){
+  filtreMusee = m; fillMusees(); $("#musee").value = m; renderExpos();
+  document.querySelectorAll(".tab").forEach(x => x.classList.toggle("on", x.dataset.tab === "expos"));
+  $("#v-expos").hidden = false; $("#v-visites").hidden = true; $("#v-nouv").hidden = true; window.scrollTo(0, 0);
+}
+$("#musee").addEventListener("change", ev => setMusee(ev.target.value));
+document.addEventListener("click", ev => {
+  const m = ev.target.closest(".mus-link"); if (m){ ev.preventDefault(); setMusee(m.dataset.mus); return; }
+  if (ev.target.id === "all-mus"){ ev.preventDefault(); setMusee(""); }
+});
+document.addEventListener("click", ev => {
+  const p = ev.target.closest("[data-plan]"); if (p) return openForm(p.dataset.plan);
+  const ed = ev.target.closest("[data-edit]"); if (ed) return openForm(visits[ed.dataset.edit].expo, visits[ed.dataset.edit]);
+  const c = ev.target.closest("[data-cal]"); if (c) return addToCalendar(visits[c.dataset.cal]);
+});
+
+/* ---------- Démarrage ---------- */
+visits = loadLocal();
+try { const c = JSON.parse(localStorage.getItem("expos-venise-catalogue") || "null"); if (c && c.expos && c.maj >= catalogue.maj) catalogue = c; } catch(_){}
+renderAll();
+
+// Catalogue à jour (expos.json, mis à jour chaque semaine dans le dépôt)
+fetch("expos.json?t=" + Date.now(), {cache: "no-store"})
+  .then(r => r.ok ? r.json() : null)
+  .then(d => { if (d && Array.isArray(d.expos) && d.expos.length){ catalogue = d; try { localStorage.setItem("expos-venise-catalogue", JSON.stringify(d)); } catch(_){} renderAll(); } })
+  .catch(() => {});
+sync();
+
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
+</script>
+</body>
+</html>
