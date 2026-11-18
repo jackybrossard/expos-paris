@@ -69,7 +69,7 @@
    "d": "2026-09-12",
    "f": "2027-01-10",
    "v": true,
-   "c": "Les perles de verre du concours international « Ta perle pour Venise », dans la salle des perles vénitiennes."
+   "c": "Exposition collective des finalistes du concours international « Ta perle pour Venise », salle des perles vénitiennes (Sala Cinque)."
   },
   {
    "id": "vetro-babel",
@@ -87,9 +87,19 @@
    "m": "Palazzo Mocenigo",
    "a": "Santa Croce 1992, 30135 Venezia",
    "d": "2026-06-14",
-   "f": "2027-01-26",
+   "f": "2027-01-06",
    "v": true,
-   "c": "Les dentelles du concours national « Un merletto per Venezia », dans le cadre de la Biennale de la dentelle."
+   "c": "Les dentelles à l'aiguille et aux fuseaux du 12e concours national, dans l'androne du palais. L'exposition part ensuite au Museo del Merletto de Burano."
+  },
+  {
+   "id": "burano-merletto-2026",
+   "t": "Un merletto per Venezia 2026",
+   "m": "Museo del Merletto (Burano)",
+   "a": "Piazza Galuppi 187, 30142 Burano",
+   "d": "2027-01-07",
+   "f": "2027-06-13",
+   "v": true,
+   "c": "Suite de l'exposition du 12e concours national de dentelle à l'aiguille et aux fuseaux, après Palazzo Mocenigo."
   },
   {
    "id": "fortuny-wurm",
@@ -144,8 +154,15 @@
  ],
  "nouveautes": {
   "semaine": "2026-11-18",
-  "ajoutees": [],
-  "modifiees": [],
+  "ajoutees": [
+   "burano-merletto-2026"
+  ],
+  "modifiees": [
+   {
+    "id": "mocenigo-merletto-2026",
+    "note": "Fin corrigée : 6 janvier 2027"
+   }
+  ],
   "retirees": []
  }
 }
