@@ -160,13 +160,24 @@
    "f": "2026-11-22",
    "v": false,
    "c": "Les sculptures en verre de l'artiste nippo-suisse dialoguent avec les chefs-d'œuvre de la peinture vénitienne, pour la 10e Venice Glass Week. Derniers jours !"
+  },
+  {
+   "id": "m9-giocare-italiana",
+   "t": "Giocare all'italiana. Storia, costume e società attraverso il giocattolo del Novecento",
+   "m": "M9 – Museo del '900 (Mestre)",
+   "a": "Via Giovanni Pascoli 11, 30171 Mestre",
+   "d": "2026-10-14",
+   "f": "2027-02-14",
+   "v": false,
+   "c": "L'histoire et la société italiennes du XXe siècle racontées par les jouets : poupées, Pinocchio en bois, jeux de cartes…"
   }
  ],
  "nouveautes": {
   "semaine": "2026-11-18",
   "ajoutees": [
    "burano-merletto-2026",
-   "accademia-ikemura"
+   "accademia-ikemura",
+   "m9-giocare-italiana"
   ],
   "modifiees": [
    {
