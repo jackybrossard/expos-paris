@@ -170,6 +170,16 @@
    "f": "2027-02-14",
    "v": false,
    "c": "L'histoire et la société italiennes du XXe siècle racontées par les jouets : poupées, Pinocchio en bois, jeux de cartes…"
+  },
+  {
+   "id": "m9-io-esisto",
+   "t": "Io esisto. Il racconto degli orfani e delle orfane di femminicidio",
+   "m": "M9 – Museo del '900 (Mestre)",
+   "a": "Via Giovanni Pascoli 11, 30171 Mestre",
+   "d": "2026-11-18",
+   "f": "2026-11-29",
+   "v": false,
+   "c": "Le récit photographique de Stefania Prandi : les témoignages de cinq orphelins de féminicide et des familles qui les accueillent. Espace M9 Radici."
   }
  ],
  "nouveautes": {
@@ -177,7 +187,8 @@
   "ajoutees": [
    "burano-merletto-2026",
    "accademia-ikemura",
-   "m9-giocare-italiana"
+   "m9-giocare-italiana",
+   "m9-io-esisto"
   ],
   "modifiees": [
    {
