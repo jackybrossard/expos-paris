@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-18",
+ "maj": "2026-11-23",
  "expos": [
   {
    "id": "correr-spiral-economy",
@@ -180,22 +180,57 @@
    "f": "2026-11-29",
    "v": false,
    "c": "Le récit photographique de Stefania Prandi : les témoignages de cinq orphelins de féminicide et des familles qui les accueillent. Espace M9 Radici."
+  },
+  {
+   "id": "pesaro-sartorelli",
+   "t": "Omaggio a Guido Sartorelli",
+   "m": "Ca' Pesaro",
+   "a": "Santa Croce 2076, 30135 Venezia",
+   "d": "2026-11-20",
+   "f": "2027-02-09",
+   "v": true,
+   "c": "Hommage à l'artiste vénitien Guido Sartorelli, salle 6 au premier étage."
+  },
+  {
+   "id": "pesaro-furian",
+   "t": "Valentina Furian. 55",
+   "m": "Ca' Pesaro",
+   "a": "Santa Croce 2076, 30135 Venezia",
+   "d": "2026-11-26",
+   "f": "2026-12-13",
+   "v": true,
+   "c": "Œuvre vidéo présentée dans la Project Room du rez-de-chaussée, dans le cycle « Polifonie Italiane »."
+  },
+  {
+   "id": "pesaro-gagno",
+   "t": "Omaggio a Silvio Gagno",
+   "m": "Ca' Pesaro",
+   "a": "Santa Croce 2076, 30135 Venezia",
+   "d": "2026-12-12",
+   "f": "2027-02-07",
+   "v": true,
+   "c": "Quarante-quatre œuvres du peintre trévisan, actif depuis les années 1970, dans les salles Dom Pérignon au deuxième étage."
+  },
+  {
+   "id": "pesaro-vavarella",
+   "t": "Emilio Vavarella. Notes for a Vertical Cinema",
+   "m": "Ca' Pesaro",
+   "a": "Santa Croce 2076, 30135 Venezia",
+   "d": "2026-12-17",
+   "f": "2027-01-31",
+   "v": true,
+   "c": "Second rendez-vous vidéo de la Project Room du rez-de-chaussée (cycle « Polifonie Italiane »)."
   }
  ],
  "nouveautes": {
-  "semaine": "2026-11-18",
+  "semaine": "2026-11-23",
   "ajoutees": [
-   "burano-merletto-2026",
-   "accademia-ikemura",
-   "m9-giocare-italiana",
-   "m9-io-esisto"
+   "pesaro-sartorelli",
+   "pesaro-furian",
+   "pesaro-gagno",
+   "pesaro-vavarella"
   ],
-  "modifiees": [
-   {
-    "id": "mocenigo-merletto-2026",
-    "note": "Fin corrigée : 6 janvier 2027"
-   }
-  ],
+  "modifiees": [],
   "retirees": []
  }
 }

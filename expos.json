@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-16",
+ "maj": "2026-11-23",
  "expos": [
   {
    "id": "eva-gonzales",
@@ -1100,20 +1100,35 @@
    "f": "2027-08-08",
    "v": true,
    "c": "Pour la première fois, le musée montre sa collection de photographies : une soixantaine d'œuvres de dix auteurs."
+  },
+  {
+   "id": "rodin-rilke",
+   "t": "Rodin selon Rilke",
+   "m": "Musée Rodin",
+   "a": "77 rue de Varenne, 75007 Paris",
+   "d": "2026-12-15",
+   "f": "2027-04-18",
+   "v": false,
+   "c": "Un parcours poétique parmi les sculptures de Rodin, guidé par des extraits de Rainer Maria Rilke, son ancien secrétaire, pour le centenaire de la mort du poète."
+  },
+  {
+   "id": "orsay-vuillard-accrochage",
+   "t": "Édouard Vuillard (accrochage)",
+   "m": "Musée d'Orsay",
+   "a": "Esplanade Valéry Giscard d'Estaing, 75007 Paris",
+   "d": "2026-12-15",
+   "f": "2027-03-07",
+   "v": false,
+   "c": "Salle 33 : des acquisitions récentes de Vuillard (peinture, pastel, arts décoratifs), en prélude à la grande exposition « Vuillard, théâtres intimes » de mars 2027."
   }
  ],
  "nouveautes": {
-  "semaine": "2026-11-16",
+  "semaine": "2026-11-23",
   "ajoutees": [
-   "laurencin-luxembourg",
-   "cernuschi-transcontinentales"
+   "rodin-rilke",
+   "orsay-vuillard-accrochage"
   ],
   "modifiees": [],
-  "retirees": [
-   {
-    "t": "Plumes du paradis",
-    "m": "Musée du quai Branly – Jacques Chirac"
-   }
-  ]
+  "retirees": []
  }
 }
