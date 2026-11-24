@@ -1120,13 +1120,68 @@
    "f": "2027-03-07",
    "v": false,
    "c": "Salle 33 : des acquisitions récentes de Vuillard (peinture, pastel, arts décoratifs), en prélude à la grande exposition « Vuillard, théâtres intimes » de mars 2027."
+  },
+  {
+   "id": "shoah-simone-veil",
+   "t": "Simone Veil. Mes sœurs et moi",
+   "m": "Mémorial de la Shoah",
+   "a": "17 rue Geoffroy-l'Asnier, 75004 Paris",
+   "d": "2026-02-10",
+   "f": "2026-11-29",
+   "v": false,
+   "c": "Simone Veil et ses sœurs, une histoire de famille à travers la déportation et l'après-guerre. Prolongée jusqu'au 29 novembre. Entrée libre."
+  },
+  {
+   "id": "shoah-herero-nama",
+   "t": "Le premier génocide du XXe siècle : Herero et Nama dans le Sud-Ouest africain allemand, 1904-1908",
+   "m": "Mémorial de la Shoah",
+   "a": "17 rue Geoffroy-l'Asnier, 75004 Paris",
+   "d": "2026-04-29",
+   "f": "2027-02-07",
+   "v": false,
+   "c": "Les massacres des Herero et des Nama dans l'actuelle Namibie, alors colonie allemande. Entrée libre."
+  },
+  {
+   "id": "shoah-billet-vert",
+   "t": "Images de la rafle du « billet vert »",
+   "m": "Mémorial de la Shoah",
+   "a": "17 rue Geoffroy-l'Asnier, 75004 Paris",
+   "d": "2026-05-10",
+   "f": "2027-02-21",
+   "v": false,
+   "c": "Les photographies de la première rafle de Juifs à Paris, en mai 1941. Prolongée. Entrée libre."
+  },
+  {
+   "id": "shoah-cixous",
+   "t": "Hélène Cixous, Gare d'Osnabrück à Jérusalem",
+   "m": "Mémorial de la Shoah",
+   "a": "17 rue Geoffroy-l'Asnier, 75004 Paris",
+   "d": "2026-12-06",
+   "f": "2027-03-14",
+   "v": false,
+   "c": "L'écrivaine Hélène Cixous et l'histoire de sa famille maternelle. À l'entresol, entrée gratuite."
+  },
+  {
+   "id": "drancy-juifs-banlieue",
+   "t": "Histoire des Juifs de la banlieue du nord-est parisien. Entre intégration et persécutions (1859-1960)",
+   "m": "Mémorial de la Shoah – Drancy",
+   "a": "110-112 avenue Jean-Jaurès, 93700 Drancy",
+   "d": "2026-11-19",
+   "f": "2027-06-30",
+   "v": false,
+   "c": "De l'installation des familles juives dans la banlieue nord-est aux persécutions de la guerre. Entrée libre."
   }
  ],
  "nouveautes": {
   "semaine": "2026-11-23",
   "ajoutees": [
    "rodin-rilke",
-   "orsay-vuillard-accrochage"
+   "orsay-vuillard-accrochage",
+   "shoah-simone-veil",
+   "shoah-herero-nama",
+   "shoah-billet-vert",
+   "shoah-cixous",
+   "drancy-juifs-banlieue"
   ],
   "modifiees": [],
   "retirees": []
